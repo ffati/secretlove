@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+    <script type="text/javascript" th:src="@{/js/Effect.js}"></script>
+    <script type="text/javascript" th:src="@{/js/Effectitem.js}"></script>
+
+    <style>
+        html { height: 100%; }
+
+        body {
+            overflow: hidden;
+            min-height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /*background: #435;*/
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        canvas {
+            display: block;
+            margin: 0 auto;
+            cursor: move;
+        }
+
+    </style>
+</head>
+<body>
+
+<!--<div  data-anim="layui-anim-rotate layui-anim-loop">
+    <img style="width: 100px;width: 100px;margin-left: 10%" th:src="@{/img/stars/stars.png}">
+
+</div>-->
+
+<div class="container" >
+    <canvas></canvas>
+</div>
+
+<script type="text/javascript" th:src="@{/js/insideHomePage.js}"></script>
+<script>
+
+    new Effect({
+        //特效图片，多张图片时传入数组，单个图片时传入字符串
+        effectUrl: ["../img/stars/1.png", "../img/stars/2.png", "../img/stars/3.png", "../img/stars/4.png",
+            "../img/stars/5.png", "../img/stars/6.png", "../img/stars/7.png", "../img/stars/8.png", "../img/stars/9.png"],
+        //特效旋转，1/true为旋转，0/false为不旋转
+        rotate: 1,
+        //特效方向，left/right/up/down
+        direction: "up"
+    });
+
+
+</script>
+</body>
+</html>
