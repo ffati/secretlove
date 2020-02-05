@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+    <title></title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/dynamicloading/demo.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/dynamicloading/pater.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/dynamicloading/dynamicloading.css}" />
+
+</head>
+<body >
+<div class="maindiv1">
+</div>
+<div class="maindiv2">
+
+    <div align="center" style="height: 10%;width:60%;z-index:999;position: fixed;top: 0;">111</div>
+    <div class="topdiv" align="center" style="height: 10%;top: 0;">111</div>
+
+    <div class="content content--center"`>
+        <div id="gridpic" class="grid grid--type-a">
+            <div class="grid__sizer"></div>
+
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+<div class="maindiv3">
+<div style="position: fixed;width: 20%;height: 100%">
+    <div th:replace="../templates/publicContent/menubar :: menubar"></div>
+</div>
+</div>
+
+
+<div class="showpicwindow" style="opacity:0;background-color: black;width: 100%;height: 100%;position: fixed;z-index: 999"hidden="hidden">
+    <div class="showpicdiv" style="width: 50%;height: 100%;position: fixed;">
+
+    </div>
+
+    <div class="explaindiv" style="width: 50%;height: 100%;position: fixed;right: 0px;">
+        <div style="margin-top: 40%;width: 50%;font-size: large;color: #FFFFFF;">这是个测试</div>
+        <div style="width: 50%;color: #C3C8CD;margin-top: 10px;">dfsfsdfsd</div>
+    </div>
+
+</div>
+
+
+<script>
+
+    layui.use('flow', function(){
+        var flow = layui.flow;
+
+        flow.load({
+            elem: '#gridpic' //流加载容器
+            //,scrollElem: '#LAY_demo1' //滚动条所在元素，一般不用填，此处只是演示需要。
+            ,done: function(page, next){ //执行下一页的回调
+
+                //以jQuery的Ajax请求为例，请求下一页数据（注意：page是从2开始返回）
+/*                $.get('/api/list?page='+page, function(res){
+                    //假设你的列表返回在data集合中
+                    layui.each(res.data, function(index, item){
+                        lis.push('<div class="grid__item">'+ '<a class="grid__link" href="#"><img class="grid__img" th:src="@{'+item.src+'}" alt="Some image" /></a>' +' </div>');
+                    });*/
+
+                setTimeout(function(){
+                    var lis = [];
+                    var num=0;
+                    for(var i = 0; i < 16; i++){
+                        num++;
+                        lis.push('<div class="grid__item"  style="display: inline-block;z-index: 999">' +
+                            '                            <a class="grid__link pater" href="#">' +
+                            '                                <img onclick="magnification(this)" src="/img/lodingbgpicture/lodingbgpicture17.jpg" class="pater__img "style="background-size: cover;object-fit: cover"/>' +
+                            '                                <div class="pater__content">' +
+                            '                                    <h2 class="pater__title" aria-label="fullstory">See Every Click, Swipe, <br> and Scroll</h2>' +
+                            '                                    <p class="pater__desc">See how users experience your designs with FullStory.</p>' +
+                            '                                    <span class="pater__call">Get it free today!</span>' +
+                            '                                </div>' +
+                            '                            </a>' +
+                            '                        </div>')
+                    }
+                    //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
+                    //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
+                    next(lis.join(''), page < 10); //假设总页数为 10
+                }, 500);
+            }
+        });
+    });
+
+
+
+</script>
+<script type="text/javascript" th:src="@{/js/dynamicloading/imagemagnification.js}"></script>
+</body>
+</html>

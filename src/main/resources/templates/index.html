@@ -3,14 +3,62 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title> $Title$</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/}">
-    <script type="text/javascript" th:src="@{/}"></script>
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title> 首页</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/homePage.css}">
+    <script type="text/javascript" th:src="@{/js/homePage.js}"></script>
+<!--    <script type="text/javascript" th:src="@{/js/Effect.js}"></script>
+    <script type="text/javascript" th:src="@{/js/Effectitem.js}"></script>-->
 </head>
+
 <body>
-HEllO!
+
+<div class="lodingdiv">
+    <div align="center" style="margin-top: 20%">
+        <div>欢迎来到暗恋网,在这里说出你的心里话吧</div>
+        <div style="margin-top: 20px">
+            <img style="height: auto;width: auto" class="imgstyle" th:src="@{/img/homePageGif/loding.gif}">
+        </div>
+    </div>
+</div>
+
+
+<div class="mc-ui-absolute-pane" style="top: 0px;">
+    <div class="mc-ui-absolute-pane maindiv1">
+
+        <div id="my">
+            该往何处
+        </div>
+    </div>
+    <div class="mc-ui-absolute-pane maindiv2" >
+            <!--<label class="layui-form-label"></label>-->
+            <div class="inputdiv layui-input-block"  >
+                <span class="inputDog" th:align="left" ><img th:src="@{/img/homePageGif/dog.gif}"></span>
+                <span class="toolTips"></span>
+                <input align="center" class="searchinput layui-input maindiv2input" type="text" name="username" lay-verify="required"
+                       lay-reqtext="用户名是必填项，岂能为空？"
+                       placeholder="请输入你的名字或昵称"
+                       autocomplete="off" >
+            </div>
+            <div class="iframediv" align="center" >
+                <iframe src="/home/insidePage" height="100%" width="100%"
+                        frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes”>
+                </iframe>
+            </div>
+    </div>
+
+
+    <div class="mc-ui-absolute-pane maindiv3" >
+        <div th:replace="../templates/publicContent/menubar :: menubar"></div>
+    </div>
+</div>
+
+<div>
+    <audio loop="loop" autoplay="autoplay"  oncontextmenu="return false">
+        <source th:src="@{/audioFrequency/song.mp3}" type="audio/mp3" />
+    </audio>
+</div>
+
 </body>
+
 </html>

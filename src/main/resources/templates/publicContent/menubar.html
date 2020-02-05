@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
+    <th:block th:fragment="menubar">
+    <img id="removablediv" class="showmenu mainmenu" src="">
+    <div class="layui-row togglediv" style="margin-top: 30%;">
+
+        <div class="layui-col-xs6 layui-col-md12" style="margin: 20%">
+            <div class="grid-demo grid-demo-bg2">
+                <a title="首页" th:href="@{/home/homepage}"><img class="imgstyle" th:src="@{/img/homePageGif/home.gif}"></a>
+            </div>
+        </div>
+
+        <div class="layui-col-xs6 layui-col-md12" style="margin: 20%">
+            <div class="grid-demo grid-demo-bg2">
+                <a title="登录" th:href="@{/login/loginPage}"><img class="imgstyle" th:src="@{/img/homePageGif/login.gif}"></a>
+            </div>
+        </div>
+
+        <div class="layui-col-xs6 layui-col-md12" style="margin: 20%">
+            <div class="grid-demo grid-demo-bg2">
+                <a title="告白墙" th:href="@{/confession/wall}"><img class="imgstyle" th:src="@{/img/homePageGif/confessionWall.gif}"></a>
+            </div>
+        </div>
+
+        <div class="layui-col-xs6 layui-col-md12" style="margin: 20%">
+            <div class="grid-demo grid-demo-bg2">
+                <a title="定制服务" th:href="@{/individuation/individuationPage}"><img class="imgstyle3"  th:src="@{/img/homePageGif/vip.gif}"></a>
+            </div>
+        </div>
+    </div>
+
+    </th:block>
+
+</body>
+</html>
