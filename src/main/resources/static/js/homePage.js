@@ -65,7 +65,7 @@ function lodinghidden() {
 function lodingbackground() {
 
     var imgurl='url("/img/lodingbgpicture/lodingbgpicture';
-    var imgnumber=Math.round(Math.random()*10+1);
+    var imgnumber=Math.round(Math.random()*16+1);
     var imgfinalurl=imgurl+imgnumber+'.jpg")';
 
     $(".lodingdiv").css('background-image',imgfinalurl);
@@ -73,14 +73,8 @@ function lodingbackground() {
 
 };
 
-function hiddenmenu() {
 
-    $(".mainmenu").click(function () {
-        $(".mainmenu").toggleClass("showmenu hidemenu");
-        $('.maindiv3').animate({width:'toggle'},350);
-    });
 
-};
 
 
 /*    new Effect({
