@@ -23,4 +23,11 @@ public class LoginController {
     }
 
 
+    @RequestMapping("/resetpassword")
+    public String resetpassword(){
+
+        return "loginAndRegister/resetpassword";
+    }
+
+
 }

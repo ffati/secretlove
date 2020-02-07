@@ -13,8 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/homePage")
+@RequestMapping("/home")
 public class HomePageController {
+
+
+    @RequestMapping("/homepage")
+    public String home(){
+
+        return "index";
+    }
 
     @RequestMapping("/insidePage")
     public String allCommodity(){
