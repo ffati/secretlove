@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title> 登录</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/loginandregist.css}" />
+
+</head>
+<body class="backgroundimg">
+
+<!--<div class="miandiv" style="width: auto;height: auto">
+
+    <img class="pater__img" src="/img/backgroundPicture.jpg" style="object-fit: cover;width: 100%">
+
+</div>-->
+<div style="width: 100%;height: 100%;position: absolute" align="center" >
+
+    <div  class="formdiv" style="height: auto;width:40%;z-index:999;background-color: #B2B2B2;opacity:0.5;position: absolute" hidden="hidden" >
+        <form style="margin-top: 10%" class="" action="">
+        <div class="" style="width: 80%;">
+            <div style="display: inline-block;height: 50px">
+            <img src="/img/icon/user.png" title="用户名"/>
+            </div>
+            <div style="display: inline-block;height: 50px;width: 50%">
+                <input type="text" name="username" style=" border-radius: 15px;" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+            </div>
+
+        </div>
+
+            <div class="" style="width: 80%;">
+                <div style="display: inline-block;height: 50px;">
+                    <img src="/img/icon/password.png" title="密码"/>
+                </div>
+                <div style="display: inline-block;height: 50px;width: 50%">
+                    <input type="password" name="password" style=" border-radius: 15px;" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="" style="width: 80%;margin-top: 5%">
+                <div style="display: inline-block;height: 50px;width: 30%">
+                <a class="reseta" href="#">忘记密码？</a>
+                </div>
+                <div style="display: inline-block;height: 50px;width: 30%">
+                <a class="regista" th:href="@{/register/registerPage}">去注册</a>
+                </div>
+                <div style="height: 50px;width: 30%;display: inline-block">
+                    <input type="button" name="update" value="登录" class="layui-btn layui-btn-radius layui-btn-primary">
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+
+<div class="mc-ui-absolute-pane maindiv3" >
+    <div th:replace="../templates/publicContent/menubar :: menubar"></div>
+</div>
+<script>
+window.onload=function (ev) {
+    var scheight=$(window).height();
+    var scwidth=$(window).width();
+
+    var marginleftpx=(scwidth-scwidth*0.4)/2+'px';
+
+    $('.formdiv').css('top','-100px');
+    $('.formdiv').css('left',marginleftpx);
+    $('.formdiv').show();
+
+    $('.formdiv').animate({
+        top:'20%',
+        opacity:'0.8',
+    },"slow");
+
+    $('.formdiv').animate({
+        top:'15%',
+    },200);
+    $('.formdiv').animate({
+        top:'20%',
+    },300);
+
+
+};
+
+
+
+layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
+    var laydate = layui.laydate //日期
+        , laypage = layui.laypage //分页
+        , layer = layui.layer //弹层
+        , table = layui.table //表格
+        , carousel = layui.carousel //轮播
+        , upload = layui.upload //上传
+        , element = layui.element //元素操作
+        , slider = layui.slider //滑块
+        , form = layui.form
+        , flow = layui.flow;
+
+$(".reseta").click(function () {
+    layer.open({
+        type: 2,
+        title: ['重置密码', 'font-size:18px;'],
+        content: '/login/resetpassword',//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+        area: ['500px', '300px'],
+        resize:false,
+        scrollbar: false
+/*        zIndex: layer.zIndex, //重点1
+        success: function(layero){
+            layer.setTop(layero); //重点2
+        }*/
+
+            ,cancel: function(){
+                    //右上角关闭回调
+
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+
+    });
+})
+
+
+});
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title> 注册</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/loginandregist.css}" />
+</head>
+<body class="backgroundimg">
+
+
+<div style="width: 100%;height: 100%;position: absolute" align="center" >
+
+    <div  class="formdiv" style="height: auto;width:40%;z-index:999;background-color: #B2B2B2;opacity:0.5;position: absolute" hidden="hidden" >
+        <form style="margin-top: 10%" class="" action="">
+
+            <div class="" style="width: 80%;">
+                <div style="display: inline-block;height: 50px;">
+                    <img src="/img/icon/phone.png" title="手机号"/>
+                </div>
+                <div style="display: inline-block;height: 50px;width: 50%">
+                    <input type="text" name="phone" style=" border-radius: 15px;" lay-verify="required" placeholder="手机号" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="" style="width: 80%;">
+                <div style="display: inline-block;height: 50px">
+                    <img src="/img/icon/user.png" title="用户名"/>
+                </div>
+                <div style="display: inline-block;height: 50px;width: 50%">
+                    <input type="text" name="username" style=" border-radius: 15px;" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="" style="width: 80%;">
+                <div style="display: inline-block;height: 50px;">
+                    <img src="/img/icon/password.png" title="密码"/>
+                </div>
+                <div style="display: inline-block;height: 50px;width: 50%">
+                    <input type="password" name="password" style=" border-radius: 15px;" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+
+            <div class="" style="width: 80%;">
+                <div style="display: inline-block;height: 50px;">
+                    <img src="/img/icon/identifyingcode.png" title="验证码"/>
+                </div>
+                <div style="display: inline-block;height: 50px;width: 50%">
+                    <input type="text" name="identifyingcode" style=" border-radius: 15px;" lay-verify="required" placeholder="验证码" autocomplete="off" class="layui-input">
+                </div>
+
+            </div>
+
+            <div class="" style="width: 80%;margin-top: 5%">
+
+                <div style="height: 50px;width: 30%;display: inline-block">
+                    <input type="button" name="update" value="注册" class="registbutton layui-btn layui-btn-radius layui-btn-primary">
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div class="mc-ui-absolute-pane maindiv3" >
+    <div th:replace="../templates/publicContent/menubar :: menubar"></div>
+</div>
+
+<script>
+    window.onload=function (ev) {
+        var scheight=$(window).height();
+        var scwidth=$(window).width();
+
+        var marginleftpx=(scwidth-scwidth*0.4)/2+'px';
+
+        $('.formdiv').css('top','-100px');
+        $('.formdiv').css('left',marginleftpx);
+        $('.formdiv').show();
+
+        $('.formdiv').animate({
+            top:'20%',
+            opacity:'0.8',
+        },"slow");
+
+        $('.formdiv').animate({
+            top:'15%',
+        },200);
+        $('.formdiv').animate({
+            top:'20%',
+        },300);
+
+
+    };
+
+
+    $(".registbutton").click(function () {
+        $.ajax({
+            type: "post",
+            url: "",
+            dataType: 'json',
+            data : data,
+            //async:false,//按照js顺序执行
+            processData: false,
+            contentType: false,
+            success: function(data) {
+                if(data.status==400){
+                    art.dialog.alert("!");
+                    return;
+                }
+                if(data.status==500){
+                    art.dialog.alert("!");
+                    return;
+                }
+                art.dialog.alert("!",function () {
+                    window.location.reload();
+                });
+
+
+            },
+            error:function(){
+
+                art.dialog.alert("!")
+
+            }
+        });
+    })
+
+</script>
+
+</body>
+</html>
