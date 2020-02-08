@@ -1,7 +1,4 @@
 
-html{height: 100%;}
-
-
 body{
     overflow: hidden;
     height: auto;
@@ -31,32 +28,7 @@ body{
 
 }
 
-.maindiv1{
-    width: 20%;
-    height: 100%;
-    position: absolute;
-    left: 0%;
-    top: 0px;
 
-}
-
-.maindiv2{
-    width: 60%;
-    height: 100%;
-    position: absolute;
-    left: 20%;
-    top: 0px;
-
-}
-
-.maindiv3{
-    width: 20%;
-    height: 100%;
-    position: absolute;
-    left: 80%;
-    top: 0px;
-
-}
 
 .maindiv2input{
     background-color: transparent;

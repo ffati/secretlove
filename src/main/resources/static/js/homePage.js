@@ -64,12 +64,7 @@ function lodinghidden() {
 
 function lodingbackground() {
 
-    var imgurl='url("/img/lodingbgpicture/lodingbgpicture';
-    var imgnumber=Math.round(Math.random()*16+1);
-    var imgfinalurl=imgurl+imgnumber+'.jpg")';
-
-    $(".lodingdiv").css('background-image',imgfinalurl);
-
+    randombackground("lodingdiv");
 
 };
 

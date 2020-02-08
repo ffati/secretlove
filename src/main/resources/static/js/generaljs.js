@@ -2,6 +2,7 @@
 
 $(function() {
     togglemenu();
+    lodingbackground();
     dragFunc("removablediv");
 });
 
@@ -56,3 +57,30 @@ function togglemenu() {
     });
 
 };
+
+
+function lodingbackground() {
+
+    randombackground("backgroundimg")
+
+};
+
+
+function randombackground(classstring) {
+
+    var imgurl='url("/img/lodingbgpicture/lodingbgpicture';
+    var imgnumber=Math.round(Math.random()*16+1);
+    var imgfinalurl=imgurl+imgnumber+'.jpg")';
+    console.log(imgfinalurl);
+    $("."+classstring).css('background-image',imgfinalurl);
+
+
+};
+
+/*
+function gagelength() {
+
+    var scheight=$(window).height();
+    var scwidth=$(window).width();
+
+}*/

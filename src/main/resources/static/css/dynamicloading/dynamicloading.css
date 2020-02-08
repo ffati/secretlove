@@ -1,0 +1,42 @@
+
+
+html{height: 100%;}
+
+
+body{
+    height: auto;
+    background: url("/img/backgroundPicture.jpg") no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: rgba(255, 255, 255, .95);
+}
+
+
+.showpicwindow{
+
+    opacity:0;
+    background-color: black;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 999
+
+}
+.explaindiv{
+
+
+    width: 50%;
+    height: 100%;
+    position: fixed;
+    right: 0px;
+}
+
+.showpicdiv{
+
+    width: 50%;
+    height: 100%;
+    position: fixed;
+
+}
