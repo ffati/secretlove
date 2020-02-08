@@ -22,4 +22,11 @@ public class ConfessionWallController {
         return "confession/confessionWall";
     }
 
+    @RequestMapping("/confession")
+    public String  confession(){
+
+        return "confession/confessionPage";
+    }
+
+
 }
