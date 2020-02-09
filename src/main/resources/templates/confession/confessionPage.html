@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title> Ta对你说</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+    <script type="text/javascript" th:src="@{/js/Effect.js}"></script>
+    <script type="text/javascript" th:src="@{/js/Effectitem.js}"></script>
+
+
+</head>
+<body class="backgroundimg">
+
+
+<div class=" maindiv1" align="center">
+    <div class="secretimg" style="margin-top: 20%;margin-left:10%;position: fixed" align="center">
+        <img class="" th:src="@{/img/homePageGif/confessionWall.gif}" />
+    </div>
+</div>
+
+<div class="maindiv2" style="background-color: #B2B2B2;opacity:0.5;color: #0C0C0C" align="center">
+
+<div class="loveletter" style="width: 60%;margin-top: 30%" align="center">
+    “常见的鼠标事件: onDblClick 鼠标双击事件 onMouseDown 鼠标上的按钮被按下了 onMouseUp 鼠标按下后,松开时激发的事件 onMouseOver 当鼠标移动到某对象范围的上方时触发的事件 onMouseMove 鼠标移动时触发的事件 onload 和
+    同学们上了初中之后的语文作文分数可以说占据了整张试卷的三分之一的分数，因此我们可以看出一篇语文作文的重要性。
+
+    那么我们要如何才能写好一篇语文作文并且在作文中拿高分呢？我们就要从阅卷老师的角度出发，思考阅卷老师喜欢看到什么样的作文。首先，语文作文不能文不对题，所谓文不对题就是写作文的时候不要偏题；其次，逻辑通顺，不要整篇作文读下来语无伦次；最后，写作文的时候，选题正确，逻辑通顺，就需要优美句子的加持，使作文读起来令人“心旷神怡”。
+
+    由此可见，一篇优秀的语文作文里面必须要有优美句子的烘托，使阅卷老师看了这是一篇值得给高分的作文。这也是为什么很多老师都强调让孩子学会摘抄，在进行课外书籍阅读的时候，要会运用那些摘抄下来的句子。
+
+    那么，为了帮助同学们能够在初中写出出彩的作文，能够让作文得到一个好的分数。今天老师特意整理了有用！超优质100句作文素材，熟练运用，作文想不拿高分都困难！希望这100句作文素材能够帮助到各位同学们。家长们也可以替孩子收藏，让孩子摘抄下来。
+
+</div>
+
+    <div class="hiddenClue" style="width: 60%;height: 200px;margin-top: 30%" hidden="hidden">
+
+888888888888888888888888888888888888888888888
+
+    </div>
+
+</div>
+
+<div class="mc-ui-absolute-pane maindiv3" >
+    <div th:replace="../templates/publicContent/menubar :: menubar"></div>
+</div>
+
+
+
+
+
+
+
+<div class="container" >
+    <canvas></canvas>
+</div>
+
+
+<div>
+    <audio loop="loop" autoplay="autoplay"  oncontextmenu="return false">
+        <source th:src="@{/audioFrequency/song.mp3}" type="audio/mp3" />
+    </audio>
+</div>
+
+<script type="text/javascript" th:src="@{/js/insideHomePage.js}"></script>
+
+<script>
+
+
+    $(document).ready(function () {
+        var scheight=$(window).height();
+        var divheight=$(".loveletter").css("height");
+        var margintoppx=(scheight-divheight)/2+"px";
+
+        $(".loveletter").css("margin-top",margintoppx);
+
+    });
+
+
+    new Effect({
+        //特效图片，多张图片时传入数组，单个图片时传入字符串
+        effectUrl: ["../img/stars/1.png", "../img/stars/2.png", "../img/stars/3.png", "../img/stars/4.png",
+            "../img/stars/5.png", "../img/stars/6.png", "../img/stars/7.png", "../img/stars/8.png", "../img/stars/9.png"],
+        //特效旋转，1/true为旋转，0/false为不旋转
+        rotate: 1,
+        //特效方向，left/right/up/down
+        direction: "up"
+    });
+
+
+    $(".secretimg").mousedown(function () {
+
+        $(".loveletter").toggle();
+        $(".hiddenClue").toggle();
+    });
+
+    $(".secretimg").mouseup(function () {
+
+        $(".loveletter").toggle();
+        $(".hiddenClue").toggle();
+    });
+
+</script>
+</body>
+</html>
