@@ -32,7 +32,7 @@ public class LoginSecurity extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 
-                .antMatchers("/home/page").permitAll()
+                .antMatchers("/home/homepage").permitAll()
                 .antMatchers("/shopCart/**").hasRole("VIP")
                 //.anyRequest().authenticated()
                 .and()
@@ -41,7 +41,7 @@ public class LoginSecurity extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/security/accessDenied")//无权限返回页面
                 .and()
                 .formLogin()
-                .usernameParameter("phone").passwordParameter("pnum").loginPage("/login")//自定义参数
+                .usernameParameter("username").passwordParameter("password").loginPage("/login")//自定义参数
                 .permitAll()
                 .failureUrl("/loginError")
                 .and().headers().frameOptions().disable()//iframe嵌套
