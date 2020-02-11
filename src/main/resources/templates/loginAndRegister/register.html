@@ -45,6 +45,17 @@
 
             </div>
 
+            <div class="" style="width: 80%;">
+                <div style="display: inline-block;height: 50px;width: 40%">
+                    <img class="boysexradio chooseboy choose" height="40px" width="40px" src="/img/icon/boy.png" title="男" sexvalue="1"/>
+                    <img class="girlsexradio unchoosegirl unchoose" height="40px" width="40px" src="/img/icon/girlbefore.png" title="女" sexvalue="0"/>
+                </div>
+                <!--<div style="display: inline-block;height: 50px;width: 40%">
+                    <img src="/img/icon/girlbefore.png" title="男"/>
+                </div>-->
+
+            </div>
+
 
             <div class="" style="width: 80%;">
                 <div style="display: inline-block;height: 50px;">
@@ -73,6 +84,22 @@
 </div>
 
 <script>
+
+    $(".boysexradio").click(function () {
+        $(this).toggleClass("chooseboy unchooseboy");
+        $(this).toggleClass("choose unchoose");
+        $(".girlsexradio").toggleClass("choosegirl unchoosegirl");
+        $(".girlsexradio").toggleClass("unchoose choose");
+
+    });
+
+    $(".girlsexradio").click(function () {
+        $(".boysexradio").toggleClass("chooseboy unchooseboy");
+        $(".boysexradio").toggleClass("choose unchoose");
+        $(this).toggleClass("choosegirl unchoosegirl");
+        $(this).toggleClass("unchoose choose");
+    });
+
     window.onload=function (ev) {
         var scheight=$(window).height();
         var scwidth=$(window).width();

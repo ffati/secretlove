@@ -90,7 +90,7 @@ span.toolTips::after{
 
     height: auto;
     width: auto;
-    content:url(../img/homePageGif/hidemenu.gif);
+    content:url(../img/menuImg/hidemenu.gif);
     position: fixed;
 
 }
@@ -98,7 +98,7 @@ span.toolTips::after{
 
     height: auto;
     width: auto;
-    content:url(../img/homePageGif/showmenu.gif);
+    content:url(../img/menuImg/showmenu.gif);
     position: fixed;
 }
 

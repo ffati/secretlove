@@ -17,3 +17,29 @@ html{height: 100%;}
     object-fit: cover;
     color: rgba(255, 255, 255, .95);
 }*/
+.chooseboy{
+
+    content:url("/img/icon/boy.png");
+    height:40px;
+    width:40px;
+}
+.unchooseboy{
+
+    content:url("/img/icon/boybefore.png");
+    height:40px;
+    width:40px;
+}
+
+ .choosegirl{
+
+     content:url("/img/icon/girl.png");
+     height:40px;
+     width:40px;
+ }
+
+.unchoosegirl{
+
+    content:url("/img/icon/girlbefore.png");
+    height:40px;
+    width:40px;
+}
