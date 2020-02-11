@@ -23,6 +23,9 @@ public class Message implements Serializable {
     //消息
     private String information;
 
+    //需要传回的内容
+    private String individuationMessage;
+
     public String getStatusCode() {
         return statusCode;
     }
@@ -45,5 +48,13 @@ public class Message implements Serializable {
 
     public void setShowOrNot(String showOrNot) {
         this.showOrNot = showOrNot;
+    }
+
+    public String getIndividuationMessage() {
+        return individuationMessage;
+    }
+
+    public void setIndividuationMessage(String individuationMessage) {
+        this.individuationMessage = individuationMessage;
     }
 }

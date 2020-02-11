@@ -1,7 +1,10 @@
 package com.ff.util.security;
 
 
+import com.ff.entity.RegisterUserEntity;
+import com.ff.entity.RoleEntity;
 import com.ff.entity.UserEntity;
+import com.ff.service.role.RoleService;
 import com.ff.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -30,17 +33,23 @@ public class MyUserDetailService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 
-        UserEntity userEntity=new UserEntity();
-        userEntity.setUsername(userName);
-        UserEntity backUserEntity=new UserEntity();
+        RegisterUserEntity userEntity=new RegisterUserEntity();
+        userEntity.setUserName(userName);
+        RegisterUserEntity backUserEntity=new RegisterUserEntity();
         backUserEntity=userService.findByAnyParameter(userEntity);
         List<GrantedAuthority> roalList=new ArrayList<>();
-        roalList.add(new SimpleGrantedAuthority(backUserEntity.getUsercategory()));
 
-        return new User(backUserEntity.getUsername(),backUserEntity.getUserpassword(),roalList);
+        List<RoleEntity> allRoal=roleService.findAllRole();
+        for (int i=0;i<allRoal.size();i++){
+            roalList.add(new SimpleGrantedAuthority(allRoal.get(i).getRoleCode()));
+        }
+
+        return new User(backUserEntity.getUserName(),backUserEntity.getUserPassword(),roalList);
     }
 }

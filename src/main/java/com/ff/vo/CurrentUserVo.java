@@ -27,8 +27,7 @@ public class CurrentUserVo {
     private String userlevel;
     /**最后登录ip*/
     private String lastloginip;
-    /**身份号码*/
-    private String identityid;
+
     /**注册时间*/
     private Date registrationTime;
     /**最后登陆时间*/
@@ -92,14 +91,6 @@ public class CurrentUserVo {
 
     public void setLastloginip(String lastloginip) {
         this.lastloginip = lastloginip;
-    }
-
-    public String getIdentityid() {
-        return identityid;
-    }
-
-    public void setIdentityid(String identityid) {
-        this.identityid = identityid;
     }
 
     public Date getRegistrationTime() {

@@ -1,7 +1,22 @@
 package com.ff.controller.confession;
 
+import com.ff.entity.UserEntity;
+import com.ff.entity.VicitorInnerFeelingEntity;
+import com.ff.service.vicitor.vicitorService;
+import com.ff.util.common.CurrentUser;
+import com.ff.util.common.StaticUtil;
+import com.ff.util.pictureUtil.PictureStream;
+import com.ff.vo.CurrentUserVo;
+import com.ff.vo.Message;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName ConfessionWallController
@@ -16,9 +31,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/confession")
 public class ConfessionWallController {
 
-    @RequestMapping("/wall")
-    public String allCommodity(){
+    @Autowired
+    private vicitorService vicitorService;
 
+    @Autowired
+    private CurrentUser currentUserUtil;
+
+    @RequestMapping("/wall")
+    public String allCommodity(
+            HttpServletRequest httpServletRequest
+    ){
         return "confession/confessionWall";
     }
 
@@ -27,6 +49,61 @@ public class ConfessionWallController {
 
         return "confession/confessionPage";
     }
+
+    @RequestMapping("/toconfession")
+    public String  toconfession(){
+
+        return "confession/toconfession";
+    }
+
+    /*
+     * @author: ff
+     * @date: 2020/2/11 13:12
+     * @param: [httpServletRequest, file]
+     * @return: com.ff.vo.Message
+     * 用户图片上传
+     */
+    @RequestMapping("/uploadPicture")
+    @ResponseBody
+    public Message uploadPicture(
+            HttpServletRequest httpServletRequest,
+            @RequestParam(value = "file",required = true) MultipartFile file
+    ){
+
+        Message message=new Message();
+        CurrentUserVo currentUserVo=currentUserUtil.currentUser(httpServletRequest.getSession());
+
+        int pointIndex=file.getOriginalFilename().lastIndexOf(".");
+        int nameLength=file.getOriginalFilename().length();
+        String fileName=currentUserVo.getUserid().toString()+file.getOriginalFilename().substring(pointIndex,nameLength);
+
+        Boolean decision=PictureStream.wrightPicture(StaticUtil.getImgUserpicturepath(),fileName,file);
+
+        if (!decision){
+            message.setInformation("上传失败");
+            message.setStatusCode("403");
+            return message;
+        }else {
+            message.setIndividuationMessage(fileName);
+            message.setInformation("上传成功");
+            message.setStatusCode("200");
+        }
+
+        return message;
+    }
+
+
+
+    @RequestMapping("/insertOneVicitorFeeling")
+    public String  insertOneVicitorFeeling(Model model,
+                                           VicitorInnerFeelingEntity vicitorInnerFeelingEntity
+    ){
+
+        vicitorService.insertOneVicitorFeeling(vicitorInnerFeelingEntity);
+
+        return "confession/toconfession";
+    }
+
 
 
 }

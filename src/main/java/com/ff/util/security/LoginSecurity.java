@@ -43,10 +43,10 @@ public class LoginSecurity extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .usernameParameter("username").passwordParameter("password").loginPage("/login")//自定义参数
                 .permitAll()
-                .failureUrl("/loginError")
+                .failureUrl("/security/loginError")
                 .and().headers().frameOptions().disable()//iframe嵌套
                 .and()
-                .logout().logoutSuccessUrl("/home/page")
+                .logout().logoutSuccessUrl("/loginPage/login")
                 ;
         http.csrf().ignoringAntMatchers("/druid/*");
     }

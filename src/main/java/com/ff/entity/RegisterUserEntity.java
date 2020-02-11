@@ -34,6 +34,12 @@ public class RegisterUserEntity {
     private String customerType;
     /**首次使用*/
     private Date firstUseTime;
+
+    private String sex;
+
+    private String HeadSculptureAddress;
+
+    private String userCategory;
     /**
      *无参构造函数
      */
@@ -201,5 +207,27 @@ public class RegisterUserEntity {
         this.customerType=(customerType == null ? null : customerType.trim());
     }
 
+    public String getSex() {
+        return sex;
+    }
 
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public String getHeadSculptureAddress() {
+        return HeadSculptureAddress;
+    }
+
+    public void setHeadSculptureAddress(String headSculptureAddress) {
+        HeadSculptureAddress = headSculptureAddress;
+    }
+
+    public String getUserCategory() {
+        return userCategory;
+    }
+
+    public void setUserCategory(String userCategory) {
+        this.userCategory = userCategory;
+    }
 }
