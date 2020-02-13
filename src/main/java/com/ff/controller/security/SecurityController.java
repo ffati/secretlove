@@ -26,7 +26,7 @@ public class SecurityController {
 
     @RequestMapping("/accessDenied")
     public String accessDenied(){
-        return "publicContent/accessDenied";
+        return "publicContent/permission";
     }
 
 

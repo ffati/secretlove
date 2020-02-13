@@ -14,8 +14,10 @@ import java.util.Date;
 
 public class RegisterUserEntity {
 
+    /**ID*/
+    private Long id;
     /**标识符*/
-    private Long userId;
+    private String userId;
     /**用户名*/
     private String userName;
     /**手机号码*/
@@ -53,14 +55,23 @@ public class RegisterUserEntity {
      */
     public RegisterUserEntity(Long id){
         super();
-        this.userId=id;
+        this.id=id;
+    }
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     /**
      * 获取标识符
      * @return
      */
-    public Long getUserId(){
+    public String  getUserId(){
         return this.userId;
     }
 
@@ -68,7 +79,7 @@ public class RegisterUserEntity {
      * 设置标识符
      * @param userId
      */
-    public void setUserId(Long userId){
+    public void setUserId(String userId){
         this.userId=userId;
     }
     /**

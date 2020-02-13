@@ -1,10 +1,12 @@
 package com.ff.service.vicitor.vicitorImpl;
 
+import com.ff.entity.RegisterUserEntity;
 import com.ff.entity.VicitorInnerFeelingEntity;
 import com.ff.repository.innerFeeling.InnerFeelingDao;
 import com.ff.service.vicitor.vicitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -18,6 +20,7 @@ import javax.annotation.Resource;
  */
 
 @Service
+@Transactional
 public class vicitorServiceImpl implements vicitorService {
 
     @Resource
@@ -25,6 +28,7 @@ public class vicitorServiceImpl implements vicitorService {
 
     @Override
     public void insertOneVicitorFeeling(VicitorInnerFeelingEntity vicitorInnerFeelingEntity) {
+
 
 
 

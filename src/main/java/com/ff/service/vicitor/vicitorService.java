@@ -1,5 +1,6 @@
 package com.ff.service.vicitor;
 
+import com.ff.entity.RegisterUserEntity;
 import com.ff.entity.VicitorInnerFeelingEntity;
 import org.springframework.stereotype.Service;
 

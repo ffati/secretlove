@@ -1,5 +1,6 @@
 package com.ff.service.user;
 
+import com.ff.entity.RegisterUserEntity;
 import com.ff.entity.UserEntity;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,10 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
 
-   UserEntity findByAnyParameter(UserEntity userEntity);
+   RegisterUserEntity findByAnyParameter(RegisterUserEntity registerUserEntity);
+
+   Boolean insertRegisterUser(RegisterUserEntity registerUserEntity);
+
+   Integer findMaxID();
 
 }
