@@ -2,7 +2,7 @@ package com.ff.util.aop;
 
 
 
-import com.ff.util.common.UUIDUtil;
+import com.ff.util.common.RandomNumberUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
@@ -31,7 +31,7 @@ import java.util.Enumeration;
 public class LogAspect {
 
     @Autowired
-    private UUIDUtil uuidUtil;
+    private RandomNumberUtil uuidUtil;
 
     private String uuidGeneratorString;
 

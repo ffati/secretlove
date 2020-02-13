@@ -32,8 +32,8 @@ public class LoginSecurity extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 
-                .antMatchers("/home/homepage").permitAll()
-                .antMatchers("/shopCart/**").hasRole("VIP")
+                .antMatchers("/","/home/homepage","/login/**","/register/**").permitAll()
+                .antMatchers("/shopCart/**").hasRole("ADMIN")
                 //.anyRequest().authenticated()
                 .and()
                 .exceptionHandling()

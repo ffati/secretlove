@@ -1,6 +1,7 @@
 package com.ff.util.common;
 
 import com.alibaba.fastjson.JSON;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -18,22 +19,34 @@ import java.io.IOException;
 @Component
 public class StaticUtil {
 
+
+    private static String IMG_HEADSCULPTUREFOLDERPATH;
+
+    private static String IMG_USERPICTUREPATH;
+
     static{
 
         String filePath= null;
         File filedir=null;
-        String fileDirPath=null;
-
+        File userPicturedir=null;
+        String headSculpturePath=null;
+        String UserPicturePath=null;
         try {
             filePath = new File("").getCanonicalPath();
             System.out.println(filePath);
             filePath=filePath.substring(0,filePath.lastIndexOf("\\"));
-            fileDirPath=filePath+"\\shoppingMallImg\\img\\headSculpture";
-            filedir=new File(fileDirPath);
+            headSculpturePath=filePath+"\\SecretLoveImg\\Image\\headSculpture";
+            UserPicturePath=filePath+"\\SecretLoveImg\\Image\\UserPicture";
+            filedir=new File(headSculpturePath);
+            userPicturedir=new File(UserPicturePath);
 
             if (!filedir.exists()){
                 filedir.mkdirs();
             }
+            if (!userPicturedir.exists()){
+                userPicturedir.mkdirs();
+            }
+
         } catch (IOException e) {
 
         }
@@ -83,4 +96,19 @@ public class StaticUtil {
     }
 
 
+    public static String getImgHeadsculpturefolderpath() {
+        return IMG_HEADSCULPTUREFOLDERPATH;
+    }
+     @Value("${HeadSculpture}")
+    public static void setImgHeadsculpturefolderpath(String imgHeadsculpturefolderpath) {
+        IMG_HEADSCULPTUREFOLDERPATH = imgHeadsculpturefolderpath;
+    }
+
+    public static String getImgUserpicturepath() {
+        return IMG_USERPICTUREPATH;
+    }
+    @Value("${UserPicturePath}")
+    public static void setImgUserpicturepath(String imgUserpicturepath) {
+        IMG_USERPICTUREPATH = imgUserpicturepath;
+    }
 }

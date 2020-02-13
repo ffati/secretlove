@@ -1,6 +1,7 @@
 package com.ff.util.common;
 
 
+import com.ff.entity.RegisterUserEntity;
 import com.ff.entity.UserEntity;
 import com.ff.service.user.UserService;
 import com.ff.vo.CurrentUserVo;
@@ -30,20 +31,18 @@ public class CurrentUser {
 public CurrentUserVo currentUser(HttpSession session){
 
     CurrentUserVo currentUserVon=new CurrentUserVo();
-    UserEntity userEntity=new UserEntity();
+    RegisterUserEntity registerUserEntity=new RegisterUserEntity();
 
     SecurityContextImpl securityContext = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-    userEntity.setUsername(((UserDetails)securityContext.getAuthentication().getPrincipal()).getUsername());
-    userEntity=userService.findByAnyParameter(userEntity);
+    registerUserEntity.setUserName(((UserDetails)securityContext.getAuthentication().getPrincipal()).getUsername());
+    registerUserEntity=userService.findByAnyParameter(registerUserEntity);
 
-    currentUserVon.setUsername(userEntity.getUsername());
-    currentUserVon.setSex(userEntity.getSex());
-    currentUserVon.setIdentityid(userEntity.getIdentityid());
-    currentUserVon.setPhonenumber(userEntity.getPhonenumber());
-    currentUserVon.setRegistrationTime(userEntity.getRegistrationTime());
-    currentUserVon.setUsercategory(userEntity.getUsercategory());
-    currentUserVon.setPictureaddress(userEntity.getPictureaddress());
-    currentUserVon.setUserlevel(userEntity.getUserlevel());
+    currentUserVon.setUsername(registerUserEntity.getUserName());
+    currentUserVon.setSex(registerUserEntity.getSex());
+    currentUserVon.setPhonenumber(registerUserEntity.getPhoneNumber());
+    currentUserVon.setRegistrationTime(registerUserEntity.getFirstUseTime());
+    currentUserVon.setUsercategory(registerUserEntity.getUserCategory());
+    currentUserVon.setPictureaddress(registerUserEntity.getHeadSculptureAddress());
 
     return currentUserVon;
 
