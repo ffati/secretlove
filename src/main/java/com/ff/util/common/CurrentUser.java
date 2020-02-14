@@ -37,6 +37,7 @@ public CurrentUserVo currentUser(HttpSession session){
     registerUserEntity.setUserName(((UserDetails)securityContext.getAuthentication().getPrincipal()).getUsername());
     registerUserEntity=userService.findByAnyParameter(registerUserEntity);
 
+    currentUserVon.setUserid(registerUserEntity.getUserId());
     currentUserVon.setUsername(registerUserEntity.getUserName());
     currentUserVon.setSex(registerUserEntity.getSex());
     currentUserVon.setPhonenumber(registerUserEntity.getPhoneNumber());
