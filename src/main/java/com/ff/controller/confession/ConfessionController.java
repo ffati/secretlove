@@ -1,8 +1,7 @@
 package com.ff.controller.confession;
 
-import com.ff.entity.UserEntity;
 import com.ff.entity.VicitorInnerFeelingEntity;
-import com.ff.service.vicitor.vicitorService;
+import com.ff.service.vicitorInnerFeeling.VicitorInnerFeelingService;
 import com.ff.util.common.CurrentUser;
 import com.ff.util.common.StaticUtil;
 import com.ff.util.pictureUtil.PictureStream;
@@ -10,7 +9,6 @@ import com.ff.vo.CurrentUserVo;
 import com.ff.vo.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,10 +27,10 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/confession")
-public class ConfessionWallController {
+public class ConfessionController {
 
     @Autowired
-    private vicitorService vicitorService;
+    private VicitorInnerFeelingService vicitorInnerFeelingService;
 
     @Autowired
     private CurrentUser currentUserUtil;
@@ -93,15 +91,19 @@ public class ConfessionWallController {
     }
 
 
-
+    @ResponseBody
     @RequestMapping("/insertOneVicitorFeeling")
-    public String  insertOneVicitorFeeling(Model model,
-                                           VicitorInnerFeelingEntity vicitorInnerFeelingEntity
+    public Message  insertOneVicitorFeeling(
+            HttpServletRequest httpServletRequest,
+            VicitorInnerFeelingEntity vicitorInnerFeelingEntity
     ){
+        Message message=new Message();
+        vicitorInnerFeelingService.insertOneVicitorFeeling(vicitorInnerFeelingEntity);
 
-        vicitorService.insertOneVicitorFeeling(vicitorInnerFeelingEntity);
+        message.setInformation("保存成功！");
+        message.setStatusCode("200");
 
-        return "confession/toconfession";
+        return message;
     }
 
 

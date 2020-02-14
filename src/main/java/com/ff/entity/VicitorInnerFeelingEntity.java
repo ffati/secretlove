@@ -29,7 +29,7 @@ public class VicitorInnerFeelingEntity {
     /**暂无信息*/
     private Long id;
     /**外键*/
-    private Long fkUserid;
+    private String  fkId;
     /**用户名*/
     private String userName;
     /**线索*/
@@ -64,36 +64,22 @@ public class VicitorInnerFeelingEntity {
         this.id=id;
     }
 
-    /**
-     * 获取暂无信息
-     * @return
-     */
-    public Long getId(){
-        return this.id;
+    public Long getId() {
+        return id;
     }
 
-    /**
-     * 设置暂无信息
-     * @param id
-     */
-    public void setId(Long id){
-        this.id=id;
-    }
-    /**
-     * 获取外键
-     * @return
-     */
-    public Long getFkUserid(){
-        return this.fkUserid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    /**
-     * 设置外键
-     * @param fkUserid
-     */
-    public void setFkUserid(Long fkUserid){
-        this.fkUserid=fkUserid;
+    public String getFkId() {
+        return fkId;
     }
+
+    public void setFkId(String fkId) {
+        this.fkId = fkId;
+    }
+
     /**
      * 获取用户名
      * @return
