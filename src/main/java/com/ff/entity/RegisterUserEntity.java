@@ -20,6 +20,8 @@ public class RegisterUserEntity {
     private String userId;
     /**用户名*/
     private String userName;
+    /**昵称*/
+    private String nickName;
     /**手机号码*/
     private String phoneNumber;
     /**用户状态*/
@@ -39,9 +41,12 @@ public class RegisterUserEntity {
 
     private String sex;
 
-    private String HeadSculptureAddress;
+    private String headSculptureAddress;
 
     private String userCategory;
+    /*个人主页背景*/
+    private String personalHomepageImage;
+
     /**
      *无参构造函数
      */
@@ -97,6 +102,15 @@ public class RegisterUserEntity {
     public void setUserName(String userName){
         this.userName=(userName == null ? null : userName.trim());
     }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
     /**
      * 获取手机号码
      * @return
@@ -227,11 +241,11 @@ public class RegisterUserEntity {
     }
 
     public String getHeadSculptureAddress() {
-        return HeadSculptureAddress;
+        return headSculptureAddress;
     }
 
     public void setHeadSculptureAddress(String headSculptureAddress) {
-        HeadSculptureAddress = headSculptureAddress;
+        this.headSculptureAddress = headSculptureAddress;
     }
 
     public String getUserCategory() {
@@ -240,5 +254,13 @@ public class RegisterUserEntity {
 
     public void setUserCategory(String userCategory) {
         this.userCategory = userCategory;
+    }
+
+    public String getPersonalHomepageImage() {
+        return personalHomepageImage;
+    }
+
+    public void setPersonalHomepageImage(String personalHomepageImage) {
+        this.personalHomepageImage = personalHomepageImage;
     }
 }

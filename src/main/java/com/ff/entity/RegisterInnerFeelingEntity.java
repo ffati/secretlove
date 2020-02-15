@@ -18,9 +18,13 @@ public class RegisterInnerFeelingEntity {
     /**暂无信息*/
     private Long id;
     /**外键*/
-    private Long fkUserId;
+    private Long fkId;
+    /**账号id*/
+    private String userId;
     /**用户名*/
     private String userName;
+    /**手机号码*/
+    private String phoneNumber;
     /**线索*/
     private String clue;
     /**内容*/
@@ -76,16 +80,16 @@ public class RegisterInnerFeelingEntity {
      * 获取外键
      * @return
      */
-    public Long getFkUserId(){
-        return this.fkUserId;
+    public Long getFkId(){
+        return this.fkId;
     }
 
     /**
      * 设置外键
      * @param fkUserId
      */
-    public void setFkUserId(Long fkUserId){
-        this.fkUserId=fkUserId;
+    public void setFkId(Long fkUserId){
+        this.fkId=fkUserId;
     }
     /**
      * 获取用户名
@@ -102,6 +106,15 @@ public class RegisterInnerFeelingEntity {
     public void setUserName(String userName){
         this.userName=(userName == null ? null : userName.trim());
     }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     /**
      * 获取线索
      * @return
@@ -253,5 +266,12 @@ public class RegisterInnerFeelingEntity {
         this.specialEffectsList=(specialEffectsList == null ? null : specialEffectsList.trim());
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 }
 
