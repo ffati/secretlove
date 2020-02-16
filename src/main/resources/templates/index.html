@@ -25,7 +25,7 @@
 
 <div class="mc-ui-absolute-pane" style="top: 0px;">
     <div class="mc-ui-absolute-pane maindiv1">
-
+        <div th:replace="../templates/publicContent/headImg :: headImg"></div>
         <div id="my">
             该往何处
         </div>
@@ -35,10 +35,13 @@
             <div class="inputdiv layui-input-block"  >
                 <span class="inputDog" th:align="left" ><img th:src="@{/img/icon/dog.gif}"></span>
                 <span class="toolTips"></span>
-                <input align="center" class="searchinput layui-input maindiv2input" type="text" name="username" lay-verify="required"
-                       lay-reqtext="用户名是必填项，岂能为空？"
-                       placeholder="请输入你的名字或昵称"
-                       autocomplete="off" >
+                <div style="position: absolute;width: 100%">
+                    <form class="mainsearchform" th:action="@{/home/searchConfession}" method="post">
+                        <input class="searchinput" type="text" name="searchParam" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入你的名字或昵称" autocomplete="off" />
+
+                        <span> <button class="searchbutton layui-btn layui-btn-primary" style="width: 10%">搜索</button></span>
+                    </form>
+                </div>
             </div>
             <div class="iframediv" align="center" >
                 <iframe src="/home/insidePage" height="100%" width="100%"

@@ -13,24 +13,24 @@
 <div style="width: 100%;height: 100%;position: absolute" align="center" >
 
     <div  class="formdiv" style="height: auto;width:40%;z-index:999;background-color: #B2B2B2;opacity:0.5;position: absolute" hidden="hidden" >
-        <form style="margin-top: 10%" class="" action="">
+        <form style="margin-top: 10%" class="registerform" action="">
 
             <div class="" style="width: 80%;">
                 <div style="display: inline-block;height: 50px;">
                     <img src="/img/icon/phone.png" title="手机号"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
-                    <input type="text" name="phone" style=" border-radius: 15px;" lay-verify="required" placeholder="手机号" autocomplete="off" class="layui-input">
+                    <input type="text" name="phoneNumber" style=" border-radius: 15px;" lay-verify="required" placeholder="手机号" autocomplete="off" class="layui-input">
                 </div>
 
             </div>
 
             <div class="" style="width: 80%;">
                 <div style="display: inline-block;height: 50px">
-                    <img src="/img/icon/user.png" title="用户名"/>
+                    <img src="/img/icon/user.png" title="昵称"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
-                    <input type="text" name="username" style=" border-radius: 15px;" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                    <input type="text" name="nickName" style=" border-radius: 15px;" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
                 </div>
 
             </div>
@@ -40,13 +40,14 @@
                     <img src="/img/icon/password.png" title="密码"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
-                    <input type="password" name="password" style=" border-radius: 15px;" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="userPassword" style=" border-radius: 15px;" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
                 </div>
 
             </div>
 
             <div class="" style="width: 80%;">
                 <div style="display: inline-block;height: 50px;width: 40%">
+                    <input id="hiddensexinput" name="sex" type="hidden" value="1"/>
                     <img class="boysexradio chooseboy choose" height="40px" width="40px" src="/img/icon/boy.png" title="男" sexvalue="1"/>
                     <img class="girlsexradio unchoosegirl unchoose" height="40px" width="40px" src="/img/icon/girlbefore.png" title="女" sexvalue="0"/>
                 </div>
@@ -84,13 +85,36 @@
 </div>
 
 <script>
+/*    var tokenparam=$("meta[name='_csrf']").attr("content");
+    var headerparam=$("meta[name='_csrf_header']").attr("content");*/
+
+
+    layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
+        var laydate = layui.laydate //日期
+            , laypage = layui.laypage //分页
+            , layer = layui.layer //弹层
+            , table = layui.table //表格
+            , carousel = layui.carousel //轮播
+            , upload = layui.upload //上传
+            , element = layui.element //元素操作
+            , slider = layui.slider //滑块
+            , form = layui.form
+            , flow = layui.flow;
+
+        ajaxForForm("registbutton","post","/user/registerUser", "registerform",true);
+
+
+    });
+
+
+
 
     $(".boysexradio").click(function () {
         $(this).toggleClass("chooseboy unchooseboy");
         $(this).toggleClass("choose unchoose");
         $(".girlsexradio").toggleClass("choosegirl unchoosegirl");
         $(".girlsexradio").toggleClass("unchoose choose");
-
+        $("#hiddensexinput").val("1");
     });
 
     $(".girlsexradio").click(function () {
@@ -98,6 +122,7 @@
         $(".boysexradio").toggleClass("choose unchoose");
         $(this).toggleClass("choosegirl unchoosegirl");
         $(this).toggleClass("unchoose choose");
+        $("#hiddensexinput").val("0");
     });
 
     window.onload=function (ev) {
@@ -121,42 +146,11 @@
         $('.formdiv').animate({
             top:'20%',
         },300);
-
-
     };
 
 
-    $(".registbutton").click(function () {
-        $.ajax({
-            type: "post",
-            url: "",
-            dataType: 'json',
-            data : data,
-            //async:false,//按照js顺序执行
-            processData: false,
-            contentType: false,
-            success: function(data) {
-                if(data.status==400){
-                    art.dialog.alert("!");
-                    return;
-                }
-                if(data.status==500){
-                    art.dialog.alert("!");
-                    return;
-                }
-                art.dialog.alert("!",function () {
-                    window.location.reload();
-                });
 
 
-            },
-            error:function(){
-
-                art.dialog.alert("!")
-
-            }
-        });
-    })
 
 </script>
 

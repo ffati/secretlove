@@ -1,12 +1,39 @@
 
 
 $(function() {
+
+    globalVariable();
     togglemenu();
     lodingbackground();
-    dragFunc("removablediv");
+    initializationMonitoringEvents();
 });
 
+/*需要初始化监听的事件*/
+function initializationMonitoringEvents(){
 
+    $(".headimgdiv").mousedown(function(){
+        $(this).css({"width":"60px","height":"60px"});
+        $(".headimg").css({"width":"60px","height":"60px"});
+    });
+
+    $(".headimgdiv").mouseup(function(){
+        $(this).css({"width":"50px","height":"50px"});
+        $(".headimg").css({"width":"50px","height":"50px"});
+    });
+
+    $(".headimg").dblclick(function(){
+    $(".headimgForm").submit();
+    });
+};
+
+
+/*需要初始化拖拽的元素*/
+window.onload= function () {//即在加载的过程中执行下面的代码
+    if(document.readyState=="complete"){//complete加载完成
+        dragFunc("removablediv");
+        dragFunc2("maindiv1","headimgdiv");
+    }
+};
 
 /*第一种拖拽*/
 function dragFunc(id) {
@@ -31,9 +58,9 @@ function dragFunc(id) {
 
 
     /*第二种拖拽*/
-    function dragFunc2(parentid,innerid){
-        var oDiv=document.getElementById(innerid);
-        var oParent=document.getElementById(parentid);
+    function dragFunc2(parentClassName,innerClassName){
+        var oDiv=document.getElementsByClassName(innerClassName)[0];
+        var oParent=document.getElementsByClassName(parentClassName)[0];
         var sent={l:0,r:oParent.offsetWidth-oDiv.offsetWidth,t:0,b:oParent.offsetHeight-oDiv.offsetHeight,n:10}
         drag(oDiv,sent);
     };
@@ -59,6 +86,8 @@ function togglemenu() {
 };
 
 
+
+    /*随机背景图片*/
 function lodingbackground() {
 
     randombackground("backgroundimg")
@@ -77,10 +106,85 @@ function randombackground(classstring) {
 
 };
 
-/*
-function gagelength() {
 
-    var scheight=$(window).height();
-    var scwidth=$(window).width();
+function globalVariable() {
 
-}*/
+    window.tokenparam=$("meta[name='_csrf']").attr("content");
+    window.headerparam=$("meta[name='_csrf_header']").attr("content");
+    window.screenHeight=$(window).height();
+    window.screenWidth=$(window).width();
+
+}
+
+
+function ajaxForForm(className,postOrGet,urlString,dateClassName,asyncValue) {
+
+    //var transferDate=$("."+dateClassName).serialize();
+    $("."+className).click(function () {
+        $.ajax({
+            type: postOrGet,
+            url: urlString,
+            headers: {//请求头
+                Accept: "application/json; charset=utf-8",
+                "X-CSRF-TOKEN": tokenparam  //这是获取的token
+            },
+            /*eforeSend: function(request) {      //使用beforeSend
+                request.setRequestHeader(headerparam, tokenparam);
+                request.setRequestHeader("Content-Type","application/json");*/
+            dataType: 'json',
+            data : $("."+dateClassName).serialize(),
+            async:asyncValue,//按照js顺序执行
+            /*processData: false,
+            contentType: false,*/
+            success: function(message) {
+                layer.alert(message.information,function () {
+                    window.location.reload();
+                });
+
+            },
+            error:function(){
+                layer.msg("发生意外!");
+            }
+        });
+    })
+
+}
+
+
+function ajaxcommon(postOrGet,urlString,datastring,asyncValue,Refresh) {
+
+        $.ajax({
+            type: postOrGet,
+            url: urlString,
+            headers: {//请求头
+                Accept: "application/json; charset=utf-8",
+                "X-CSRF-TOKEN": tokenparam  //这是获取的token
+            },
+            /*eforeSend: function(request) {      //使用beforeSend
+                request.setRequestHeader(headerparam, tokenparam);
+                request.setRequestHeader("Content-Type","application/json");*/
+            dataType: 'json',
+            data : datastring,
+            async:asyncValue,//按照js顺序执行
+            /*processData: false,
+            contentType: false,*/
+            success: function(message) {
+                if (Refresh) {
+                    layer.alert(message.information, function () {
+                        window.location.reload();
+                    });
+                }else {
+                    layer.msg(message.information);
+                }
+
+            },
+            error:function(){
+                layer.msg("发生意外!");
+            }
+        });
+
+}
+
+
+
+

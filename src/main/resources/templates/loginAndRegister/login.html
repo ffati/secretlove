@@ -18,13 +18,13 @@
 <div style="width: 100%;height: 100%;position: absolute" align="center" >
 
     <div  class="formdiv" style="height: auto;width:40%;z-index:999;background-color: #B2B2B2;opacity:0.5;position: absolute" hidden="hidden" >
-        <form style="margin-top: 10%" class="" action="">
+        <form style="margin-top: 10%" class="loginform" th:action="@{/login}" method="post">
         <div class="" style="width: 80%;">
             <div style="display: inline-block;height: 50px">
-            <img src="/img/icon/user.png" title="用户名"/>
+            <img src="/img/icon/user.png" title="用户手机"/>
             </div>
             <div style="display: inline-block;height: 50px;width: 50%">
-                <input type="text" name="username" style=" border-radius: 15px;" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                <input type="text" name="username" style=" border-radius: 15px;" lay-verify="required" placeholder="手机号码" autocomplete="off" class="layui-input">
             </div>
 
         </div>
@@ -44,10 +44,10 @@
                 <a class="reseta" href="#">忘记密码？</a>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 30%">
-                <a class="regista" th:href="@{/register/registerPage}">去注册</a>
+                <a class="regista" th:href="@{/user/registerPage}">去注册</a>
                 </div>
                 <div style="height: 50px;width: 30%;display: inline-block">
-                    <input type="button" name="update" value="登录" class="layui-btn layui-btn-radius layui-btn-primary">
+                    <input type="button" name="update" value="登录" class="loginbutton layui-btn layui-btn-radius layui-btn-primary">
                 </div>
 
             </div>
@@ -61,6 +61,11 @@
     <div th:replace="../templates/publicContent/menubar :: menubar"></div>
 </div>
 <script>
+
+    $(".loginbutton").click(function () {
+        $(".loginform").submit();
+    })
+
 window.onload=function (ev) {
     var scheight=$(window).height();
     var scwidth=$(window).width();

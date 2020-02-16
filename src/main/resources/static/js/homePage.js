@@ -49,8 +49,20 @@ function inintsomething() {
         $(".toolTips").text("按回车键或点击右边按钮以搜索");
     });
 
-};
+    /*主页搜索*/
+    $(".searchinput").keypress(function (e) {
+        if (e.which == 13) {
+            $(".mainsearchform").submit();
+        }
+    });
 
+    $(".searchbutton").click(function () {
+        $(".mainsearchform").submit();
+    })
+
+
+};
+/*等待界面图片*/
 function lodinghidden() {
 
     document.onreadystatechange = function () {//即在加载的过程中执行下面的代码
@@ -61,7 +73,7 @@ function lodinghidden() {
     };
 
 };
-
+/*随机图片*/
 function lodingbackground() {
 
     randombackground("lodingdiv");
