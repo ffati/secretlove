@@ -30,10 +30,10 @@ body{
 
 
 
-.maindiv2input{
+/*.maindiv2input{
     background-color: transparent;
 
-}
+}*/
 
 
 .inputDog{
@@ -50,9 +50,11 @@ body{
 }
 
 .searchinput{
-
+    width: 80%;
+    height: 35px;
+    border: 0.5px solid #f0f0f0;
     margin-top: 28px;
-    position: absolute;
+    background-color: transparent;
 }
 
 .iframediv{

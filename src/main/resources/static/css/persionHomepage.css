@@ -1,0 +1,31 @@
+
+
+body{
+    overflow: hidden;
+    height: auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: rgba(255, 255, 255, .95);
+}
+
+.persionHeadImgDiv {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 70px;
+    height: 70px;
+    background: transparent;
+}
+
+.personHeadImg {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    background: url(/img/lodingbgpicture/lodingbgpicture3.jpg) no-repeat center center;
+    background-size: cover;
+    border-radius:50%;
+    -webkit-border-radius:50%;
+    -moz-border-radius:50%;
+}
