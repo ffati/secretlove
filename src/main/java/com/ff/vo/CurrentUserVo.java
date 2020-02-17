@@ -14,9 +14,14 @@ import java.util.Date;
 
 public class CurrentUserVo {
 
-    private Long userid;
+    private Long id;
+
+    private String userid;
     /**用户名*/
     private String username;
+
+    private String nickName;
+
     /**手机号码*/
     private String phonenumber;
     /**用户类别*/
@@ -35,13 +40,23 @@ public class CurrentUserVo {
     /**账号状态*/
     private char accountStatus;
     /*头像地址*/
-    private String pictureaddress;
+    private String headPictureaddress;
+    /*个人主页背景*/
+    private String personalHomepageImage;
 
-    public Long getUserid() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserid() {
         return userid;
     }
 
-    public void setUserid(Long userid) {
+    public void setUserid(String userid) {
         this.userid = userid;
     }
 
@@ -51,6 +66,14 @@ public class CurrentUserVo {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
     }
 
     public String getPhonenumber() {
@@ -117,11 +140,19 @@ public class CurrentUserVo {
         this.accountStatus = accountStatus;
     }
 
-    public String getPictureaddress() {
-        return pictureaddress;
+    public String getHeadPictureaddress() {
+        return headPictureaddress;
     }
 
-    public void setPictureaddress(String pictureaddress) {
-        this.pictureaddress = pictureaddress;
+    public void setHeadPictureaddress(String headPictureaddress) {
+        this.headPictureaddress = headPictureaddress;
+    }
+
+    public String getPersonalHomepageImage() {
+        return personalHomepageImage;
+    }
+
+    public void setPersonalHomepageImage(String personalHomepageImage) {
+        this.personalHomepageImage = personalHomepageImage;
     }
 }

@@ -19,30 +19,31 @@ import java.io.IOException;
 @Component
 public class StaticUtil {
 
+    public static String IMG_USERIMAGEFOLDERPATH;
 
-    private static String IMG_HEADSCULPTUREFOLDERPATH;
+    public static String  IMG_HEADSCULPTURE="headImg";
 
-    private static String IMG_USERPICTUREPATH;
+    public static String  IMG_PERSONALHOMEPAGENACKGROUND="personalbgImg";
 
     static{
 
         String filePath= null;
-        File filedir=null;
+        //File filedir=null;
         File userPicturedir=null;
-        String headSculpturePath=null;
+        //String headSculpturePath=null;
         String UserPicturePath=null;
         try {
             filePath = new File("").getCanonicalPath();
             System.out.println(filePath);
             filePath=filePath.substring(0,filePath.lastIndexOf("\\"));
-            headSculpturePath=filePath+"\\SecretLoveImg\\Image\\headSculpture";
-            UserPicturePath=filePath+"\\SecretLoveImg\\Image\\UserPicture";
-            filedir=new File(headSculpturePath);
+            //headSculpturePath=filePath+"\\SecretLoveImg\\UserImage";
+            UserPicturePath=filePath+"/SecretLoveImg/UserImage";
+            //filedir=new File(headSculpturePath);
             userPicturedir=new File(UserPicturePath);
 
-            if (!filedir.exists()){
+            /*if (!filedir.exists()){
                 filedir.mkdirs();
-            }
+            }*/
             if (!userPicturedir.exists()){
                 userPicturedir.mkdirs();
             }
@@ -57,24 +58,39 @@ public class StaticUtil {
      * @date:
      * @param: []
      * @return: java.lang.String
-     * 头像路径
+     * 路径
      */
 
-    public static String pictureDirPath(){
+    public static String serverPath(){
 
         String filePath= null;
-        String fileDirPath=null;
 
         try {
             filePath = new File("").getCanonicalPath();
             System.out.println(filePath);
-            filePath=filePath.substring(0,filePath.lastIndexOf("\\"));
-            fileDirPath=filePath+"\\shoppingMallImg\\img\\headSculpture";
+            filePath=filePath.substring(0, filePath.lastIndexOf("\\"));
 
         } catch (IOException e) {
 
         }
-        return fileDirPath;
+        return filePath;
+    }
+
+
+/*
+ * @author: ff
+ * @date: 2020/2/16 15:45
+ * @param: [type, userId, fileName]
+ * @return: java.lang.String
+ * 总路径
+ */
+    public static String anyPath(String userId,String type){
+
+        StringBuffer filePath= new StringBuffer();
+        System.out.println(StaticUtil.serverPath()+StaticUtil.IMG_USERIMAGEFOLDERPATH);
+        filePath.append(StaticUtil.serverPath()).append(StaticUtil.IMG_USERIMAGEFOLDERPATH).append(userId).append("/").append(type);
+
+        return filePath.toString();
     }
 
 
@@ -96,19 +112,12 @@ public class StaticUtil {
     }
 
 
-    public static String getImgHeadsculpturefolderpath() {
-        return IMG_HEADSCULPTUREFOLDERPATH;
-    }
-     @Value("${HeadSculpture}")
-    public static void setImgHeadsculpturefolderpath(String imgHeadsculpturefolderpath) {
-        IMG_HEADSCULPTUREFOLDERPATH = imgHeadsculpturefolderpath;
+    public String getImgUserimagefolderpath() {
+        return IMG_USERIMAGEFOLDERPATH;
     }
 
-    public static String getImgUserpicturepath() {
-        return IMG_USERPICTUREPATH;
-    }
-    @Value("${UserPicturePath}")
-    public static void setImgUserpicturepath(String imgUserpicturepath) {
-        IMG_USERPICTUREPATH = imgUserpicturepath;
+    @Value("${UserImagePath}")
+    public void setImgUserimagefolderpath(String imgUserimagefolderpath) {
+        IMG_USERIMAGEFOLDERPATH = imgUserimagefolderpath;
     }
 }
