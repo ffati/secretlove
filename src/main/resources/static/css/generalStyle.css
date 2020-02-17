@@ -154,6 +154,7 @@ span.toolTips::after{
     height: 50px;
     background: url(/img/defaultheadSculpture.jpg) no-repeat center center;
     background-size: cover;
+    object-fit:cover ;
     border-radius:50%;
     -webkit-border-radius:50%;
     -moz-border-radius:50%;

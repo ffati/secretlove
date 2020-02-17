@@ -16,6 +16,7 @@ body{
     overflow: hidden;
     width: 70px;
     height: 70px;
+    border: black;
     background: transparent;
 }
 
@@ -25,6 +26,7 @@ body{
     position: absolute;
     background: url(/img/lodingbgpicture/lodingbgpicture3.jpg) no-repeat center center;
     background-size: cover;
+    object-fit:cover ;
     border-radius:50%;
     -webkit-border-radius:50%;
     -moz-border-radius:50%;
