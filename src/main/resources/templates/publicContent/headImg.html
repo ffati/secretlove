@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<body>
+
+
+<th:block th:fragment="headImg">
+    <div style="position: fixed">
+    <div sec:authorize="isAuthenticated()" class="headimgdiv" id="headimgdiv">
+        <div class="headimg" id="headimg" th:style="'background-image: url('+@{/pictureServer/showHeadSculpture(imgpath=${headSculpture})}+')'"></div>
+    </div>
+    <div sec:authorize="isAuthenticated()" hidden="hidden">
+        <form class="headimgForm" th:action="@{/personal/homePage}"></form>
+    </div>
+    </div>
+</th:block>
+
+</body>
+</html>

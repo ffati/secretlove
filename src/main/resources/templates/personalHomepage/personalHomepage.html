@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/persionHomepage.css}" />
+
+</head>
+<body th:style="'background-image: url('+@{/pictureServer/showHeadSculpture(imgpath=${currentUserVo.personalHomepageImage})}+')'">
+
+<div class="maindiv1"></div>
+
+
+<div class="maindiv2">
+
+<div style="height: 20%;width: 100%;margin-left: 45%;margin-top: 10%" >
+    <div class="persionHeadImgDiv">
+            <span class="personHeadImg" th:style="'background-image: url('+@{/pictureServer/showHeadSculpture(imgpath=${currentUserVo.headPictureaddress})}+')'"/>
+            <div style="position: relative;height: 100%;width: 100%;">
+            <img th:if="${currentUserVo.sex=='0'}" style="width: 30px;height: 30px;object-fit: contain" src="/img/icon/girl.png"/>
+            <img th:if="${currentUserVo.sex=='1'}" style="width: 30px;height: 30px;object-fit: contain" src="/img/icon/boy.png"/>
+        </div>
+    </div>
+</div>
+
+    <fieldset class="layui-elem-field">
+        <legend>个人资料</legend>
+        <div class="layui-field-box">
+
+            <div style="width: 30%;display: inline-block" ><label>昵称：</label><span th:text="${currentUserVo.nickName}"></span></div>
+
+            <div style="width: 30%;display: inline-block" ><label>ID：</label><span class="useridval"  th:text="${currentUserVo.userid}"></span></div>
+
+            <div style="width: 30%;display: inline-block" ><label>手机号码：</label><span  th:text="${currentUserVo.phonenumber}"></span></div>
+
+            <div style="width: 5%;display: inline-block" ><i title="设置个人资料" class="modifydata layui-icon layui-icon-set" style="font-size: 20px;color: white"></i></div>
+        </div>
+    </fieldset>
+
+    <div align="center" style="margin: 5%">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>我的页面</legend>
+        </fieldset>
+    </div>
+
+    <div align="center">
+
+    <div th:each="registerInnerFeeling,registerInnerFeelingStat:${registerInnerFeelingList}">
+        <tr>
+            <td>
+                <label th:text="'第'+${registerInnerFeelingStat.index+1}+'页：'"></label>
+            </td>
+            <td>
+        <a th:href="@{/home/searchConfession(searchParam=${registerInnerFeeling.receiver})}">
+        <div style="display: inline-block" th:text="${registerInnerFeeling.receiver}"></div>
+        </a>
+            </td>
+        </tr>
+    </div>
+
+
+    </div>
+
+
+</div>
+
+<div class="maindiv3">
+
+    <div th:replace="../templates/publicContent/menubar :: menubar"></div>
+
+</div>
+
+
+<script>
+
+
+    layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
+        var laydate = layui.laydate //日期
+            , laypage = layui.laypage //分页
+            , layer = layui.layer //弹层
+            , table = layui.table //表格
+            , carousel = layui.carousel //轮播
+            , upload = layui.upload //上传
+            , element = layui.element //元素操作
+            , slider = layui.slider //滑块
+            , form = layui.form
+            , flow = layui.flow;
+
+
+
+        $(".modifydata").click(function () {
+            var userid=$(".useridval").text();
+            layer.open({
+                type: 2,
+                title: ['修改个人资料', 'font-size:18px;'],
+                content: '/personal/editPersonaDataPage?userid='+userid,//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                area: ['1000px', '600px'],
+                resize:false,
+                scrollbar: false
+                /*        zIndex: layer.zIndex, //重点1
+                        success: function(layero){
+                            layer.setTop(layero); //重点2
+                        }*/
+
+                ,cancel: function(){
+                    //右上角关闭回调
+
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+
+            });
+
+
+        })
+
+
+    });
+
+</script>
+
+</body>
+</html>

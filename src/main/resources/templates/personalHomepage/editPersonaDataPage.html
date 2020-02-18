@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+</head>
+<body style="background-color: rgba(76,73,102,0.89)">
+
+
+<div align="center" style="margin: 5%">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend style="font-size: medium">修改昵称</legend>
+    </fieldset>
+</div>
+
+<div>
+    <div style="display: inline-block;width: 70%" align="center">
+    <div class="nickNameDiv" th:text="${nickName}"></div>
+    <input  class="editNickname layui-input" style="width: 50%;display:none;background-color: transparent" th:value="${nickName}" />
+    </div>
+    <div style="display: inline-block;width: 20%">
+    <button class="nickNameButton layui-btn layui-btn-primary">修改</button>
+    <button style="display: none"  class="nickNameSubmit layui-btn layui-btn-primary" >确定</button>
+    </div>
+</div>
+
+
+<div style="width: 100%;height: 100%;margin-top: 5%">
+
+    <div align="center" style="display: inline-block;width: 45%;margin-left: 5%">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="font-size: medium">修改头像</legend>
+        </fieldset>
+    </div>
+
+
+    <div align="center" style="display: inline-block;width: 45%">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend style="font-size: medium">修改背景图片</legend>
+        </fieldset>
+    </div>
+
+
+</div>
+
+
+<div style="width: 45%;display: inline-block;margin-left: 5%">
+
+    <div align="center">
+        <div class="headSculptureImg" style="width: 50%;display: inline-block">
+        <img style="width: 100%;object-fit: contain"  th:src="@{/pictureServer/showHeadSculpture(imgpath=${headSculptureAddress})}"/>
+        </div>
+        <div class="headSculptureImgDiv" style="width: 30%;display: inline-block">
+            <button class="headSculptureImgbutton layui-btn layui-btn-primary" >修改</button>
+        </div>
+
+
+        <div class="headSculptureImgUpdate" style="width: 80%;display: none">
+            <div style="display: inline-block;height: 50px;width: 50%">
+                <div class="layui-upload-drag" id="headImgDiv">
+                    <i class="layui-icon"></i>
+                    <p>点击上传，或将文件拖拽到此处</p>
+                    <div class="layui-hide" id="headImgView">
+                        <hr>
+                        <img  alt="图片预览" style="max-width: 196px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div style="width: 45%;display: inline-block;">
+
+    <div align="center">
+        <div class="personalHomepageImage" style="width: 50%;display: inline-block">
+            <img style="width: 100%;object-fit: contain"  th:src="@{/pictureServer/showHeadSculpture(imgpath=${personalHomepageImage})}"/>
+        </div>
+        <div class="personalHomepageImageDiv" style="width: 30%;display: inline-block">
+            <button class="personalHomepageImageButton layui-btn layui-btn-primary" >修改</button>
+        </div>
+
+
+        <div class="personalHomepageImageUpdate" style="width: 80%;display: none">
+            <div style="display: inline-block;height: 50px;width: 50%">
+                <div class="layui-upload-drag" id="bgImgDiv">
+                    <i class="layui-icon"></i>
+                    <p>点击上传，或将文件拖拽到此处</p>
+                    <div class="layui-hide" id="bgImgView">
+                        <hr>
+                        <img alt="图片预览" style="max-width: 196px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input class="userIdInput" type="hidden" th:value="${userId}"/>
+<script>
+    var userid=$(".userIdInput").val();
+
+    $(".nickNameButton").click(function () {
+        $(".nickNameDiv").hide();
+        $(".editNickname").show();
+        $(".nickNameButton").hide();
+        $(".nickNameSubmit").show();
+    });
+
+    $(".nickNameSubmit").click(function () {
+
+        var dataString={};
+        dataString.userId=userid;
+        dataString.nickName=$(".editNickname").val();
+        console.log(dataString);
+        ajaxcommon("post","/user/modifyData",dataString,true,false)
+
+    });
+
+
+    $(".headSculptureImgbutton").click(function () {
+        $(".headSculptureImg").hide();
+        $(".headSculptureImgDiv").hide();
+        $(".headSculptureImgUpdate").show();
+
+    });
+
+    $(".personalHomepageImageButton").click(function () {
+        $(".personalHomepageImage").hide();
+        $(".personalHomepageImageDiv").hide();
+        $(".personalHomepageImageUpdate").show();
+
+    });
+
+
+    layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
+        var layer = layui.layer //弹层
+            , upload = layui.upload //上传
+
+                upload.render({
+                    elem: '#headImgDiv'
+                    ,accept: 'image' //普通文件
+                    ,field:'file'
+                    ,exts: 'jpg|png|jpeg' //图片格式
+                    ,size:'2000'
+                    ,method: 'POST'
+                    ,data:{userId:function(){
+                            return $(".userIdInput").val();
+                        }
+                        ,type:"headImg"}
+                    ,headers:{"X-CSRF-TOKEN":tokenparam}
+                    ,url: '/personal/uploadPicture' //改成您自己的上传接口
+                    ,done: function(res){
+                        layer.msg('上传成功');
+                        layui.$('#headImgView').removeClass('layui-hide').find('img').attr('src', '/pictureServer/showHeadSculpture?imgpath='+res.individuationMessage);
+                        console.log(res)
+                    }
+                    ,error: function(){
+                        //请求异常回调
+                    }
+                });
+
+
+                upload.render({
+                    elem: '#bgImgDiv'
+                    ,accept: 'image' //普通文件
+                    ,field:'file'
+                    ,exts: 'jpg|png|jpeg' //图片格式
+                    ,size:'9000'
+                    ,method: 'POST'
+                    ,data:{userId:function(){
+                            return $(".userIdInput").val();
+                        }
+                        ,type:"personalbgImg"}
+                    ,headers:{"X-CSRF-TOKEN":tokenparam}
+                    ,url: '/personal/uploadPicture' //改成您自己的上传接口
+                    ,done: function(res){
+                        layer.msg('上传成功');
+                        layui.$('#bgImgView').removeClass('layui-hide').find('img').attr('src', '/pictureServer/showHeadSculpture?imgpath='+res.individuationMessage);
+                        console.log(res)
+                    }
+                });
+
+    });
+
+
+
+
+</script>
+
+
+</body>
+</html>
