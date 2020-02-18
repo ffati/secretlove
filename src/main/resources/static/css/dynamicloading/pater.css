@@ -14,7 +14,7 @@
 }
 
 .pater::after {
-	content: 'Sponsor';
+	content: '不变的情感';
 	font-size: 0.765em;
 	position: absolute;
 	z-index: 20;
