@@ -74,7 +74,13 @@ public class PictureStream {
 
 
         try {
-            File imgFile=new File(picturePath+"\\"+imgName);
+
+            File firdir=new File(picturePath);
+            if (!firdir.exists()){
+                firdir.mkdirs();
+            }
+
+            File imgFile=new File(picturePath+"/"+imgName);
             if (imgFile.exists()){
                 imgFile.delete();
             }
