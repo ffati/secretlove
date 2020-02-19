@@ -15,9 +15,9 @@ body{
 
 
 .showpicwindow{
-
-    opacity:0;
-    background-color: black;
+    background: rgba(0,0,0,0.7);
+/*    opacity:0;
+    background-color: black;*/
     width: 100%;
     height: 100%;
     position: fixed;
@@ -25,7 +25,6 @@ body{
 
 }
 .explaindiv{
-
 
     width: 50%;
     height: 100%;
@@ -40,3 +39,5 @@ body{
     position: fixed;
 
 }
+
+

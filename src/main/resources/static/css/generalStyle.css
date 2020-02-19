@@ -190,3 +190,22 @@ span.toolTips::after{
 ::-webkit-scrollbar-corner {
     background: #0f060f;
 }
+
+/*修改layer颜色*/
+.layui-layer-content{
+    background-color: #fdfff8;
+    color: black;
+
+}
+
+/*过长显示省略号*/
+.showellipsis{
+
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+}
