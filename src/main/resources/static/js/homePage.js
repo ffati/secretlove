@@ -7,18 +7,16 @@ $(function() {
 
 });
 
-layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
-    var laydate = layui.laydate //日期
-        , laypage = layui.laypage //分页
-        , layer = layui.layer //弹层
-        , table = layui.table //表格
-        , carousel = layui.carousel //轮播
-        , upload = layui.upload //上传
-        , element = layui.element //元素操作
-        , slider = layui.slider //滑块
-        , form = layui.form
-        , flow = layui.flow;
+layui.use(['form'], function() {
+    var form = layui.form
 
+
+    form.on('submit(laysearchbutton)', function(data){
+
+        $(".mainsearchform").submit();
+
+
+    });
 
 });
 
@@ -51,14 +49,13 @@ function inintsomething() {
 
     /*主页搜索*/
     $(".searchinput").keypress(function (e) {
-        if (e.which == 13) {
+
+        var searchlength=$(".searchinput").val();
+        if (e.which == 13&&searchlength.length>0) {
             $(".mainsearchform").submit();
         }
     });
 
-    $(".searchbutton").click(function () {
-        $(".mainsearchform").submit();
-    })
 
 
 };
