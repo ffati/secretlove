@@ -18,13 +18,13 @@
 <div style="width: 100%;height: 100%;position: absolute" align="center" >
 
     <div  class="formdiv" style="height: auto;width:40%;z-index:999;background-color: #B2B2B2;opacity:0.5;position: absolute" hidden="hidden" >
-        <form style="margin-top: 10%" class="loginform" th:action="@{/login}" method="post">
+        <form style="margin-top: 10%" class="loginform layui-form" th:action="@{/login}" method="post">
         <div class="" style="width: 80%;">
             <div style="display: inline-block;height: 50px">
             <img src="/img/icon/user.png" title="用户手机"/>
             </div>
             <div style="display: inline-block;height: 50px;width: 50%">
-                <input type="text" name="username" style=" border-radius: 15px;" lay-verify="required" placeholder="手机号码" autocomplete="off" class="layui-input">
+                <input type="text" name="username" style=" border-radius: 15px;"  placeholder="手机号码" autocomplete="off" class="layui-input">
             </div>
 
         </div>
@@ -34,7 +34,7 @@
                     <img src="/img/icon/password.png" title="密码"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
-                    <input type="password" name="password" style=" border-radius: 15px;" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="password" style=" border-radius: 15px;" lay-verify="required" lay-vertype="tips" placeholder="密码" autocomplete="off" class="layui-input">
                 </div>
 
             </div>
@@ -47,7 +47,7 @@
                 <a class="regista" th:href="@{/user/registerPage}">去注册</a>
                 </div>
                 <div style="height: 50px;width: 30%;display: inline-block">
-                    <input type="button" name="update" value="登录" class="loginbutton layui-btn layui-btn-radius layui-btn-primary">
+                    <input type="button" name="update" value="登录" lay-submit lay-filter="layloginbutton" class="loginbutton layui-btn layui-btn-radius layui-btn-primary">
                 </div>
 
             </div>
@@ -62,9 +62,9 @@
 </div>
 <script>
 
-    $(".loginbutton").click(function () {
+/*    $(".loginbutton").click(function () {
         $(".loginform").submit();
-    })
+    })*/
 
 window.onload=function (ev) {
     var scheight=$(window).height();
@@ -93,39 +93,37 @@ window.onload=function (ev) {
 
 
 
-layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
-    var laydate = layui.laydate //日期
-        , laypage = layui.laypage //分页
-        , layer = layui.layer //弹层
-        , table = layui.table //表格
-        , carousel = layui.carousel //轮播
-        , upload = layui.upload //上传
-        , element = layui.element //元素操作
-        , slider = layui.slider //滑块
+layui.use(['form','upload'], function() {
+    var upload = layui.upload //上传
         , form = layui.form
-        , flow = layui.flow;
 
-$(".reseta").click(function () {
-    layer.open({
-        type: 2,
-        title: ['重置密码', 'font-size:18px;'],
-        content: '/login/resetpassword',//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-        area: ['500px', '300px'],
-        resize:false,
-        scrollbar: false
-/*        zIndex: layer.zIndex, //重点1
-        success: function(layero){
-            layer.setTop(layero); //重点2
-        }*/
 
-            ,cancel: function(){
-                    //右上角关闭回调
-
-                    //return false 开启该代码可禁止点击该按钮关闭
-                }
-
+    //监听提交
+    form.on('submit(layloginbutton)', function(data){
+            $(".loginform").submit();
     });
-})
+
+    $(".reseta").click(function () {
+        layer.open({
+            type: 2,
+            title: ['重置密码', 'font-size:18px;'],
+            content: '/login/resetpassword',//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+            area: ['500px', '300px'],
+            resize:false,
+            scrollbar: false
+    /*        zIndex: layer.zIndex, //重点1
+            success: function(layero){
+                layer.setTop(layero); //重点2
+            }*/
+
+                ,cancel: function(){
+                        //右上角关闭回调
+
+                        //return false 开启该代码可禁止点击该按钮关闭
+                    }
+
+        });
+    })
 
 
 });

@@ -36,10 +36,10 @@
                 <span class="inputDog" th:align="left" ><img th:src="@{/img/icon/dog.gif}"></span>
                 <span class="toolTips"></span>
                 <div style="position: absolute;width: 100%">
-                    <form class="mainsearchform" th:action="@{/home/searchConfession}" method="post">
-                        <input class="searchinput" type="text" name="searchParam" lay-verify="required" lay-reqtext="用户名是必填项，岂能为空？" placeholder="请输入你的名字或昵称" autocomplete="off" />
+                    <form class="mainsearchform layui-form" th:action="@{/home/searchConfession}" method="post">
+                        <input class="searchinput" type="text" name="searchParam"  lay-verify="required" lay-reqtext="请输入文字搜索哦" placeholder="请输入你的名字或昵称" autocomplete="off" />
 
-                        <span> <button class="searchbutton layui-btn layui-btn-primary" style="width: 10%">搜索</button></span>
+                        <span> <button lay-submit lay-filter="laysearchbutton" class="searchbutton layui-btn layui-btn-primary" style="width: 10%">搜索</button></span>
                     </form>
                 </div>
             </div>

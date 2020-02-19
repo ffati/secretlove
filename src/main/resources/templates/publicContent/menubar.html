@@ -16,7 +16,14 @@
 
                 <div class="layui-col-xs6 layui-col-md12" style="margin: 15%">
                     <div class="grid-demo grid-demo-bg2">
-                        <a title="登录" th:href="@{/login/loginPage}"><img class="imgstyle" th:src="@{/img/menuimg/login.gif}"></a>
+                        <div sec:authorize="!isAuthenticated()" class="" >
+                            <a title="登录" th:href="@{/login/loginPage}"><img class="imgstyle" th:src="@{/img/menuimg/login.gif}"></a>
+                        </div>
+                        <div sec:authorize="isAuthenticated()" class="" >
+                            <form th:action="@{/logout}" method="post" class="logoutform">
+                                <a title="退出" onclick="$('.logoutform').submit();"><img class="imgstyle" th:src="@{/img/menuimg/logout.gif}"></a>
+                            </form>
+                        </div>
                     </div>
                 </div>
 

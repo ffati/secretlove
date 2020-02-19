@@ -13,14 +13,14 @@
 <div style="width: 100%;height: 100%;position: absolute" align="center" >
 
     <div  class="formdiv" style="height: auto;width:40%;z-index:999;background-color: #B2B2B2;opacity:0.5;position: absolute" hidden="hidden" >
-        <form style="margin-top: 10%" class="registerform" action="">
+        <form style="margin-top: 10%" class="registerform layui-form" action="">
 
             <div class="" style="width: 80%;">
                 <div style="display: inline-block;height: 50px;">
                     <img src="/img/icon/phone.png" title="手机号"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
-                    <input type="text" name="phoneNumber" style=" border-radius: 15px;" lay-verify="required" placeholder="手机号" autocomplete="off" class="layui-input">
+                    <input type="text" name="phoneNumber" style="border-radius: 15px;" lay-vertype="tips" lay-verify="required|phone" placeholder="手机号" autocomplete="off" class="layui-input">
                 </div>
 
             </div>
@@ -30,7 +30,7 @@
                     <img src="/img/icon/user.png" title="昵称"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
-                    <input type="text" name="nickName" style=" border-radius: 15px;" lay-verify="required" placeholder="用户名" autocomplete="off" class="layui-input">
+                    <input type="text" name="nickName" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="用户名" autocomplete="off" class="layui-input">
                 </div>
 
             </div>
@@ -40,7 +40,7 @@
                     <img src="/img/icon/password.png" title="密码"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
-                    <input type="password" name="userPassword" style=" border-radius: 15px;" lay-verify="required" placeholder="密码" autocomplete="off" class="layui-input">
+                    <input type="password" name="userPassword" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="密码" autocomplete="off" class="layui-input">
                 </div>
 
             </div>
@@ -63,7 +63,7 @@
                     <img src="/img/icon/identifyingcode.png" title="验证码"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
-                    <input type="text" name="identifyingcode" style=" border-radius: 15px;" lay-verify="required" placeholder="验证码" autocomplete="off" class="layui-input">
+                    <input type="text" name="identifyingcode" style=" border-radius: 15px;" lay-verify="required|inputlimit" placeholder="验证码" autocomplete="off" class="layui-input">
                 </div>
 
             </div>
@@ -71,7 +71,7 @@
             <div class="" style="width: 80%;margin-top: 5%">
 
                 <div style="height: 50px;width: 30%;display: inline-block">
-                    <input type="button" name="update" value="注册" class="registbutton layui-btn layui-btn-radius layui-btn-primary">
+                    <input type="button" name="update" value="注册" lay-submit lay-filter="layregistbutton" class="registbutton layui-btn layui-btn-radius layui-btn-primary">
                 </div>
 
             </div>
@@ -84,75 +84,7 @@
     <div th:replace="../templates/publicContent/menubar :: menubar"></div>
 </div>
 
-<script>
-/*    var tokenparam=$("meta[name='_csrf']").attr("content");
-    var headerparam=$("meta[name='_csrf_header']").attr("content");*/
-
-
-    layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
-        var laydate = layui.laydate //日期
-            , laypage = layui.laypage //分页
-            , layer = layui.layer //弹层
-            , table = layui.table //表格
-            , carousel = layui.carousel //轮播
-            , upload = layui.upload //上传
-            , element = layui.element //元素操作
-            , slider = layui.slider //滑块
-            , form = layui.form
-            , flow = layui.flow;
-
-        ajaxForForm("registbutton","post","/user/registerUser", "registerform",true);
-
-
-    });
-
-
-
-
-    $(".boysexradio").click(function () {
-        $(this).toggleClass("chooseboy unchooseboy");
-        $(this).toggleClass("choose unchoose");
-        $(".girlsexradio").toggleClass("choosegirl unchoosegirl");
-        $(".girlsexradio").toggleClass("unchoose choose");
-        $("#hiddensexinput").val("1");
-    });
-
-    $(".girlsexradio").click(function () {
-        $(".boysexradio").toggleClass("chooseboy unchooseboy");
-        $(".boysexradio").toggleClass("choose unchoose");
-        $(this).toggleClass("choosegirl unchoosegirl");
-        $(this).toggleClass("unchoose choose");
-        $("#hiddensexinput").val("0");
-    });
-
-    window.onload=function (ev) {
-        var scheight=$(window).height();
-        var scwidth=$(window).width();
-
-        var marginleftpx=(scwidth-scwidth*0.4)/2+'px';
-
-        $('.formdiv').css('top','-100px');
-        $('.formdiv').css('left',marginleftpx);
-        $('.formdiv').show();
-
-        $('.formdiv').animate({
-            top:'20%',
-            opacity:'0.8',
-        },"slow");
-
-        $('.formdiv').animate({
-            top:'15%',
-        },200);
-        $('.formdiv').animate({
-            top:'20%',
-        },300);
-    };
-
-
-
-
-
-</script>
+<script type="text/javascript" th:src="@{/js/loginAndRegister/register.js}"></script>
 
 </body>
 </html>

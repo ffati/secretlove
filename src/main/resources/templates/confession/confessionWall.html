@@ -15,8 +15,8 @@
 </div>
 <div class="maindiv2">
 
-    <div align="center" style="height: 10%;width:60%;z-index:999;position: fixed;top: 0;">111</div>
-    <div class="topdiv" align="center" style="height: 10%;top: 0;">111</div>
+    <div align="center" style="height: 10%;width:60%;z-index:999;position: fixed;top: 0;">部分展示</div>
+    <div class="topdiv" align="center" style="height: 10%;top: 0;">部分展示</div>
 
     <div class="content content--center"`>
         <div id="gridpic" class="grid grid--type-a">
@@ -40,79 +40,14 @@
     </div>
 
     <div class="explaindiv" >
-        <div style="margin-top: 40%;width: 50%;font-size: large;color: #FFFFFF;">这是个测试</div>
-        <div style="width: 50%;color: #C3C8CD;margin-top: 10px;">dfsfsdfsd</div>
+        <div class="showcontent" style="margin-top: 30%;width: 50%;font-size: large;color: #FFFFFF;margin-left: 20px"></div>
+        <div align="right" style="width: 50%;color: #C3C8CD;margin-top: 20px;margin-left: 20px"><span>for——</span><span class="showreceiver" ></span></div>
     </div>
 
 </div>
 
 
-<script>
-
-    layui.use('flow', function(){
-        var flow = layui.flow;
-        var pages=0;
-
-        $.ajax({
-            type: 'post',
-            url: '/confession/totalPage',
-            headers: {//请求头
-                Accept: "application/json; charset=utf-8",
-                "X-CSRF-TOKEN": tokenparam  //这是获取的token
-            },
-            dataType: 'json',
-            async:false,
-            success:function (data) {
-                pages=data;
-            }
-
-        })
-
-
-        flow.load({
-            elem: '#gridpic' //流加载容器
-            //,scrollElem: '#LAY_demo1' //滚动条所在元素，一般不用填，此处只是演示需要。
-            ,done: function(page, next) { //执行下一页的回调
-                var lis = [];
-
-
-                $.ajax({
-                    type: 'post',
-                    url: '/confession/findForPage',
-                    headers: {//请求头
-                        Accept: "application/json; charset=utf-8",
-                        "X-CSRF-TOKEN": tokenparam  //这是获取的token
-                    },
-                    dataType: 'json',
-                    data : {"page":page},
-                    async:false,//按照js顺序执行
-                    success: function(res) {
-                        layui.each(res, function (index, item) {
-                            lis.push('<div class="grid__item"  style="display: inline-block;z-index: 999">' +
-                                '                            <a class="grid__link pater" href="#">' +
-                                '                                <img onclick="magnification(this)" src="/pictureServer/vicitorConfessionWallPictureUtil?pictureName='+item.backgroundImagSrc+'" class="pater__img "/>' +
-                                '                                <div class="pater__content">' +
-                                '                                    <h2 class="pater__title" aria-label="fullstory">for<br>'+item.receiver+'</h2>' +
-                                '                                    <p class="pater__desc">'+item.content+'</p>' +
-                                '                                    <span class="pater__call">'+item.joinTime+'</span>' +
-                                '                                </div>' +
-                                '                            </a>' +
-                                '                        </div>');
-                        });
-
-                        //执行下一页渲染，第二参数为：满足“加载更多”的条件，即后面仍有分页
-                        //pages为Ajax返回的总页数，只有当前页小于总页数的情况下，才会继续出现加载更多
-                        next(lis.join(''), page < pages);
-
-                    },
-                });
-            }
-        });
-    });
-
-
-
-</script>
+<script type="text/javascript" th:src="@{/js/confession/confessionWall.js}"></script>
 <script type="text/javascript" th:src="@{/js/dynamicloading/imagemagnification.js}"></script>
 </body>
 </html>

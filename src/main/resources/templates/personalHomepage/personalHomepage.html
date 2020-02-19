@@ -76,17 +76,9 @@
 <script>
 
 
-    layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
-        var laydate = layui.laydate //日期
-            , laypage = layui.laypage //分页
-            , layer = layui.layer //弹层
-            , table = layui.table //表格
-            , carousel = layui.carousel //轮播
-            , upload = layui.upload //上传
-            , element = layui.element //元素操作
-            , slider = layui.slider //滑块
-            , form = layui.form
-            , flow = layui.flow;
+    layui.use(['layer'], function() {
+        var layer = layui.layer //弹层
+
 
 
 
@@ -106,16 +98,12 @@
 
                 ,cancel: function(){
                     //右上角关闭回调
+                    window.parent.location.reload();
 
                     //return false 开启该代码可禁止点击该按钮关闭
                 }
-
             });
-
-
         })
-
-
     });
 
 </script>

@@ -21,22 +21,22 @@
 <div class="maindiv2">
     <div style="width: 100%;height: 100%;position: absolute" align="center" >
 
-        <form method="post"  class="feelingform">
+        <form method="post"  class="feelingform layui-form">
         <div class="" style="width: 80%;margin-top: 5% ">
             <div style="display: inline-block;height: 50px;width: 50%">
-                <input type="text" name="receiver" style=" border-radius: 15px;" lay-verify="required" placeholder="你要对谁说" autocomplete="off" class="layui-input" />
+                <input type="text" name="receiver" lay-verify="required|inputlimit" lay-vertype="tips" style=" border-radius: 15px;"  placeholder="你要对谁说" autocomplete="off" class="layui-input" />
             </div>
         </div>
 
         <div class="" style="width: 80%;">
             <div style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
-                <textarea type="text" name="content" style=" border-radius: 15px;height: 200px;width: 100%" lay-verify="required" placeholder="对Ta说点什么" autocomplete="off" class="" ></textarea>
+                <textarea type="text" name="content" style=" border-radius: 15px;height: 200px;width: 100%" lay-vertype="tips" lay-verify="required|textarealimit" placeholder="对Ta说点什么" autocomplete="off" class="" ></textarea>
             </div>
         </div>
 
         <div class="" style="width: 80%;">
             <div style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
-                <input type="text" name="clue" style=" border-radius: 15px;" lay-verify="required" placeholder="留下你的一些信息" autocomplete="off" class="layui-input" />
+                <input type="text" name="clue" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="留下你的一些信息" autocomplete="off" class="layui-input" />
             </div>
         </div>
 
@@ -61,7 +61,7 @@
             <input class="backgroundImagSrc" name="backgroundImagSrc" type="hidden"/>
             <div class="" style="width: 80%;margin-top: 60px;position: relative">
                 <div style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
-                    <input type="button" name="update" value="上传" class="submitbutton layui-btn layui-btn-radius layui-btn-primary">
+                    <input type="button" name="update" value="上传" lay-submit lay-filter="laysubmitbutton" class="submitbutton layui-btn layui-btn-radius layui-btn-primary">
                 </div>
             </div>
         </form>
@@ -74,46 +74,6 @@
 </div>
 
 
-<script>
-
-    layui.use(['form','flow','laydate', 'laypage', 'layer', 'table', 'carousel', 'upload', 'element', 'slider'], function() {
-        var laydate = layui.laydate //日期
-            , laypage = layui.laypage //分页
-            , layer = layui.layer //弹层
-            , table = layui.table //表格
-            , carousel = layui.carousel //轮播
-            , upload = layui.upload //上传
-            , element = layui.element //元素操作
-            , slider = layui.slider //滑块
-            , form = layui.form
-            , flow = layui.flow;
-
-
-        upload.render({
-            elem: '#uploaddiv'
-            ,accept: 'images' //图片
-            ,exts: 'jpg|png|jpeg' //图片格式
-            ,url: '/confession/uploadPicture'
-            ,field:'background'
-            ,size:5000
-            ,headers:{"X-CSRF-TOKEN":tokenparam}
-/*            ,auto:false
-            ,bindAction:'.submitbutton'*/
-            ,done: function(res){
-                layer.msg('上传成功');
-                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src',  '/pictureServer/vicitorConfessionWallPictureUtil?pictureName='+res.individuationMessage);
-                layui.$('.backgroundImagSrc').val(res.individuationMessage);
-
-            }
-        });
-
-        ajaxForForm("submitbutton","post","/confession/insertOneFeeling", "feelingform",true);
-
-
-    });
-
-
-</script>
 
 </body>
 </html>
