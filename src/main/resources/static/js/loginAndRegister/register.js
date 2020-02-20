@@ -61,7 +61,7 @@ window.onload=function (ev) {
 
     var marginleftpx=(scwidth-scwidth*0.4)/2+'px';
 
-    $('.formdiv').css('top','-100px');
+    $('.formdiv').css('top','-150px');
     $('.formdiv').css('left',marginleftpx);
     $('.formdiv').show();
 

@@ -41,14 +41,14 @@ layui.use('flow', function(){
                 success: function(res) {
                     layui.each(res, function (index, item) {
                         lis.push('<div class="grid__item"  style="display: inline-block;z-index: 999">' +
-                            '                            <a class="grid__link pater" href="#">' +
-                            '                                <img onclick="magnification(this)" src="/pictureServer/vicitorConfessionWallPictureUtil?pictureName='+item.backgroundImagSrc+'" class="pater__img "/>' +
+                            '                            <span class="grid__link pater" href="#">' +
+                            '                                <img onclick="magnification(this,event)" src="/pictureServer/vicitorConfessionWallPictureUtil?pictureName='+item.backgroundImagSrc+'" class="pater__img "/>' +
                             '                                <div class="pater__content">' +
                             '                                    <h2 class="pater__title showellipsis" aria-label="fullstory">for<br><span class="showellipsis receiver">'+item.receiver+'</span></h2>' +
                             '                                    <p class="pater__desc showellipsis content">'+item.content+'</p>' +
                             '                                    <span class="pater__call">'+item.joinTime+'</span>' +
                             '                                </div>' +
-                            '                            </a>' +
+                            '                            </span>' +
                             '                        </div>');
                     });
 
