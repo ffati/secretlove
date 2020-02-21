@@ -162,7 +162,7 @@ span.toolTips::after{
 
 
 ::-webkit-scrollbar {
-    width: 10px; /*对垂直流动条有效*/
+    width: 0px; /*对垂直流动条有效*/
     height: 10px; /*对水平流动条有效*/
 }
 
@@ -207,5 +207,13 @@ span.toolTips::after{
     text-overflow: ellipsis;
 
     white-space: nowrap;
+
+}
+
+.opacitybackground{
+
+    background-color: #B2B2B2;
+    opacity:0.5;
+    color: #0C0C0C;
 
 }
