@@ -7,10 +7,10 @@
     <div th:replace="../templates/publicContent/commen :: commenhead"></div>
     <script type="text/javascript" th:src="@{/js/Effect.js}"></script>
     <script type="text/javascript" th:src="@{/js/Effectitem.js}"></script>
-
+    <link rel="stylesheet" type="text/css" th:href="@{/css/confession/toConfession.css}" />
 
 </head>
-<body class="backgroundimg">
+<body class="confessionBackgroundimg" th:style="'background-image: url('+@{/pictureServer/vicitorConfessionWallPictureUtil(pictureName=${showModel.backgroundImagSrc})}+')'">
 
 
 <div class=" maindiv1" >
@@ -20,13 +20,14 @@
     </div>
 </div>
 
-    <div class="maindiv2" style="background-color: #B2B2B2;opacity:0.5;color: #0C0C0C" align="center">
+    <div class="maindiv2 opacitybackground"  align="center">
+        <p>有人对你说：</p>
+        <div class="loveletter loveletterstyle"  align="center" th:text="${showModel.content}">
 
-    <div class="loveletter" style="width: 60%;margin-top: 30%" align="center">
-        <label class="layui-form-label" th:text="${showModel.content}"></label>
     </div>
 
-    <div class="hiddenClue" style="width: 60%;height: 200px;margin-top: 30%" hidden="hidden">
+    <div class="hiddenClue loveletterstyle"  hidden="hidden">
+        <p>给你留下的线索：</p>
         <label class="layui-form-label" th:text="${showModel.clue}"></label>
     </div>
 

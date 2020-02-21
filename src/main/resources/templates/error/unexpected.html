@@ -3,7 +3,7 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-    <title>未查找到</title>
+    <title>Unexpected</title>
     <div th:replace="../templates/publicContent/commen :: commenhead"></div>
     <link rel="stylesheet" type="text/css" th:href="@{/css/textEffect/linkstyles.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/textEffect/textEffect.css}">
@@ -23,9 +23,7 @@
 </head>
 <body class="backgroundimg">
 <div class="maindiv1">
-
     <div th:replace="../templates/publicContent/headImg :: headImg"></div>
-
 </div>
 <div class="maindiv2">
     <div class="jq22-container">
@@ -59,7 +57,7 @@
             <div class="grid">
 
                 <div class="grid__item">
-                    <a class="link link--takiri" >暂未找到 <span>让身边人来到这里吧</span></a>
+                    <a class="link link--mallki" href="#" >Unexpected<span class="data-letters-span" data-letters="404"></span><span class="data-letters-span" data-letters="404"></span></a>
                 </div>
 
             </div>
@@ -71,8 +69,17 @@
 <div class="maindiv3">
     <div th:replace="../templates/publicContent/menubar :: menubar"></div>
 </div>
+<input class="statusCodeval" hidden th:value="${statusCode}"/>
+<script>
+
+    $(Document).ready(function () {
+        $(".data-letters-span").attr("data-letters",$(".statusCodeval").val());
+
+    })
+
+
+</script>
 
 <script type="text/javascript" th:src="@{/js/textEffect.js}"></script>
-
 </body>
 </html>

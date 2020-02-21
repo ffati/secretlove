@@ -24,7 +24,7 @@
         <form method="post"  class="feelingform layui-form">
         <div class="" style="width: 80%;margin-top: 5% ">
             <div style="display: inline-block;height: 50px;width: 50%">
-                <input type="text" name="receiver" lay-verify="required|inputlimit" lay-vertype="tips" style=" border-radius: 15px;"  placeholder="你要对谁说" autocomplete="off" class="layui-input" />
+                <input type="text" name="receiver" lay-verify="required|inputlimit" lay-vertype="tips" style=" border-radius: 15px;"  placeholder="他会根据这条信息搜索到你留下的话" autocomplete="off" class="layui-input" />
             </div>
         </div>
 
@@ -36,7 +36,7 @@
 
         <div class="" style="width: 80%;">
             <div style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
-                <input type="text" name="clue" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="留下你的一些信息" autocomplete="off" class="layui-input" />
+                <input type="text" name="clue" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="留下你的一些信息，如果想让Ta猜到你的话" autocomplete="off" class="layui-input" />
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                     <p>点击上传，或将文件拖拽到此处</p>
                     <div class="layui-hide" id="uploadDemoView">
                         <hr>
-                        <img src="" alt="图片预览" style="max-width: 196px">
+                        <img src="" alt="图片预览" style="max-width: 196px;max-height: 120px">
                     </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
 
 
             <input class="backgroundImagSrc" name="backgroundImagSrc" type="hidden"/>
-            <div class="" style="width: 80%;margin-top: 60px;position: relative">
+            <div class="" style="width: 80%;margin-top: 90px;position: relative">
                 <div style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
                     <input type="button" name="update" value="上传" lay-submit lay-filter="laysubmitbutton" class="submitbutton layui-btn layui-btn-radius layui-btn-primary">
                 </div>
