@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/confession/toConfession.css}" />
 
 </head>
-<body class="confessionBackgroundimg" th:style="'background-image: url('+@{/pictureServer/vicitorConfessionWallPictureUtil(pictureName=${showModel.backgroundImagSrc})}+')'">
+<body class="backgroundimg" th:style="'background-image: url('+@{/pictureServer/vicitorConfessionWallPictureUtil(pictureName=${showModel.backgroundImagSrc})}+')'">
 
 
 <div class=" maindiv1" >
@@ -20,14 +20,15 @@
     </div>
 </div>
 
-    <div class="maindiv2 opacitybackground"  align="center">
-        <p>有人对你说：</p>
-        <div class="loveletter loveletterstyle"  align="center" th:text="${showModel.content}">
+    <div class="maindiv2 opacitybackground"  >
+        <div class="loveletterstyle loveletter">
+        <div style="margin: 20px">有人对你说：</div>
+        <label class=""  th:text="${showModel.content}">
 
-    </div>
-
+        </label>
+        </div>
     <div class="hiddenClue loveletterstyle"  hidden="hidden">
-        <p>给你留下的线索：</p>
+        <div style="margin: 20px">给你留下的线索：</div>
         <label class="layui-form-label" th:text="${showModel.clue}"></label>
     </div>
 
