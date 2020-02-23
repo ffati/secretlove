@@ -1,19 +1,5 @@
 
 
-html{height: 100%;}
-
-
-body{
-    height: auto;
-    background: url("/img/backgroundPicture.jpg") no-repeat center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    color: rgba(255, 255, 255, .95);
-}
-
-
 .showpicwindow{
     background: rgba(0,0,0,0.7);
 /*    opacity:0;
