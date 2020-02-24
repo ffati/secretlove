@@ -5,8 +5,142 @@
     <meta charset="UTF-8">
     <title> 定制服务</title>
     <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/individuation/showIndividuation.css}" />
+
 </head>
 <body>
-HEllO!
+<!-- 加载动画 -->
+<div class="heartlodingdiv">
+    <div id="heartloding">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="enterkey" >
+    <svg height="320" width="320" class="like" onclick="togglelilke()">
+        <path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90" fill="white"/> <!-- 80 by 70 -->
+    </svg>
+
+    <!-- DECORATIONS (quite a lot of them) -->
+    <div class="dot dot-1"></div>
+    <div class="dot dot-2"></div>
+    <div class="dot dot-3"></div>
+    <div class="dot dot-4"></div>
+    <div class="dot dot-5"></div>
+    <div class="dot dot-6"></div>
+    <div class="dot dot-7"></div>
+    <div class="dot dot-8"></div>
+
+    <svg height="40" width="40" viewBox="0 0 320 320" class="h h-1"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+    <svg height="40" width="40" viewBox="0 0 320 320" class="h h-2"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+    <svg height="40" width="40" viewBox="0 0 320 320" class="h h-3"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+    <svg height="40" width="40" viewBox="0 0 320 320" class="h h-4"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+
+    <svg height="40" width="40" viewBox="0 0 320 320" class="h h-5"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+    <svg height="40" width="40" viewBox="0 0 320 320" class="h h-6"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+    <svg height="40" width="40" viewBox="0 0 320 320" class="h h-7"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+    <svg height="40" width="40" viewBox="0 0 320 320" class="h h-8"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+
+    <svg height="110" width="110" viewBox="0 0 320 320" class="fly fly-1"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+    <svg height="110" width="110" viewBox="0 0 320 320" class="fly fly-2"><path class="path" d="M 160 145 c 15 -90 170 -20 0 90 m 0 -90 c -15 -90 -170 -20 0 90"/></svg>
+</div>
+
+
+<div class="banner box">
+    <div class="bgimgbox ">
+        <img th:src="@{/img/lodingbgpicture/lodingbgpicture2.jpg}"  alt="">
+        <img th:src="@{/img/lodingbgpicture/lodingbgpicture3.jpg}"  alt="">
+        <img th:src="@{/img/lodingbgpicture/lodingbgpicture1.jpg}"  alt="">
+    </div>
+</div>
+
+
+<div class="maindiv1"></div>
+<div class="maindiv2">
+    <div class="slider">
+        <div id="slider1_container" style="position: absolute;  width:100%;height:100%;">
+            <!-- Slides Container -->
+            <div u="slides" class="slides" style="cursor: move; position: relative; overflow: hidden; left: 0px; top: 0px; width:200px; height:auto">
+                <div><span class="slideinnertext" align="center" style="position: fixed;z-index: 990;width: auto;background: rgba(0,0,0,0.5);color: white ;font-size: large;" >111</span><a href="#"><img u="image" th:src="@{/img/lodingbgpicture/lodingbgpicture2.jpg}"  title="1111"/></a></div>
+                <div><a href="#"><img u="image" th:src="@{/img/lodingbgpicture/lodingbgpicture2.jpg}" /></a></div>
+                <div><a href="#"><img u="image" th:src="@{/img/lodingbgpicture/lodingbgpicture1.jpg}" /></a></div>
+                <div><a href="#"><img u="image" th:src="@{/img/lodingbgpicture/lodingbgpicture4.jpg}" /></a></div>
+                <div><a href="#"><img u="image" th:src="@{/img/lodingbgpicture/lodingbgpicture3.jpg}" /></a></div>
+            </div>
+            <div data-u="navigator" class="slidetip">
+                <div data-u="prototype" style="width:12px; height:12px; background-color:#a7a7a7; border-radius:12px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="boxesbutton" align="center" style="width: 100%;position: absolute;bottom: 30px;">
+        <div style="width: 5rem;margin: 30px;">
+
+            <div id="boxes">
+                <div style="--color: #9c27b0"></div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
+<div class="maindiv3">
+
+    <div th:replace="../templates/publicContent/menubar :: menubar"></div>
+</div>
+
+
+<div  class="card hidecard">
+    <div class="imgBox">
+        <div class="bark"></div>
+        <img th:src="@{/img/icon/diaryCoverGirl.jpg}" style="object-fit: cover;width: 300px;height: 400px;">
+    </div>
+    <div class="details">
+        <h4 class="color1">You're not a Fossil! (YET)</h4>
+            <h4 class="color2 margin">(HAPPY BIRTHDAY)</h4>
+                <div style="display: inline-block;">
+                    sssssssssssssssssssssssssssssssda大啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+                    啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊烦烦烦烦烦烦烦烦烦烦烦烦烦烦烦水水水水水水水水水水水水水哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈
+                </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript" th:src="@{/js/Effect.js}"></script>
+<script type="text/javascript" th:src="@{/js/EffectItem.js}"></script>
+<script type="text/javascript" th:src="@{/js/individuation/jssor.slider-22.0.15.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/individuation/banner.js}"></script>
+
+<script type="text/javascript" th:src="@{/js/individuation/individuation.js}"></script>
+<!-- 		<link rel="stylesheet" type="text/css" id="links" href="../css/m_wuqinglan.css"/>
+        <script type="text/javascript">
+            window.onload=function(){
+                var sc=document.getElementById("links");
+                    if(window.screen.width>1024) //获取屏幕的的宽度
+                    {
+                        sc.setAttribute("href","../css/pc_wuqinglan.css"); //电脑
+                    }
+                    else{
+                        sc.setAttribute("href","../css/m_wuqinglan.css"); //手机
+                    }
+            }
+        </script> -->
+
+
 </body>
 </html>

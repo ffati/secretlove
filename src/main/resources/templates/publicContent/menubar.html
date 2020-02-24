@@ -4,17 +4,17 @@
 <body>
 
     <th:block th:fragment="menubar">
-        <div style="position: fixed;width: 20%;height: 100%">
+        <div class="gifmenu" style="position: fixed;width: 20%;height: 100%">
             <img id="removablediv" class="showmenu mainmenu" src="">
-            <div class="layui-row togglediv" style="margin-top: 10%;">
+            <div class="layui-row togglediv" style="margin-left: 20%">
 
-                <div class="layui-col-xs6 layui-col-md12" style="margin: 15%">
+                <div class="menuimgdiv layui-col-xs6 layui-col-md12" style="margin: 15%">
                     <div class="grid-demo grid-demo-bg2">
                         <a title="首页" th:href="@{/home/homepage}"><img class="imgstyle" th:src="@{/img/menuimg/home.gif}"></a>
                     </div>
                 </div>
 
-                <div class="layui-col-xs6 layui-col-md12" style="margin: 15%">
+                <div class="menuimgdiv layui-col-xs6 layui-col-md12" style="margin: 15%">
                     <div class="grid-demo grid-demo-bg2">
                         <div sec:authorize="!isAuthenticated()" class="" >
                             <a title="登录" th:href="@{/login/loginPage}"><img class="imgstyle" th:src="@{/img/menuimg/login.gif}"></a>
@@ -27,25 +27,41 @@
                     </div>
                 </div>
 
-                <div class="layui-col-xs6 layui-col-md12" style="margin: 15%">
+                <div class="menuimgdiv layui-col-xs6 layui-col-md12" style="margin: 15%">
                     <div class="grid-demo grid-demo-bg2">
                         <a title="告白墙" th:href="@{/confession/wall}"><img class="imgstyle" th:src="@{/img/menuimg/confessionWall.gif}"></a>
                     </div>
                 </div>
 
-                <div class="layui-col-xs6 layui-col-md12" style="margin: 15%">
+                <div class="menuimgdiv layui-col-xs6 layui-col-md12" style="margin: 15%">
                     <div class="grid-demo grid-demo-bg2">
                         <a title="去告白" th:href="@{/confession/toconfession}"><img class="imgstyle" th:src="@{/img/menuimg/confession.gif}"></a>
                     </div>
                 </div>
 
-                <div class="layui-col-xs6 layui-col-md12" style="margin: 15%">
+                <div class="menuimgdiv layui-col-xs6 layui-col-md12" style="margin: 15%">
                     <div class="grid-demo grid-demo-bg2">
-                        <a title="定制服务" th:href="@{/individuation/individuationPage}"><img class="imgstyle3"  th:src="@{/img/menuimg/individuation.gif}"></a>
+                        <a title="定制服务" th:href="@{/individuation/individuationPage}"><img class="imgstyle"  th:src="@{/img/menuimg/individuation.gif}"></a>
                     </div>
                 </div>
             </div>
         </div>
+
+
+        <div class="annularmenu" style="width: 20%;height: 20%;position: fixed;bottom: 20px;display: none;right: 20%;z-index: 990">
+            <div class="loading-bay">
+                <div data-options='5' class="dial-btn__container dial-btn__container--full">
+                    <button class="dial-btn"><i class="layui-icon layui-icon-addition"></i></button>
+                    <button data-option='1'  class="dial-btn dial-btn--option"><a  th:href="@{/home/homepage}"><i class="layui-icon layui-icon-home" style="color: black" title="主页"></i></a></button>
+                    <button data-option='2' class="dial-btn dial-btn--option"><a  th:href="@{/login/loginPage}"><i class="layui-icon layui-icon-release" style="color: black" title="登录或登出"></i></a></button>
+                    <button data-option='3' class="dial-btn dial-btn--option"><a  th:href="@{/confession/wall}"><i class="layui-icon layui-icon-picture" style="color: black" title="展示"></i></a></button>
+                    <button data-option='4' class="dial-btn dial-btn--option"><a  th:href="@{/confession/toconfession}"><i class="layui-icon layui-icon-tabs" style="color: black" title="有话说"></i></a></button>
+                    <button data-option='5' class="dial-btn dial-btn--option"><a  th:href="@{/individuation/individuationPage}"><i class="layui-icon layui-icon-templeate-1" style="color: black" title="定制"></i></a></button>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript" th:src="@{/js/annularMenu.js}"></script>
     </th:block>
 
 </body>

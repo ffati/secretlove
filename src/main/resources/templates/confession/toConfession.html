@@ -6,6 +6,9 @@
     <title>我想对你说</title>
     <div th:replace="../templates/publicContent/commen :: commenhead"></div>
     <script type="text/javascript" th:src="@{/js/confession/toConfession.js}"></script>
+    <script type="text/javascript" th:src="@{/js/annularMenu.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/annularMenu.css}" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" media="screen">
 
 </head>
 <body class="scrollingBackgroundimg">
@@ -22,19 +25,19 @@
 
         <form method="post"  class="feelingform layui-form">
         <div class="" style="width: 80%;margin-top: 5% ">
-            <div style="display: inline-block;height: 50px;width: 50%">
+            <div class="inputtextdiv" style="display: inline-block;height: 50px;width: 50%">
                 <input type="text" name="receiver" lay-verify="required|inputlimit" lay-vertype="tips" style=" border-radius: 15px;"  placeholder="他会根据这条信息搜索到你留下的话" autocomplete="off" class="layui-input" />
             </div>
         </div>
 
         <div class="" style="width: 80%;">
-            <div style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
+            <div class="inputtextdiv" style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
                 <textarea type="text" name="content" style=" border-radius: 15px;height: 200px;width: 100%" lay-vertype="tips" lay-verify="required|textarealimit" placeholder="对Ta说点什么" autocomplete="off" class="" ></textarea>
             </div>
         </div>
 
         <div class="" style="width: 80%;">
-            <div style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
+            <div class="inputtextdiv" style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
                 <input type="text" name="clue" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="留下你的一些信息，如果想让Ta猜到你的话" autocomplete="off" class="layui-input" />
             </div>
         </div>
@@ -59,14 +62,17 @@
 
             <input class="backgroundImagSrc" name="backgroundImagSrc" type="hidden"/>
             <div class="" style="width: 80%;margin-top: 90px;position: relative">
-                <div style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
+                <div class="inputtextdiv" style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
                     <input type="button" name="update" value="上传" lay-submit lay-filter="laysubmitbutton" class="submitbutton layui-btn layui-btn-radius layui-btn-primary">
                 </div>
             </div>
         </form>
 
     </div>
+
+
 </div>
+
 
 <div class="mc-ui-absolute-pane maindiv3" >
     <div th:replace="../templates/publicContent/menubar :: menubar"></div>

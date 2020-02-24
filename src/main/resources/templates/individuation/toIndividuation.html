@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title> 定制服务</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/confession/toConfession.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/individuation/individuation.css}" />
+</head>
+<body class="scrollingBackgroundimg">
+
+<div class="maindiv1">
+    <div th:replace="../templates/publicContent/headImg :: headImg"></div>
+</div>
+
+
+
+<div class="maindiv2 ">
+    <div align="center">
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;width: 80%">
+        </fieldset>
+
+            <div style="margin: 10px">此服务为收费服务</div>
+            <button class="chargingStandard layui-btn layui-btn-primary layui-btn-radius">查看超便宜的收费标准</button>
+
+        <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;width: 80%">
+        </fieldset>
+    </div>
+
+
+
+    <div style="width: 100%;height: 100%;position: absolute" align="center" >
+
+        <form method="post"  class="feelingform layui-form">
+            <div class="" style="width: 80%;margin-top: 5% ">
+                <div class="inputtextdiv" style="display: inline-block;height: 50px;width: 50%">
+                    <input type="text" name="receiver" lay-verify="required|inputlimit" lay-vertype="tips" style=" border-radius: 15px;"  placeholder="他会根据这条信息搜索到你留下的话" autocomplete="off" class="layui-input" />
+                </div>
+            </div>
+
+            <div class="" style="width: 80%;">
+                <div class="inputtextdiv" style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
+                    <textarea type="text" name="content" style=" border-radius: 15px;height: 200px;width: 100%" lay-vertype="tips" lay-verify="required|textarealimit" placeholder="对Ta说点什么" autocomplete="off" class="" ></textarea>
+                </div>
+            </div>
+
+            <div class="" style="width: 80%;">
+                <div class="inputtextdiv" style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
+                    <input type="text" name="clue" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="留下你的一些信息，如果想让Ta猜到你的话" autocomplete="off" class="layui-input" />
+                </div>
+            </div>
+
+<div class="inputtextdiv" style="margin-top: 40px">
+    <div style="display: inline-block;width: 24%;">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>进场动画</legend>
+            </fieldset>
+    </div>
+    <div style="display: inline-block;width: 24%;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>背景效果</legend>
+    </fieldset>
+    </div>
+    <div style="display: inline-block;width: 24%;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>特效动画</legend>
+    </fieldset>
+    </div>
+    <div style="display: inline-block;width: 24%;">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>音乐</legend>
+    </fieldset>
+    </div>
+</div>
+            <div class="inputtextdiv">
+                <div style="display: inline-block;width: 24%;"><input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|关闭"></div>
+                <div style="display: inline-block;width: 24%;"><input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|关闭"></div>
+                <div style="display: inline-block;width: 24%;"><input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|关闭"></div>
+                <div style="display: inline-block;width: 24%;"><input type="checkbox" name="zzz" lay-skin="switch" lay-text="开启|关闭"></div>
+            </div>
+
+
+
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 40px;">
+                <legend>背景图片上传(非必须)</legend>
+            </fieldset>
+
+
+            <div class="" style="width: 80%;">
+                <div class="inputtextdiv" style="display: inline-block;height: 50px;width: 50%;margin-top: 20px;color: black">
+                    <div style="display: inline-block;width: 50%;">
+                        <input type="button" class="singleImgButton layui-btn layui-btn-primary layui-btn-radius" value="单图" />
+                    </div>
+                    <div  style="display: inline-block;width: 45%;">
+                        <input type="button" class="rollImgButton layui-btn layui-btn-primary layui-btn-radius" value="轮播图"/>
+                    </div>
+                    </div>
+            </div>
+
+
+
+            <div class="" style="width: 80%;position: relative;margin-top: 30px">
+                <div style="display: inline-block;height: 50px;width: 50%">
+
+                    <div class="singleImg layui-upload-drag" id="uploaddiv">
+                        <i class="layui-icon"></i>
+                        <p>点击上传，或将文件拖拽到此处</p>
+                        <div class="layui-hide" id="uploadDemoView">
+                            <hr>
+                            <img src="" alt="图片预览" style="max-width: 196px;max-height: 120px">
+                        </div>
+                    </div>
+
+                    <div class="layui-upload rollImg" style="display: none">
+                        <button type="button" class="layui-btn layui-btn-radius layui-btn-primary" id="test2">多图片上传</button>
+                        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                            预览图：
+                            <div class="layui-upload-list" id="demo2"></div>
+                        </blockquote>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 100px;">
+                <legend>特效</legend>
+            </fieldset>
+
+
+            <div class="" style="width: 80%;">
+                <div class="inputtextdiv" style="display: inline-block;height: 100px;width: 80%;margin-top: 20px">
+                    <div>
+                        <input type="radio" name="sex" value="nan" title="特效一">
+                        <input type="radio" name="sex" value="nan" title="特效二">
+                        <input type="radio" name="sex" value="nan" title="特效三">
+                        <input type="radio" name="sex" value="nan" title="特效四">
+                    </div>
+                    <div>
+                        <input type="radio" name="sex" value="nan" title="特效一">
+                        <input type="radio" name="sex" value="nan" title="特效二">
+                        <input type="radio" name="sex" value="nan" title="特效三">
+                        <input type="radio" name="sex" value="nan" title="特效四">
+                    </div>
+                </div>
+            </div>
+
+
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                <legend>背景音乐(不上传将使用随机系统内置音乐)</legend>
+            </fieldset>
+
+
+            <div class="" style="width: 80%;position: relative;margin-top: 20px">
+                <div style="display: inline-block;height: 50px;width: 50%">
+
+                    <div class="layui-upload-drag" id="musuploaddiv">
+                        <i class="layui-icon"></i>
+                        <p>点击上传，或将文件拖拽到此处</p>
+
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            <input class="backgroundImagSrc" name="backgroundImagSrc" type="hidden"/>
+            <div class="" style="width: 80%;margin-top: 90px;position: relative">
+                <div style="display: inline-block;height: 200px;width: 50%;margin-top: 20px">
+                    <input type="button" name="update" value="上传" lay-submit lay-filter="laysubmitbutton" class="submitbutton layui-btn layui-btn-radius layui-btn-primary">
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+
+</div>
+
+
+
+<div class="maindiv3">
+    <div th:replace="../templates/publicContent/menubar :: menubar"></div>
+</div>
+
+
+<div class="pop-up">
+    <div class="content">
+        <div class="container">
+
+            <span class="close">close</span>
+
+            <div class="chargingStandard" align="center" >
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;width: 80%">
+                    <legend>月费</legend>
+                </fieldset>
+                <div>
+                    10元/月/个(页面)，过期自动转为普通页面。
+                </div>
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;width: 80%">
+                    <legend>年费</legend>
+                </fieldset>
+                <div>
+                    100元/年/个(页面)，过期自动转为普通页面。
+                </div>
+                <div style="margin-top: 10%">
+                    首次充值便激活本网站永久VIP，享受个性化服务。
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+
+    $(".singleImgButton").click(function () {
+        $(".singleImg").show();
+        $(".rollImg").hide();
+
+    });
+
+    $(".rollImgButton").click(function () {
+        $(".singleImg").hide();
+        $(".rollImg").show();
+
+    });
+
+    $('.chargingStandard').click(function(){
+        //$('.pop-up').show();
+        $('.pop-up').addClass('open');
+    });
+
+    $('.pop-up .close').click(function(){
+        $('.pop-up').removeClass('open');
+    });
+
+
+layui.use(['layer','form','upload'], function() {
+        var layer = layui.layer //弹层
+            ,upload = layui.upload //上传
+            , form = layui.form
+
+
+/*
+        $(".chargingStandard").click(function () {
+            layer.open({
+                type: 2,
+                title: ['超便宜的收费标准', 'font-size:18px;'],
+                content: '/individuation/chargingStandard',//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                area: ['500px', '300px'],
+                resize:false,
+                scrollbar: false
+
+            });
+        });*/
+
+
+
+        form.verify({
+            inputlimit: function(value){
+
+                if (value.length>30){
+                    return '太长啦';
+                }
+            }
+            ,textarealimit: function(value){
+                if(value.length < 5){
+                    return '太少啦';
+                }
+                if (value.length>500){
+                    return '如果有太多的话建议当面说哦';
+                }
+            }
+            ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ]
+            /*            ,content: function(value){
+                            layedit.sync(editIndex);
+                        }*/
+        });
+
+        form.on('submit()', function(data) {
+
+            ajaxForForm("submitbutton", "post", "/confession/insertOneFeeling", "feelingform", true);
+        });
+
+        /*单图上传*/
+        upload.render({
+            elem: '#uploaddiv'
+            ,accept: 'images' //图片
+            ,exts: 'jpg|png|jpeg' //图片格式
+            ,url: '/confession/uploadPicture'
+            ,field:'background'
+            ,size:5000
+            ,headers:{"X-CSRF-TOKEN":tokenparam}
+            /*            ,auto:false
+                        ,bindAction:'.submitbutton'*/
+            ,done: function(res){
+                layer.msg('上传成功');
+                layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src',  '/pictureServer/vicitorConfessionWallPictureUtil?pictureName='+res.individuationMessage);
+                layui.$('.backgroundImagSrc').val(res.individuationMessage);
+
+            }
+        });
+
+
+
+
+
+        //多图片上传
+        upload.render({
+            elem: '#test2'
+            ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+            ,multiple: true
+            ,auto: false //选择文件后不自动上传
+            ,bindAction: '#testListAction' //指向一个按钮触发上传
+            ,choose: function(obj){
+                //将每次选择的文件追加到文件队列
+                var files = obj.pushFile();
+
+                //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+                obj.preview(function(index, file, result){
+                    console.log(index); //得到文件索引
+                    console.log(file); //得到文件对象
+                    console.log(result); //得到文件base64编码，比如图片
+                    $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                    //obj.resetFile(index, file, '123.jpg'); //重命名文件名，layui 2.3.0 开始新增
+
+                    //这里还可以做一些 append 文件列表 DOM 的操作
+
+                    //obj.upload(index, file); //对上传失败的单个文件重新上传，一般在某个事件中使用
+                    //delete files[index]; //删除列表中对应的文件，一般在某个事件中使用
+                });
+            }
+
+            ,allDone: function(obj){ //当文件全部被提交后，才触发
+                console.log(obj.total); //得到总文件数
+                console.log(obj.successful); //请求成功的文件数
+                console.log(obj.aborted); //请求失败的文件数
+            }
+/*            ,done: function(res){
+                //上传完毕
+            }*/
+        });
+
+
+
+
+
+    });
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
