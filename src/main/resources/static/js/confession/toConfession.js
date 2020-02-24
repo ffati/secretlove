@@ -1,19 +1,5 @@
 
 
-$(function() {
-    toConfessionLodingbackground();
-
-});
-
-
-
-function toConfessionLodingbackground() {
-
-    randombackground("confessionBackgroundimg")
-
-};
-
-
 
 layui.use(['form','upload'], function() {
     var upload = layui.upload //上传

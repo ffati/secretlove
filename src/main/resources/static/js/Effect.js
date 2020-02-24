@@ -34,7 +34,7 @@
             this.canvas.style.position = "fixed";
             this.canvas.style.top = "0px";
             this.canvas.style.left = "0px";
-            this.canvas.style.zIndex = "9999999";
+            this.canvas.style.zIndex = "995";
             this.canvas.style.pointerEvents = "none";
             document.body.appendChild(this.canvas);
             this.ctx = this.canvas.getContext("2d");
@@ -75,7 +75,7 @@
                     self.effectsArr[i].render();
                 }
                 ;
-            }, 20);
+            }, 10);
         }
         ;
     }

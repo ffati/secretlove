@@ -56,10 +56,15 @@ $(".girlsexradio").click(function () {
 });
 
 window.onload=function (ev) {
-    var scheight=$(window).height();
-    var scwidth=$(window).width();
-
-    var marginleftpx=(scwidth-scwidth*0.4)/2+'px';
+    var scheight=screenHeight;
+    var scwidth=screenWidth;
+    var marginleftpx="0px";
+    if (aspectRatio<1){
+        $(".formdiv").css("width","80%");
+        marginleftpx=scwidth*0.1+"px";
+    } else {
+        marginleftpx = scwidth*0.3 + 'px';
+    }
 
     $('.formdiv').css('top','-150px');
     $('.formdiv').css('left',marginleftpx);

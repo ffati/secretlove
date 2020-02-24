@@ -61,7 +61,7 @@
                 }
                 ;
             }
-            ;this.opacity -= 1 / 350;
+            ;/*this.opacity -= 1 / 350;*/
             if (this.direction == "left" && (this.x > (this.windowW + this.w))) {
                 this.death = true;
             } else if (this.direction == "right" && (this.x < -this.w)) {

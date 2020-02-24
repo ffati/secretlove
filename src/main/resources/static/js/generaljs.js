@@ -2,14 +2,61 @@
 
 $(function() {
 
-    globalVariable();
+    //globalVariable();
     togglemenu();
     lodingbackground();
     initializationMonitoringEvents();
+    chooseMenu();
 });
+
+
+window.tokenparam=$("meta[name='_csrf']").attr("content");
+window.headerparam=$("meta[name='_csrf_header']").attr("content");
+window.screenHeight=$(window).height();
+window.screenWidth=$(window).width();
+window.aspectRatio=screenWidth/screenHeight;
+window.effectStartsArr=["../img/specialEffectsImg/stars/1.png", "../img/specialEffectsImg/stars/2.png", "../img/specialEffectsImg/stars/3.png", "../img/specialEffectsImg/stars/4.png",
+    "../img/specialEffectsImg/stars/5.png", "../img/specialEffectsImg/stars/6.png", "../img/specialEffectsImg/stars/7.png", "../img/specialEffectsImg/stars/8.png", "../img/specialEffectsImg/stars/9.png"];
+
+window.effectheartArr=["../img/specialEffectsImg/heart/heart1.svg", "../img/specialEffectsImg/heart/heart2.svg", "../img/specialEffectsImg/heart/heart3.svg", "../img/specialEffectsImg/heart/heart4.svg",
+    "../img/specialEffectsImg/heart/heart5.svg", "../img/specialEffectsImg/heart/heart6.svg", "../img/specialEffectsImg/heart/heart7.svg", "../img/specialEffectsImg/heart/heart8.svg",
+    "../img/specialEffectsImg/heart/heart9.svg", "../img/specialEffectsImg/heart/heart10.svg", "../img/specialEffectsImg/heart/heart11.svg", "../img/specialEffectsImg/heart/heart12.svg"];
+
+window.effectrandomArr=["../img/specialEffectsImg/random/random1.svg", "../img/specialEffectsImg/random/random2.svg",
+    "../img/specialEffectsImg/random/random3.svg", "../img/specialEffectsImg/random/random4.svg",
+    "../img/specialEffectsImg/random/random5.svg", "../img/specialEffectsImg/random/random6.svg",
+    "../img/specialEffectsImg/random/random7.svg", "../img/specialEffectsImg/random/random8.svg",
+    "../img/specialEffectsImg/random/random9.svg", "../img/specialEffectsImg/random/random10.svg",
+    "../img/specialEffectsImg/random/random11.svg", "../img/specialEffectsImg/random/random12.svg",
+    "../img/specialEffectsImg/random/random13.svg", "../img/specialEffectsImg/random/random14.svg",
+    "../img/specialEffectsImg/random/random15.svg", "../img/specialEffectsImg/random/random16.svg",
+    "../img/specialEffectsImg/random/random17.svg"];
+
+
+function chooseMenu(){
+
+    if (aspectRatio<1){
+        $(".gifmenu").hide();
+        $(".annularmenu").show();
+        $(".maindiv2").css("width","100%");
+        $(".maindiv2").css("left","0px");
+        $(".maindiv2").css("z-index","989");
+        $(".inputtextdiv").css("width","100%");
+
+    }
+
+    if (screenHeight<400) {
+
+        $(".menuimgdiv").css("margin",(screenHeight-150)/15+"px");
+
+    }
+
+}
+
 
 /*需要初始化监听的事件*/
 function initializationMonitoringEvents(){
+
 
     $(".headimgdiv").mousedown(function(){
         $(this).css({"width":"60px","height":"60px"});
@@ -90,7 +137,8 @@ function togglemenu() {
     /*随机背景图片*/
 function lodingbackground() {
 
-    randombackground("backgroundimg")
+    randombackground("backgroundimg");
+    randombackground("scrollingBackgroundimg");
 
 };
 
@@ -106,15 +154,7 @@ function randombackground(classstring) {
 
 };
 
-
-function globalVariable() {
-
-    window.tokenparam=$("meta[name='_csrf']").attr("content");
-    window.headerparam=$("meta[name='_csrf_header']").attr("content");
-    window.screenHeight=$(window).height();
-    window.screenWidth=$(window).width();
-
-}
+    
 
 
 function ajaxForForm(className,postOrGet,urlString,dateClassName,asyncValue) {
