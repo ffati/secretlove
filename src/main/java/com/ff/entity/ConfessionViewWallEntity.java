@@ -1,5 +1,8 @@
 package com.ff.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -20,6 +23,8 @@ public class ConfessionViewWallEntity {
     private String userId;
     /**用户名*/
     private String userName;
+    /**是否注册*/
+    private String registrationStatus;
     /**线索*/
     private String clue;
     /**内容*/
@@ -29,6 +34,8 @@ public class ConfessionViewWallEntity {
     /**背景图片*/
     private String backgroundImagSrc;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date joinTime;
 
 
@@ -54,6 +61,14 @@ public class ConfessionViewWallEntity {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getRegistrationStatus() {
+        return registrationStatus;
+    }
+
+    public void setRegistrationStatus(String registrationStatus) {
+        this.registrationStatus = registrationStatus;
     }
 
     public String getClue() {

@@ -1,5 +1,8 @@
 package com.ff.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 
@@ -29,8 +32,12 @@ public class UserEntity {
     /**身份号码*/
     private String identityid;
     /**注册时间*/
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date registrationTime;
     /**最后登陆时间*/
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date lastlogintime;
     /**账号状态*/
     private char accountStatus;

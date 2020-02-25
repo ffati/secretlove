@@ -1,5 +1,8 @@
 package com.ff.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -34,9 +37,14 @@ public class RegisterUserEntity {
     private String userPassword;
     /**充值数额*/
     private String transferAmount;
+    /*余额*/
+    private String balance;
     /**用户类型*/
     private String customerType;
+
     /**首次使用*/
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date firstUseTime;
 
     private String sex;
@@ -216,6 +224,15 @@ public class RegisterUserEntity {
     public void setTransferAmount(String transferAmount){
         this.transferAmount=(transferAmount == null ? null : transferAmount.trim());
     }
+
+    public String getBalance() {
+        return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
+    }
+
     /**
      * 获取用户类型
      * @return

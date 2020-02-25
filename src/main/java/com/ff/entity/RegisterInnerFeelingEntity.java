@@ -1,5 +1,8 @@
 package com.ff.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -31,6 +34,8 @@ public class RegisterInnerFeelingEntity {
     private String content;
     /**背景图片*/
     private String backgroundImagSrc;
+    /**轮播图*/
+    private String cyclicDisplayImgList;
     /**倾诉对象*/
     private String receiver;
     /**是否定制*/
@@ -40,10 +45,16 @@ public class RegisterInnerFeelingEntity {
     /**特效列表*/
     private String specialEffectsList;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date startTime;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date endTime;
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date effectiveTime;
     /**
      *无参构造函数
@@ -272,6 +283,14 @@ public class RegisterInnerFeelingEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getCyclicDisplayImgList() {
+        return cyclicDisplayImgList;
+    }
+
+    public void setCyclicDisplayImgList(String cyclicDisplayImgList) {
+        this.cyclicDisplayImgList = cyclicDisplayImgList;
     }
 }
 
