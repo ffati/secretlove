@@ -33,7 +33,7 @@ public class LoginSecurity extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
                 .antMatchers("/","/home/homepage","/login/**","/register/**").permitAll()
-                .antMatchers("/shopCart/**").hasRole("ADMIN")
+                .antMatchers("/individuation/**").hasRole("USER")
                 //.anyRequest().authenticated()
                 .and()
                 .exceptionHandling()
@@ -41,12 +41,19 @@ public class LoginSecurity extends WebSecurityConfigurerAdapter {
                 .accessDeniedPage("/security/accessDenied")//无权限返回页面
                 .and()
                 .formLogin()
-                .usernameParameter("username").passwordParameter("password").loginPage("/login")//自定义参数
+                .loginPage("/login/loginPage")
+                .usernameParameter("username").passwordParameter("password")//自定义参数
                 .permitAll()
+                .successForwardUrl("/home/homepage")
                 .failureUrl("/security/loginError")
-                .and().headers().frameOptions().disable()//iframe嵌套
+
                 .and()
-                .logout().logoutSuccessUrl("/loginPage/login")
+                .logout()
+                .invalidateHttpSession(true).deleteCookies()
+                .logoutSuccessUrl("/login/loginPage")
+                .permitAll()
+
+                .and().headers().frameOptions().disable()//iframe嵌套
                 ;
         http.csrf().ignoringAntMatchers("/druid/*");
     }

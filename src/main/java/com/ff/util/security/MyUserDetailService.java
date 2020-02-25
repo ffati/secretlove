@@ -33,11 +33,13 @@ public class MyUserDetailService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private RoleService roleService;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+        if (null==userName||userName.equals("")){
+            userName="ATTENTION";
+        }
 
         RegisterUserEntity userEntity=new RegisterUserEntity();
         userEntity.setUserName(userName);
