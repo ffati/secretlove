@@ -42,7 +42,7 @@ layui.use('flow', function(){
                     layui.each(res, function (index, item) {
                         lis.push('<div class="grid__item"  style="display: inline-block;z-index: 999">' +
                             '                            <span class="grid__link pater" href="#">' +
-                            '                                <img onclick="magnification(this,event)" src="/pictureServer/vicitorConfessionWallPictureUtil?pictureName='+item.backgroundImagSrc+'" class="pater__img "/>' +
+                            '                                <img onclick="magnification(this,event)" src="/fileService/vicitorConfessionPictureUtil?pictureName='+item.backgroundImagSrc+'" class="pater__img "/>' +
                             '                                <div class="pater__content">' +
                             '                                    <h2 class="pater__title showellipsis" aria-label="fullstory">for<br><span class="showellipsis receiver">'+item.receiver+'</span></h2>' +
                             '                                    <p class="pater__desc showellipsis content">'+item.content+'</p>' +

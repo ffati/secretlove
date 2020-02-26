@@ -54,7 +54,7 @@ layui.use(['form','layer','upload'], function() {
         ,url: '/personal/uploadPicture' //改成您自己的上传接口
         ,done: function(res){
             layer.msg('上传成功');
-            layui.$('#headImgView').removeClass('layui-hide').find('img').attr('src', '/pictureServer/showHeadSculpture?imgpath='+res.individuationMessage);
+            layui.$('#headImgView').removeClass('layui-hide').find('img').attr('src', '/fileService/showHeadSculpture?imgpath='+res.individuationMessage);
             console.log(res)
         }
         ,error: function(){
@@ -78,7 +78,7 @@ layui.use(['form','layer','upload'], function() {
         ,url: '/personal/uploadPicture' //改成您自己的上传接口
         ,done: function(res){
             layer.msg('上传成功');
-            layui.$('#bgImgView').removeClass('layui-hide').find('img').attr('src', '/pictureServer/showHeadSculpture?imgpath='+res.individuationMessage);
+            layui.$('#bgImgView').removeClass('layui-hide').find('img').attr('src', '/fileService/showHeadSculpture?imgpath='+res.individuationMessage);
             console.log(res)
         }
     });

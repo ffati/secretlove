@@ -18,7 +18,7 @@ layui.use(['form','upload'], function() {
                     ,bindAction:'.submitbutton'*/
         ,done: function(res){
             layer.msg('上传成功');
-            layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src',  '/pictureServer/vicitorConfessionWallPictureUtil?pictureName='+res.individuationMessage);
+            layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src',  '/fileService/vicitorConfessionPictureUtil?pictureName='+res.individuationMessage);
             layui.$('.backgroundImagSrc').val(res.individuationMessage);
 
         }
