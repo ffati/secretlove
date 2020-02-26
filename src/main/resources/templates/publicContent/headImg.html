@@ -8,7 +8,7 @@
 <th:block th:fragment="headImg">
     <div style="position: fixed">
     <div sec:authorize="isAuthenticated()" class="headimgdiv" id="headimgdiv">
-        <div class="headimg" id="headimg" th:style="'background-image: url('+@{/pictureServer/showHeadSculpture(imgpath=${headSculpture})}+')'"></div>
+        <div class="headimg" id="headimg" th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${headSculpture})}+')'"></div>
     </div>
     <div sec:authorize="isAuthenticated()" hidden="hidden">
         <form class="headimgForm" th:action="@{/personal/homePage}"></form>

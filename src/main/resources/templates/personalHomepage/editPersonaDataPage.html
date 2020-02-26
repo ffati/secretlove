@@ -50,7 +50,7 @@
 
     <div align="center">
         <div class="headSculptureImg" style="width: 50%;display: inline-block">
-        <img style="width: 100%;object-fit: contain"  th:src="@{/pictureServer/showHeadSculpture(imgpath=${headSculptureAddress})}"/>
+        <img style="width: 100%;object-fit: contain"  th:src="@{/fileService/showHeadSculpture(imgpath=${headSculptureAddress})}"/>
         </div>
         <div class="headSculptureImgDiv" style="width: 30%;display: inline-block">
             <button class="headSculptureImgbutton layui-btn layui-btn-primary" >修改</button>
@@ -78,7 +78,7 @@
 
     <div align="center">
         <div class="personalHomepageImage" style="width: 50%;display: inline-block">
-            <img style="width: 100%;object-fit: contain"  th:src="@{/pictureServer/showHeadSculpture(imgpath=${personalHomepageImage})}"/>
+            <img style="width: 100%;object-fit: contain"  th:src="@{/fileService/showHeadSculpture(imgpath=${personalHomepageImage})}"/>
         </div>
         <div class="personalHomepageImageDiv" style="width: 30%;display: inline-block">
             <button class="personalHomepageImageButton layui-btn layui-btn-primary" >修改</button>

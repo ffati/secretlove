@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/persionHomepage.css}" />
 
 </head>
-<body th:style="'background-image: url('+@{/pictureServer/showHeadSculpture(imgpath=${currentUserVo.personalHomepageImage})}+')'">
+<body th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${currentUserVo.personalHomepageImage})}+')'">
 
 <div class="maindiv1"></div>
 
@@ -17,7 +17,7 @@
 
 <div style="height: 20%;width: 100%;margin-left: 45%;margin-top: 10%" >
     <div class="persionHeadImgDiv">
-            <span class="personHeadImg" th:style="'background-image: url('+@{/pictureServer/showHeadSculpture(imgpath=${currentUserVo.headPictureaddress})}+')'"/>
+            <span class="personHeadImg" th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${currentUserVo.headPictureaddress})}+')'"/>
             <div style="position: relative;height: 100%;width: 100%;">
             <img th:if="${currentUserVo.sex=='0'}" style="width: 30px;height: 30px;object-fit: contain" src="/img/icon/girl.png"/>
             <img th:if="${currentUserVo.sex=='1'}" style="width: 30px;height: 30px;object-fit: contain" src="/img/icon/boy.png"/>
