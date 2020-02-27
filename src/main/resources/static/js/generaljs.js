@@ -226,5 +226,13 @@ function ajaxcommon(postOrGet,urlString,datastring,asyncValue,Refresh) {
 }
 
 
+/*json对象属性数量*/
+function getJsonLength(jsonData){
+    var jsonLength = 0;
+    for(var item in jsonData){
+        jsonLength++;
+    }
+    return jsonLength;
+};
 
 

@@ -24,7 +24,7 @@ body{
     width: 70px;
     height: 70px;
     position: absolute;
-    background: url(/img/lodingbgpicture/lodingbgpicture3.jpg) no-repeat center center;
+    background: url(/img/defaultheadSculpture.jpg) no-repeat center center;
     background-size: cover;
     object-fit:cover ;
     border-radius:50%;

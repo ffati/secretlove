@@ -1,10 +1,99 @@
 
 
     window.onload = function () {//即在加载的过程中执行下面的代码
+
+        shooseEffect();
+        initeeffict();
+
         if (document.readyState == "complete") {//complete加载完成
             $(".heartlodingdiv").fadeOut();
-        }
+        };
+
+
     };
+
+
+
+    var dropEffectType=$(".dropEffectType").val();
+    var effectArr=new Array();
+
+
+    if (dropEffectType==1) {
+        effectArr=effectStartsArr;
+
+    }else if (dropEffectType==2){
+
+        effectArr=effectheartArr;
+    } else if (dropEffectType==3){
+
+        effectArr=effectrandomArr;
+    }else {
+
+        effectArr=[];
+    }
+
+
+    function shooseEffect() {
+
+        var cyclicDisplayImgList=$(".cyclicDisplayImgList").val();
+
+        var specialEffectsList=$(".specialEffectsList").val();
+        var rollImgType=$(".rollImgType").val();
+
+
+
+        var musicPath=$(".musicPath").val();
+
+        var obj=JSON.parse(specialEffectsList);
+        if (obj.backgroundEffectSwitch=="on" && cyclicDisplayImgList!="") {
+
+            var imglist=JSON.parse(cyclicDisplayImgList);
+            var imgleng=getJsonLength(imglist);
+
+
+            if (rollImgType == 2) {
+
+                for (let i=0;i<imgleng;i++){
+                $(".bgimgbox").append("<img src='/fileService/vicitorConfessionPictureUtil?pictureName="+imglist[i]+"'>");
+                }
+
+                $(".slider").hide();
+
+            } else {
+                for (let i=0;i<imgleng;i++){
+                    $(".slides").append("<div><a href='#'><img u='image' src='/fileService/vicitorConfessionPictureUtil?pictureName="+imglist[i]+"' /></a></div>");
+                }
+                $(".box").hide();
+            }
+
+        }else {
+            $(".slider").hide();
+            $(".box").hide();
+        }
+
+
+        if (obj.approachAnimationSwitch=="off"){
+
+            $(".enterkey").hide();
+
+        };
+
+        if (obj.musicSwitch=="off"){
+
+            $("#musicsource").attr("src","");
+
+        }else if(musicPath==""){
+
+            $("#musicsource").attr("src","/audioFrequency/song.mp3");
+        };
+
+
+
+    }
+
+    
+
+
 
 
 function togglelilke(){
@@ -72,6 +161,7 @@ var boxes = document.querySelectorAll('#boxes > div');
     });
 });
 
+function initeeffict(){
 
 $(".banner").banner($(".banner").find("img"),{
     but:false,    // 左右按钮默认为true
@@ -85,7 +175,7 @@ $(".banner").banner($(".banner").find("img"),{
 
     new Effect({
     //特效图片，多张图片时传入数组，单个图片时传入字符串
-    effectUrl: effectrandomArr,
+    effectUrl: effectArr,
     //特效旋转，1/true为旋转，0/false为不旋转
     rotate: 1,
     //特效方向，left/right/up/down
@@ -93,37 +183,7 @@ $(".banner").banner($(".banner").find("img"),{
 });
 
 
-$(document).ready(function ($) {
-    let scheight=screenHeight;
-    let scwidth=screenWidth;
-    let bl=scwidth/scheight;
-    if(bl>1){
-        let wscheight=scheight*0.5;
-        let wscwidth=scwidth*0.48;
-
-        $(".maindiv2").css("left","20%");
-        $(".maindiv2").css("width","60%");
-        $(".slides").css("width",wscwidth);
-        $(".slides").css("height",wscheight);
-        $(".slider").css("width",wscwidth);
-        $(".slideinnertext").css("width",wscwidth);
-    }else{
-        let wscheight=$(window).height()*0.5;
-        let wscwidth=$(window).width();
-
-        $(".maindiv2").css("left","0px");
-        $(".maindiv2").css("width","100%");
-        $(".slides").css("width",wscwidth);
-        $(".slides").css("height",wscheight);
-        $(".slideinnertext").css("width",wscwidth);
-        $(".slider").css("width",wscwidth);
-        $(".slider img").css("object-fit","contain");
-    }
-
-    if(scheight<550){
-        $(".boxesbutton").css("width","10%");
-    }
-
+    /*前置轮播*/
     var _SlideshowTransitions = [
         //{$Duration:1200,y:-0.3,$Cols:2,$SlideOut:true,$ChessMode:{$Column:12},$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseLinear},$Opacity:2},
         //{$Duration:1000,y:4,$Zoom:11,$Easing:{$Top:$JssorEasing$.$EaseInCubic,$Zoom:$JssorEasing$.$EaseInCubic,$Opacity:$JssorEasing$.$EaseOutQuad},$Opacity:2},
@@ -157,4 +217,41 @@ $(document).ready(function ($) {
         }
     };
     var jssor_slider1 = new $JssorSlider$('slider1_container', options);
+
+
+}
+
+$(document).ready(function ($) {
+
+
+    let scheight=screenHeight;
+    let scwidth=screenWidth;
+    let bl=scwidth/scheight;
+    if(bl>1){
+        let wscheight=scheight*0.5;
+        let wscwidth=scwidth*0.48;
+
+        $(".maindiv2").css("left","20%");
+        $(".maindiv2").css("width","60%");
+        $(".slides").css("width",wscwidth);
+        $(".slides").css("height",wscheight);
+        $(".slider").css("width",wscwidth);
+        $(".slideinnertext").css("width",wscwidth);
+    }else{
+        let wscheight=$(window).height()*0.5;
+        let wscwidth=$(window).width();
+
+        $(".maindiv2").css("left","0px");
+        $(".maindiv2").css("width","100%");
+        $(".slides").css("width",wscwidth);
+        $(".slides").css("height",wscheight);
+        $(".slideinnertext").css("width",wscwidth);
+        $(".slider").css("width",wscwidth);
+        $(".slider img").css("object-fit","contain");
+    }
+
+    if(scheight<550){
+        $(".boxesbutton").css("width","10%");
+    }
+
 });

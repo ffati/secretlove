@@ -7,6 +7,21 @@ $(function() {
 
 });
 
+
+function musicSwitch(){
+
+    var switchbar=$("#musicSource");
+
+    $(".musicSwitch").click(function () {
+
+
+
+    })
+
+
+};
+
+
 layui.use(['form'], function() {
     var form = layui.form
 
