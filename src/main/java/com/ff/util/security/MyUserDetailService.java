@@ -41,10 +41,8 @@ public class MyUserDetailService implements UserDetailsService {
             userName="ATTENTION";
         }
 
-        RegisterUserEntity userEntity=new RegisterUserEntity();
-        userEntity.setUserName(userName);
         RegisterUserEntity backUserEntity=new RegisterUserEntity();
-        backUserEntity=userService.findByAnyParameter(userEntity);
+        backUserEntity=userService.findRegisterUserByUsername(userName);
         List<GrantedAuthority> roalList=new ArrayList<>();
         roalList.add(new SimpleGrantedAuthority(backUserEntity.getCustomerType()));
         System.out.println(roalList.size());
