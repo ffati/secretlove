@@ -2,10 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
     <title>个人主页</title>
     <div th:replace="../templates/publicContent/commen :: commenhead"></div>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/persionHomepage.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/css/persionHomepage.css}"/>
 
 </head>
 <body th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${currentUserVo.personalHomepageImage})}+')'">
@@ -15,27 +14,31 @@
 
 <div class="maindiv2">
 
-<div style="height: 20%;width: 100%;margin-left: 45%;margin-top: 10%" >
-    <div class="persionHeadImgDiv">
-            <span class="personHeadImg" th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${currentUserVo.headPictureaddress})}+')'"/>
+    <div style="height: 20%;width: 100%;margin-left: 45%;margin-top: 10%">
+        <div class="persionHeadImgDiv">
+            <span class="personHeadImg"
+                  th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${currentUserVo.headPictureaddress})}+')'"/>
             <div style="position: relative;height: 100%;width: 100%;">
-            <img th:if="${currentUserVo.sex=='0'}" style="width: 30px;height: 30px;object-fit: contain" src="/img/icon/girl.png"/>
-            <img th:if="${currentUserVo.sex=='1'}" style="width: 30px;height: 30px;object-fit: contain" src="/img/icon/boy.png"/>
+                <img th:if="${currentUserVo.sex=='0'}" style="width: 30px;height: 30px;object-fit: contain"
+                     src="/img/icon/girl.png"/>
+                <img th:if="${currentUserVo.sex=='1'}" style="width: 30px;height: 30px;object-fit: contain"
+                     src="/img/icon/boy.png"/>
+            </div>
         </div>
     </div>
-</div>
 
     <fieldset class="layui-elem-field">
         <legend>个人资料</legend>
         <div class="layui-field-box">
 
-            <div style="width: 30%;display: inline-block" ><label>昵称：</label><span th:text="${currentUserVo.nickName}"></span></div>
+            <div style="width: 30%;display: inline-block"><label>昵称：</label><span th:text="${currentUserVo.nickName}"></span></div>
 
-            <div style="width: 30%;display: inline-block" ><label>ID：</label><span class="useridval"  th:text="${currentUserVo.userid}"></span></div>
+            <div style="width: 30%;display: inline-block"><label>ID：</label><span class="useridval" th:text="${currentUserVo.userid}"></span>
+            </div>
 
-            <div style="width: 30%;display: inline-block" ><label>手机号码：</label><span  th:text="${currentUserVo.phonenumber}"></span></div>
+            <div style="width: 30%;display: inline-block"><label>手机号码：</label><span class="userName" th:text="${currentUserVo.phonenumber}"></span></div>
 
-            <div style="width: 5%;display: inline-block" ><i title="设置个人资料" class="modifydata layui-icon layui-icon-set" style="font-size: 20px;color: white"></i></div>
+            <div style="width: 5%;display: inline-block"><i title="设置个人资料" class="modifydata layui-icon layui-icon-set" style="font-size: 20px;color: white"></i></div>
         </div>
     </fieldset>
 
@@ -45,58 +48,52 @@
         </fieldset>
     </div>
 
-    <div align="center">
-
-    <div th:each="registerInnerFeeling,registerInnerFeelingStat:${registerInnerFeelingList}">
-        <tr>
-            <td>
-                <label th:text="'第'+${registerInnerFeelingStat.index+1}+'页：'"></label>
-            </td>
-            <td>
-        <a th:href="@{/home/searchConfession(searchParam=${registerInnerFeeling.receiver})}">
-        <div style="display: inline-block" th:text="${registerInnerFeeling.receiver}"></div>
-        </a>
-            </td>
-        </tr>
-    </div>
-
-
+    <div style="width: 100%" align="center">
+        <div style="width: 100%" th:each="registerInnerFeeling,registerInnerFeelingStat:${registerInnerFeelingList}">
+            <div style="width: 100%">
+                <div style="display: inline-block;width:45% " align="right">
+                    <label th:text="'第'+${registerInnerFeelingStat.index+1}+'页：'"></label>
+                </div>
+                <div style="display: inline-block;width: 45%;color: white" align="left">
+                    <a th:href="@{/home/searchConfession(searchParam=${registerInnerFeeling.receiver})}">
+                        <div style="display: inline-block;color: white" th:text="${registerInnerFeeling.receiver}"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
 
 </div>
 
 <div class="maindiv3">
-
     <div th:replace="../templates/publicContent/menubar :: menubar"></div>
-
 </div>
 
 
 <script>
 
 
-    layui.use(['layer'], function() {
+    layui.use(['layer'], function () {
         var layer = layui.layer //弹层
 
 
-
-
         $(".modifydata").click(function () {
-            var userid=$(".useridval").text();
+            var userName = $(".userName").text();
             layer.open({
                 type: 2,
                 title: ['修改个人资料', 'font-size:18px;'],
-                content: '/personal/editPersonaDataPage?userid='+userid,//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
-                area: ['1000px', '600px'],
-                resize:false,
-                scrollbar: false
+                content: '/personal/editPersonaDataPage?userName=' + userName,//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                area: ['50%', '40%'],
+                resize: true,
+                scrollbar: true
+                ,maxmin: true
                 /*        zIndex: layer.zIndex, //重点1
                         success: function(layero){
                             layer.setTop(layero); //重点2
                         }*/
 
-                ,cancel: function(){
+                , cancel: function () {
                     //右上角关闭回调
                     window.parent.location.reload();
 

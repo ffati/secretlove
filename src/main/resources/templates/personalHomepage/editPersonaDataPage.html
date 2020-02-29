@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
     <title> </title>
     <div th:replace="../templates/publicContent/commen :: commenhead"></div>
 </head>
@@ -100,7 +99,7 @@
     </div>
 </div>
 <input class="userIdInput" type="hidden" th:value="${userId}"/>
-
+<input class="userName" type="hidden" th:value="${userName}"/>
 <script type="text/javascript" th:src="@{/js/persionHomepage/editPersionData.js}"></script>
 
 

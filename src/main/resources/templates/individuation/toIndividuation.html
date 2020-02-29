@@ -2,7 +2,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
     <title> 定制服务</title>
     <div th:replace="../templates/publicContent/commen :: commenhead"></div>
     <link rel="stylesheet" type="text/css" th:href="@{/css/confession/toConfession.css}" />
@@ -199,7 +198,7 @@
 
 
             <input type="hidden" name="cyclicDisplayImgList" class="cyclicDisplayImgList"/>
-            <input type="hidden" name="musicPath" class="musicPath"/>
+            <input type="hidden" name="musicPath" class="musicPath"  />
             <input type="hidden" name="rollImgType" class="rollImgType" value="1"/>
         </form>
 
@@ -281,19 +280,27 @@ layui.use(['layer','form','upload'], function() {
         form.on('switch(checktype)',function (data) {
         let type=this.getAttribute("checktype");
 
-
             if (type==2 && data.elem.checked) {
                 $(".checktype2").show();
+                $(".cyclicDisplayImgList").attr("lay-verify","required");
+                $(".cyclicDisplayImgList").attr("lay-reqtext","图片忘记上传了哦");
+
                 }else if (type==2 && !data.elem.checked){
                     $(".checktype2").hide();
+                    $(".cyclicDisplayImgList").attr("lay-verify","");
+                    $(".cyclicDisplayImgList").attr("lay-reqtext","");
                     }else if (type==3 && data.elem.checked) {
                         $(".checktype3").show();
                         }else if (type==3 && !data.elem.checked){
                             $(".checktype3").hide();
                              } else if (type==4 && data.elem.checked) {
                                 $(".checktype4").show();
+                                $(".musicPath").attr("lay-verify","required");
+                                $(".musicPath").attr("lay-reqtext","音乐还没有上传呢");
                                 }else if (type==4 && !data.elem.checked){
                                     $(".checktype4").hide();
+                                    $(".musicPath").attr("lay-verify","");
+                                    $(".musicPath").attr("lay-reqtext","");
                                     }
         });
 
