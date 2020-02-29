@@ -80,6 +80,7 @@
 
         if (obj.musicSwitch=="off"){
 
+            $("#musicControllerDiv").hide();
             $("#musicsource").attr("src","");
 
         }else if(musicPath==""){

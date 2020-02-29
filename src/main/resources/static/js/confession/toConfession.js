@@ -52,7 +52,7 @@ layui.use(['form','upload'], function() {
 
     form.on('submit(laysubmitbutton)', function(data) {
 
-        ajaxForForm("submitbutton", "post", "/confession/insertOneFeeling", "feelingform", true);
+        ajaxForForm("submitbutton", "post", "/confession/insertOneFeeling", "feelingform", true,true,"");
     });
 
 });

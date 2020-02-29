@@ -14,6 +14,7 @@ $(".nickNameSubmit").click(function () {
     var dataString={};
     dataString.userId=userid;
     dataString.nickName=$(".editNickname").val();
+    dataString.userName=$(".userName").val();
     console.log(dataString);
     ajaxcommon("post","/user/modifyData",dataString,true,false)
 
@@ -49,6 +50,9 @@ layui.use(['form','layer','upload'], function() {
         ,data:{userId:function(){
                 return $(".userIdInput").val();
             }
+            ,userName:function(){
+                return $(".userName").val();
+            }
             ,type:"headImg"}
         ,headers:{"X-CSRF-TOKEN":tokenparam}
         ,url: '/personal/uploadPicture' //改成您自己的上传接口
@@ -72,6 +76,9 @@ layui.use(['form','layer','upload'], function() {
         ,method: 'POST'
         ,data:{userId:function(){
                 return $(".userIdInput").val();
+            }
+            ,userName:function(){
+                return $(".userName").val();
             }
             ,type:"personalbgImg"}
         ,headers:{"X-CSRF-TOKEN":tokenparam}

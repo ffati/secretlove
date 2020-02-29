@@ -1,5 +1,4 @@
-
-$(function() {
+$(function () {
 
     lodingbackground();
     inintsomething();
@@ -8,12 +7,11 @@ $(function() {
 });
 
 
-function musicSwitch(){
+function musicSwitch() {
 
-    var switchbar=$("#musicSource");
+    var switchbar = $("#musicSource");
 
     $(".musicSwitch").click(function () {
-
 
 
     })
@@ -22,11 +20,11 @@ function musicSwitch(){
 };
 
 
-layui.use(['form'], function() {
+layui.use(['form'], function () {
     var form = layui.form
 
 
-    form.on('submit(laysearchbutton)', function(data){
+    form.on('submit(laysearchbutton)', function (data) {
 
         $(".mainsearchform").submit();
 
@@ -39,9 +37,9 @@ layui.use(['form'], function() {
 function inintsomething() {
 
     //输入框
-    $(".searchinput").focus(function (){
-        var tipslength=$(".searchinput").val();
-        if (tipslength.length==0){
+    $(".searchinput").focus(function () {
+        var tipslength = $(".searchinput").val();
+        if (tipslength.length == 0) {
             $(".toolTips").text("请输入你的名字或昵称搜索哦");
             $(".toolTips").show();
         } else {
@@ -51,13 +49,13 @@ function inintsomething() {
 
     });
 
-    $(".searchinput").blur(function (){
+    $(".searchinput").blur(function () {
 
-        $(".toolTips").css('display','none');
+        $(".toolTips").css('display', 'none');
 
     });
 
-    $(".searchinput").on('input propertychange',function (){
+    $(".searchinput").on('input propertychange', function () {
 
         $(".toolTips").text("按回车键或点击右边按钮以搜索");
     });
@@ -65,35 +63,33 @@ function inintsomething() {
     /*主页搜索*/
     $(".searchinput").keypress(function (e) {
 
-        var searchlength=$(".searchinput").val();
-        if (e.which == 13&&searchlength.length>0) {
+        var searchlength = $(".searchinput").val();
+        if (e.which == 13 && searchlength.length > 0) {
             $(".mainsearchform").submit();
         }
     });
 
 
-
 };
+
 /*等待界面图片*/
 function lodinghidden() {
 
     document.onreadystatechange = function () {//即在加载的过程中执行下面的代码
-        if(document.readyState=="complete"){//complete加载完成
+        if (document.readyState == "complete") {//complete加载完成
 
             $(".lodingdiv").slideUp(2000);
         }
     };
 
 };
+
 /*随机图片*/
 function lodingbackground() {
 
     randombackground("lodingdiv");
 
 };
-
-
-
 
 
 /*    new Effect({

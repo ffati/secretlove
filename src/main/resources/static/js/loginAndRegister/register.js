@@ -31,7 +31,7 @@ layui.use(['form'], function() {
 
     form.on('submit(layregistbutton)', function(data){
 
-        ajaxForForm("registbutton","post","/user/registerUser", "registerform",true);
+        ajaxForForm("registbutton","post","/user/registerUser", "registerform",true,false,"/login/loginPage");
     });
 
 });
