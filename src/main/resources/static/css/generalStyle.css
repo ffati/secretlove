@@ -1,11 +1,12 @@
 
-
-html:hover{
-    cursor: url("/img/cursor.ico"),auto;
+html:hover {
+    cursor: url("/img/cursor.ico"), auto;
 }
 
 
-html{height: 100%;}
+html {
+    height: 100%;
+}
 
 
 .backgroundimg {
@@ -28,7 +29,7 @@ html{height: 100%;}
     height: auto;
     background: url(/img/defaultBackgroundImage.jpg) no-repeat center center;
     color: rgba(255, 255, 255, .95);
-    background-attachment:fixed;
+    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -37,13 +38,13 @@ html{height: 100%;}
 }
 
 
-.confessionBackgroundimg{
+.confessionBackgroundimg {
 
     width: 100%;
     height: auto;
     background: url(/img/defaultBackgroundImage.jpg) no-repeat center center;
     color: rgba(255, 255, 255, .95);
-    background-attachment:fixed;
+    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -59,7 +60,7 @@ canvas {
     cursor: move;
 }
 
-.canvasstyle{
+.canvasstyle {
 
     overflow: hidden;
     min-height: 100%;
@@ -83,67 +84,71 @@ span.toolTips {
     background-color: #ffdce0;
     border-color: #cea0a5;
     /*display:block;*/
-    border:1px solid;
+    border: 1px solid;
     border-radius: 4px;
     padding: 2px;
 }
-span.toolTips::before{
+
+span.toolTips::before {
     content: ' ';
     display: block;
-    border-right:7px solid #ffdce0;
-    border-left:7px solid  transparent;
-    border-top:7px solid  transparent;
+    border-right: 7px solid #ffdce0;
+    border-left: 7px solid transparent;
+    border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
     width: 0px;
     height: 0px;
     position: absolute;
-    top:4px;
-    left:-14px;
+    top: 4px;
+    left: -14px;
     z-index: 3;
 }
-span.toolTips::after{
+
+span.toolTips::after {
     content: ' ';
     display: block;
-    border-right:8px solid #86181d;
-    border-left:8px solid  transparent;
-    border-top:8px solid  transparent;
+    border-right: 8px solid #86181d;
+    border-left: 8px solid transparent;
+    border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     width: 0px;
     height: 0px;
     position: absolute;
-    top:3px;
-    left:-16.5px;
+    top: 3px;
+    left: -16.5px;
     z-index: 2;
 }
 
-.hidemenu{
+.hidemenu {
 
     height: auto;
     width: auto;
-    content:url(../img/menuImg/hidemenu.gif);
+    content: url(../img/menuImg/hidemenu.gif);
     position: fixed;
 
 }
-.showmenu{
+
+.showmenu {
 
     height: auto;
     width: auto;
-    content:url(../img/menuImg/showmenu.gif);
+    content: url(../img/menuImg/showmenu.gif);
     position: fixed;
 }
 
-.imgstyle{
+.imgstyle {
 
     height: 35px;
     width: 30px
 }
-.imgstyle3{
+
+.imgstyle3 {
 
     height: 35px;
     width: 35px
 }
 
-.maindiv1{
+.maindiv1 {
     width: 20%;
     height: 100%;
     position: absolute;
@@ -152,7 +157,7 @@ span.toolTips::after{
 
 }
 
-.maindiv2{
+.maindiv2 {
     width: 60%;
     height: 100%;
     position: absolute;
@@ -161,7 +166,7 @@ span.toolTips::after{
 
 }
 
-.maindiv3{
+.maindiv3 {
     width: 20%;
     height: 100%;
     position: absolute;
@@ -184,10 +189,10 @@ span.toolTips::after{
     height: 50px;
     background: url(/img/defaultheadSculpture.jpg) no-repeat center center;
     background-size: cover;
-    object-fit:cover ;
-    border-radius:50%;
-    -webkit-border-radius:50%;
-    -moz-border-radius:50%;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
 }
 
 
@@ -197,15 +202,15 @@ span.toolTips::after{
 }
 
 /*定义滚动条的轨道颜色、内阴影及圆角*/
-::-webkit-scrollbar-track{
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
     background-color: #f0f0f0;
     border-radius: 3px;
 }
 
 
 /*定义滑块颜色、内阴影及圆角*/
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
     border-radius: 7px;
     -webkit-box-shadow: inset 0 0 6px rgba(14, 0, 12, 0.58);
     background-color: #cccccc;
@@ -222,14 +227,14 @@ span.toolTips::after{
 }
 
 /*修改layer颜色*/
-.layui-layer-content{
+.layui-layer-content {
     background-color: #fdfff8;
     color: black;
 
 }
 
 /*过长显示省略号*/
-.showellipsis{
+.showellipsis {
 
 
     overflow: hidden;
@@ -240,11 +245,26 @@ span.toolTips::after{
 
 }
 
-.opacitybackground{
+.opacitybackground {
     background: rgba(116, 116, 116, 0.7);
     color: black;
 }
 
+.musicPlay {
 
+    width: 50px;
+    height: 100%;
+    background: url(/img/icon/musicPlay.svg) no-repeat center center;
+    background-size: cover;
+    object-fit: cover;
+}
 
+.musicPause {
+
+    width: 50px;
+    height: 100%;
+    background: url(/img/icon/musicPause.svg) no-repeat center center;
+    background-size: cover;
+    object-fit: cover;
+}
 
