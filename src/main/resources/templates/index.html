@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="UTF-8">
     <title> 首页</title>
     <div th:replace="../templates/publicContent/commen :: commenhead"></div>
     <link rel="stylesheet" type="text/css" th:href="@{/css/homePage.css}">
     <script type="text/javascript" th:src="@{/js/homePage.js}"></script>
-<!--    <script type="text/javascript" th:src="@{/js/Effect.js}"></script>
-    <script type="text/javascript" th:src="@{/js/Effectitem.js}"></script>-->
+
+    <!--    <script type="text/javascript" th:src="@{/js/Effect.js}"></script>
+        <script type="text/javascript" th:src="@{/js/Effectitem.js}"></script>-->
 </head>
 
 <body>
@@ -30,37 +30,42 @@
             该往何处
         </div>
     </div>
-    <div class="mc-ui-absolute-pane maindiv2" >
-            <!--<label class="layui-form-label"></label>-->
-            <div class="inputdiv layui-input-block"  >
-                <span class="inputDog" th:align="left" ><img th:src="@{/img/icon/dog.gif}"></span>
-                <span class="toolTips"></span>
-                <div style="position: absolute;width: 100%">
-                    <form class="mainsearchform layui-form" th:action="@{/home/searchConfession}" method="post">
-                        <input class="searchinput" type="text" name="searchParam"  lay-verify="required" lay-reqtext="请输入文字搜索哦" placeholder="请输入你的名字或昵称" autocomplete="off" />
+    <div class="mc-ui-absolute-pane maindiv2">
+        <!--<label class="layui-form-label"></label>-->
+        <div class="inputdiv layui-input-block">
+            <span class="inputDog" th:align="left"><img th:src="@{/img/icon/dog.gif}"></span>
+            <span class="toolTips"></span>
+            <div style="position: absolute;width: 100%">
+                <form class="mainsearchform layui-form" th:action="@{/home/searchConfession}" method="post">
+                    <input class="searchinput" type="text" name="searchParam" lay-verify="required"
+                           lay-reqtext="请输入文字搜索哦" placeholder="请输入你的名字或昵称" autocomplete="off"/>
 
-                        <span> <button lay-submit lay-filter="laysearchbutton" class="searchbutton layui-btn layui-btn-primary" style="width: 10%">搜索</button></span>
-                    </form>
-                </div>
+                    <span> <button lay-submit lay-filter="laysearchbutton"
+                                   class="searchbutton layui-btn layui-btn-primary"
+                                   style="width: 10%">搜索</button></span>
+                </form>
             </div>
-            <div class="iframediv" align="center" >
-                <iframe src="/home/insidePage" height="100%" width="100%"
-                        frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes”>
-                </iframe>
-            </div>
+        </div>
+        <div class="iframediv" align="center">
+            <iframe src="/home/insidePage" height="100%" width="100%"
+                    frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes”>
+            </iframe>
+        </div>
     </div>
 
 
-    <div class="mc-ui-absolute-pane maindiv3" >
+    <div class="mc-ui-absolute-pane maindiv3">
         <div th:replace="../templates/publicContent/menubar :: menubar"></div>
     </div>
 </div>
 
 <div>
-    <audio loop="loop" autoplay="autoplay"  oncontextmenu="return false">
-        <source th:src="@{/audioFrequency/song.mp3}" type="audio/mp3" />
+    <audio id="musicSource" loop="loop" autoplay="autoplay" oncontextmenu="return false">
+        <source th:src="@{/audioFrequency/defaultBackgroundMusic.mp3}" type="audio/mp3"/>
     </audio>
 </div>
+
+<!--<div th:replace="../templates/publicContent/musicPlayer :: musicPlayer"></div>-->
 
 </body>
 
