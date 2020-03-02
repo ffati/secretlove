@@ -1,13 +1,25 @@
 package com.ff.util.common;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.tika.exception.TikaException;
+import org.apache.tika.metadata.HttpHeaders;
+import org.apache.tika.metadata.Metadata;
+import org.apache.tika.mime.MediaType;
+import org.apache.tika.parser.AutoDetectParser;
+import org.apache.tika.parser.ParseContext;
+import org.apache.tika.parser.Parser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+import org.xml.sax.SAXException;
+import org.xml.sax.helpers.DefaultHandler;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * @ClassName StaticUtil
@@ -38,7 +50,7 @@ public class StaticUtil {
     public static String IMG_DEFAULTLODINGIMAGE;
 
     static{
-
+        SensitiveWordDetectionUtil.InitializationWork();
         String filePath= null;
         //File filedir=null;
         File userPicturedir=null;
@@ -143,6 +155,52 @@ public class StaticUtil {
         return JSON.toJSONString(pojoParm);
 
     }
+
+
+
+    /*
+     * @author: ff
+     * @date: 2020/2/26 14:16
+     * @param: [file]
+     * @return: java.lang.String
+     * 判断文件类型
+     */
+
+    public static String fileType(MultipartFile file){
+
+        InputStream inputStream= null;
+        try {
+            inputStream = file.getInputStream();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        AutoDetectParser parser = new AutoDetectParser();
+        parser.setParsers(new HashMap<MediaType, Parser>());
+
+        Metadata metadata = new Metadata();
+
+        try {
+            parser.parse(inputStream, new DefaultHandler(), metadata, new ParseContext());
+            inputStream.close();
+        } catch (TikaException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+
+        String filetype=metadata.get(HttpHeaders.CONTENT_TYPE);
+        System.out.println(filetype);
+        for (FileType fileType : FileType.values()) {
+            if (filetype.equals(fileType.value)) {
+                return fileType.toString();
+            }
+        }
+
+
+        return "unSupport";
+
+    }
+
+
 
 
     public String getPathUserimagefolder() {
