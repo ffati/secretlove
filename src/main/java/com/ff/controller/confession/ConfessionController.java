@@ -5,10 +5,13 @@ import com.ff.entity.RegisterInnerFeelingEntity;
 import com.ff.entity.VicitorInnerFeelingEntity;
 import com.ff.service.confessionViewWall.ConfessionViewWallService;
 import com.ff.service.registInnerFeeling.RegistInnerFeelingService;
+import com.ff.service.user.UserService;
 import com.ff.service.vicitorInnerFeeling.VicitorInnerFeelingService;
 import com.ff.util.common.CurrentUser;
+import com.ff.util.common.HttpUtil;
+import com.ff.util.common.SensitiveWordDetectionUtil;
 import com.ff.util.common.StaticUtil;
-import com.ff.util.pictureUtil.PictureStream;
+import com.ff.util.fileUtil.FileStream;
 import com.ff.vo.CurrentUserVo;
 import com.ff.vo.Message;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,7 +53,11 @@ public class ConfessionController {
     @Autowired
     private ConfessionViewWallService confessionViewWallService;
 
-/*
+    @Autowired
+    private UserService userService;
+
+
+    /*
  * @author: ff
  * @date: 2020/2/17 13:03
  * @param: [httpServletRequest, httpSession, model]
@@ -101,16 +110,16 @@ public class ConfessionController {
 
         Integer totalNumber=confessionViewWallService.countAll();
 
-        double totalPage=0.0;
+        double totalPage=Math.ceil(totalNumber/16.0);
 
-        if (totalNumber<17&&totalNumber>0){
-            totalPage=1.0;
-        }else {
-            totalPage=Math.ceil(totalNumber/16);
+        if (totalPage>10.0){
 
+            totalPage=10;
         }
 
-        return String.valueOf(totalPage);
+        String stringTotalpage=String.valueOf(totalPage);
+
+        return stringTotalpage.substring(0,stringTotalpage.indexOf("."));
     }
 
 /*
@@ -147,25 +156,64 @@ public class ConfessionController {
     @ResponseBody
     public Message uploadPicture(
             HttpServletRequest httpServletRequest,
-            @RequestParam(value = "file",required = true) MultipartFile file,
-            @RequestParam(value = "userid") String userid,
-            @RequestParam(value = "type") String type
+            @RequestParam(value = "id",required = false,defaultValue = "0")String indexnumber,
+            @RequestParam(value = "background",required = true) MultipartFile file
     ){
-
         Message message=new Message();
-        CurrentUserVo currentUserVo=currentUserUtil.currentUser(httpServletRequest.getSession());
 
-        int pointIndex=file.getOriginalFilename().lastIndexOf(".");
-        int nameLength=file.getOriginalFilename().length();
-        String fileName=currentUserVo.getUserid().toString()+file.getOriginalFilename().substring(pointIndex,nameLength);
 
-        Boolean decision=PictureStream.wrightPicture(StaticUtil.anyPath(userid,type),fileName,file);
+        String filetype=StaticUtil.fileType(file);
+        if ("unSupport".equals(filetype)){
+
+            message.setInformation("unSupport");
+            message.setStatusCode("403");
+            return message;
+        }
+
+
+            Boolean flage=currentUserUtil.currentUserIsAuthenticated();
+
+            int pointIndex=0;
+            int nameLength=0;
+            String fileName=null;
+            String path=null;
+            Boolean decision =false;
+            SimpleDateFormat fileNameSimpleDateFormat =null;
+            pointIndex = file.getOriginalFilename().lastIndexOf(".");
+            nameLength = file.getOriginalFilename().length();
+
+            if (flage) {
+                /*查询第几次使用*/
+                String maxpageorder=registInnerFeelingService.findMaxPageOrder(currentUserUtil.currentUser(httpServletRequest.getSession()).getUserid());
+                /*处理特殊情况*/
+                if (null==maxpageorder||maxpageorder.equals("")){
+                    maxpageorder="1";
+                }else {
+                    maxpageorder=String.valueOf(Integer.valueOf(maxpageorder)+1);
+                }
+                /*生成文件名*/
+                fileNameSimpleDateFormat = new SimpleDateFormat("YYYYMMdd");
+                CurrentUserVo currentUserVo = currentUserUtil.currentUser(httpServletRequest.getSession());
+                fileName =new StringBuffer( currentUserVo.getUserid().toString()).append(fileNameSimpleDateFormat.format(new Date())).append(maxpageorder).append(indexnumber).append( file.getOriginalFilename().substring(pointIndex, nameLength)).toString();
+                path = StaticUtil.vicitorPictureUtil(currentUserVo.getUserid(), 1);
+            } else {
+                /*非注册用户上传图片*/
+                fileNameSimpleDateFormat = new SimpleDateFormat("YYYYMMddHH");
+                String ipString = HttpUtil.getIp(httpServletRequest);
+                path = StaticUtil.vicitorPictureUtil("", 2);
+                fileName = new StringBuffer("v").append(fileNameSimpleDateFormat.format(new Date())).append(ipString.replace(":", "")).append(file.getOriginalFilename().substring(pointIndex, nameLength)).toString();
+            }
+
+
+             decision = FileStream.wrightFile(path, fileName, file);
+
 
         if (!decision){
             message.setInformation("上传失败");
             message.setStatusCode("403");
             return message;
         }else {
+
             message.setIndividuationMessage(fileName);
             message.setInformation("上传成功");
             message.setStatusCode("200");
@@ -196,16 +244,63 @@ public class ConfessionController {
 
         Message message=new Message();
         Boolean flage=currentUserUtil.currentUserIsAuthenticated();
-        if (flage) {
-            CurrentUserVo currentUserVo=currentUserUtil.currentUser(httpSession);
+        Integer totalPage=Integer.valueOf(totalPage())-1;
 
+        if (flage) {
+
+            registerInnerFeelingEntity.setContent(SensitiveWordDetectionUtil.filterInfo(registerInnerFeelingEntity.getContent()));
+            registerInnerFeelingEntity.setClue(SensitiveWordDetectionUtil.filterInfo(registerInnerFeelingEntity.getClue()));
+
+            CurrentUserVo currentUserVo=currentUserUtil.currentUser(httpSession);
             registerInnerFeelingEntity.setUserId(currentUserVo.getUserid());
             registerInnerFeelingEntity.setUserName(currentUserVo.getUsername());
             registerInnerFeelingEntity.setCustomized("0");
             registerInnerFeelingEntity.setPhoneNumber(currentUserVo.getPhonenumber());
-            registInnerFeelingService.insertOneRegistFeeling(registerInnerFeelingEntity);
+            flage=registInnerFeelingService.insertOneRegistFeeling(registerInnerFeelingEntity);
+
+            if (flage){
+
+                if (confessionViewWallService.countAll()>160){
+                    confessionViewWallService.deleteOneEarliest();
+                }
+
+                ConfessionViewWallEntity confessionViewWallEntity=new ConfessionViewWallEntity();
+                confessionViewWallEntity.setRegistrationStatus("1");
+                confessionViewWallEntity.setClue(registerInnerFeelingEntity.getClue());
+                confessionViewWallEntity.setContent(registerInnerFeelingEntity.getContent());
+                confessionViewWallEntity.setReceiver(registerInnerFeelingEntity.getReceiver());
+                confessionViewWallEntity.setBackgroundImagSrc(registerInnerFeelingEntity.getBackgroundImagSrc());
+                confessionViewWallService.insertOne(totalPage*16,confessionViewWallEntity);
+            }
         } else {
-            vicitorInnerFeelingService.insertOneVicitorFeeling(vicitorInnerFeelingEntity);
+
+            vicitorInnerFeelingEntity.setContent(SensitiveWordDetectionUtil.filterInfo(vicitorInnerFeelingEntity.getContent()));
+            vicitorInnerFeelingEntity.setClue(SensitiveWordDetectionUtil.filterInfo(vicitorInnerFeelingEntity.getClue()));
+
+            flage=vicitorInnerFeelingService.insertOneVicitorFeeling(vicitorInnerFeelingEntity);
+
+            if (flage){
+
+                if (confessionViewWallService.countAll()>160){
+
+                    confessionViewWallService.deleteOneEarliest();
+                }
+
+                ConfessionViewWallEntity confessionViewWallEntity=new ConfessionViewWallEntity();
+                confessionViewWallEntity.setRegistrationStatus("0");
+                confessionViewWallEntity.setClue(vicitorInnerFeelingEntity.getClue());
+                confessionViewWallEntity.setContent(vicitorInnerFeelingEntity.getContent());
+                confessionViewWallEntity.setReceiver(vicitorInnerFeelingEntity.getReceiver());
+                confessionViewWallEntity.setBackgroundImagSrc(vicitorInnerFeelingEntity.getBackgroundImagSrc());
+                confessionViewWallService.insertOne(totalPage*16,confessionViewWallEntity);
+            }
+
+        }
+
+        if (!flage){
+            message.setInformation("保存失败！");
+            message.setStatusCode("500");
+            return message;
         }
 
         message.setInformation("保存成功！");
