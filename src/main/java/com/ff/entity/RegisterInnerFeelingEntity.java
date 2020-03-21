@@ -38,12 +38,18 @@ public class RegisterInnerFeelingEntity {
     private String cyclicDisplayImgList;
     /**倾诉对象*/
     private String receiver;
-    /**是否定制*/
+    /**是否定制 1:定制*/
     private String customized;
     /**顺序*/
     private String pageOrder;
     /**特效列表*/
     private String specialEffectsList;
+    /*音乐*/
+    private String musicPath;
+    /*轮播图类型1：前置；2：后置*/
+    private String rollImgType;
+    /*下落特效类型*/
+    private String dropEffectType;
 
     @DateTimeFormat(pattern="yyyy-MM-dd")
     @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
@@ -53,9 +59,8 @@ public class RegisterInnerFeelingEntity {
     @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     private Date endTime;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd")
-    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
-    private Date effectiveTime;
+    /*有效期天数*/
+    private String  effectiveTime;
     /**
      *无参构造函数
      */
@@ -205,7 +210,7 @@ public class RegisterInnerFeelingEntity {
      * 获取有效时间
      * @return
      */
-    public Date getEffectiveTime(){
+    public String  getEffectiveTime(){
         return this.effectiveTime;
     }
 
@@ -213,7 +218,7 @@ public class RegisterInnerFeelingEntity {
      * 设置有效时间
      * @param effectiveTime
      */
-    public void setEffectiveTime(Date effectiveTime){
+    public void setEffectiveTime(String  effectiveTime){
         this.effectiveTime=effectiveTime;
     }
     /**
@@ -291,6 +296,30 @@ public class RegisterInnerFeelingEntity {
 
     public void setCyclicDisplayImgList(String cyclicDisplayImgList) {
         this.cyclicDisplayImgList = cyclicDisplayImgList;
+    }
+
+    public String getMusicPath() {
+        return musicPath;
+    }
+
+    public void setMusicPath(String musicPath) {
+        this.musicPath = musicPath;
+    }
+
+    public String getRollImgType() {
+        return rollImgType;
+    }
+
+    public void setRollImgType(String rollImgType) {
+        this.rollImgType = rollImgType;
+    }
+
+    public String getDropEffectType() {
+        return dropEffectType;
+    }
+
+    public void setDropEffectType(String dropEffectType) {
+        this.dropEffectType = dropEffectType;
     }
 }
 
