@@ -49,7 +49,7 @@ public class ExceptionCatch {
         message.setInformation("发生错误！请稍后再试!");
 
         modelAndView.addObject("Message",message);
-        modelAndView.setViewName("error");
+        modelAndView.setViewName("/error/error");
         return modelAndView;
     }
 
