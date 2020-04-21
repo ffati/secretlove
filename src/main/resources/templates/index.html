@@ -8,7 +8,7 @@
     <script type="text/javascript" th:src="@{/js/homePage.js}"></script>
 
     <!--    <script type="text/javascript" th:src="@{/js/Effect.js}"></script>
-        <script type="text/javascript" th:src="@{/js/Effectitem.js}"></script>-->
+        <script type="text/javascript" th:src="@{/js/EffectItem.js}"></script>-->
 </head>
 
 <body>
@@ -47,8 +47,7 @@
             </div>
         </div>
         <div class="iframediv" align="center">
-            <iframe src="/home/insidePage" height="100%" width="100%"
-                    frameborder=”no” border=”0″ marginwidth=”0″ marginheight=”0″ scrolling=”no” allowtransparency=”yes”>
+            <iframe th:src="@{/home/insidePage}" class="commonIframe" >
             </iframe>
         </div>
     </div>
@@ -61,7 +60,8 @@
 
 <div>
     <audio id="musicSource" loop="loop" autoplay="autoplay" oncontextmenu="return false">
-        <source th:src="@{/audioFrequency/defaultBackgroundMusic.mp3}" type="audio/mp3"/>
+        <source src="https://api.uomg.com/api/rand.music?sort=%E6%96%B0%E6%AD%8C%E6%A6%9C" type="audio/mp3"/>
+        <!--<source th:src="@{/audioFrequency/defaultBackgroundMusic.mp3}" type="audio/mp3"/>-->
     </audio>
 </div>
 
