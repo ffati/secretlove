@@ -2,6 +2,7 @@ package com.ff.util.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,7 +18,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  * @ModifyDate 2019/12/18 16:13
  * @Version 1.0
  */
+
 @EnableWebSecurity
+@Order(1)
 public class LoginSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
