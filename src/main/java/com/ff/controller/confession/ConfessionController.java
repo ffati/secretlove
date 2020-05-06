@@ -141,7 +141,7 @@ public class ConfessionController {
             model.addAttribute("headSculpture",currentUserVo.getHeadPictureaddress());
         }
 
-        return "confession/toconfession";
+        return "confession/toConfession";
     }
 
 
