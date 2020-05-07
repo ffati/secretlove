@@ -21,7 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName PersonalHomepageController
@@ -50,8 +52,10 @@ public class PersonalHomepageController {
     @PreAuthorize("isAuthenticated()")
     @RequestMapping("/homePage")
     public String personalHomepage(
+            Model model,
             HttpSession httpSession,
-            Model model
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "page", defaultValue = "1") int page
     ){
 
         CurrentUserVo currentUserVo=currentUser.currentUser(httpSession);
@@ -59,16 +63,72 @@ public class PersonalHomepageController {
         RegisterInnerFeelingEntity registerInnerFeelingEntity=new RegisterInnerFeelingEntity();
         registerInnerFeelingEntity.setUserName(currentUserVo.getUsername());
         registerInnerFeelingEntity.setUserId(currentUserVo.getUserid());
-        List<RegisterInnerFeelingEntity> registerInnerFeelingList=registInnerFeelingService.findAllByAnyParam(registerInnerFeelingEntity);
+        List<RegisterInnerFeelingEntity> registerInnerFeelingList=registInnerFeelingService.findPageByAnyParam(size,(page-1)*size,registerInnerFeelingEntity);
 
 
         model.addAttribute("currentUserVo",currentUserVo);
         model.addAttribute("registerInnerFeelingList",registerInnerFeelingList);
+        model.addAttribute("totalPage",registInnerFeelingService.countNumberByUserId(currentUserVo.getUserid()));
+
         return "/personalHomepage/personalHomepage";
     }
 
 
-/*
+
+
+    /*
+     * @author: ff
+     * @date: 2020/4/18 17:33
+     * @param: [httpSession, userId, size, page]
+     * @return: java.util.List<com.ff.entity.RegisterInnerFeelingEntity>
+     分页查询
+     */
+    @ResponseBody
+    @RequestMapping("/findByPage")
+    @PreAuthorize("isAuthenticated()")
+    public Map<String ,Object> findByPage(
+            HttpSession httpSession,
+            @RequestParam(value = "userId", defaultValue = "") String userId,
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "page", defaultValue = "1") int page
+    ){
+        Map<String ,Object> resultMap=new HashMap<String ,Object>();
+        RegisterInnerFeelingEntity registerInnerFeelingEntity=new RegisterInnerFeelingEntity();
+        registerInnerFeelingEntity.setUserId(userId);
+        List<RegisterInnerFeelingEntity> registerInnerFeelingList=registInnerFeelingService.findPageByAnyParam(size,(page-1)*size,registerInnerFeelingEntity);
+
+        resultMap.put("code","200");
+        resultMap.put("msg","成功！");
+        resultMap.put("count",registInnerFeelingService.countNumberByUserId(userId));
+        resultMap.put("data",registerInnerFeelingList);
+        return resultMap;
+
+    }
+
+
+    /*
+     * @author: ff
+     * @date: 2020/4/18 17:32
+     * @param:
+     * @return:
+     * 查询告白总页数
+     */
+
+    @ResponseBody
+    @RequestMapping("/innerFeelingTotalPage")
+    @PreAuthorize("isAuthenticated()")
+    public int totalPage(
+            HttpSession httpSession,
+            @RequestParam(value = "userId", defaultValue = "") String userId
+
+    ){
+
+        return registInnerFeelingService.countNumberByUserId(userId);
+
+    }
+
+
+    /*
  * @author: ff
  * @date: 2020/2/16 11:40
  * @param: [model, userid]
