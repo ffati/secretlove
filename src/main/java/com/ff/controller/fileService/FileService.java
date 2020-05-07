@@ -1,11 +1,14 @@
 package com.ff.controller.fileService;
 
+import com.alibaba.fastjson.JSON;
+import com.ff.util.common.MusicService;
 import com.ff.util.fileUtil.MediaFileUtil;
 import com.ff.util.fileUtil.ShowPictureUtil;
 import com.ff.vo.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +35,9 @@ public class FileService {
 
     @Autowired
     private MediaFileUtil mediaFileUtil;
+
+    @Autowired
+    private MusicService musicService;
 
 /*
  * @author: ff
@@ -91,7 +97,13 @@ public class FileService {
         return message;
     }
 
-
+/*
+ * @author: ff
+ * @date: 2020/4/14 14:11
+ * @param: [httpServletResponse, filepath]
+ * @return: void
+ * 下载文件（无权限）
+ */
     @RequestMapping("/downLoadFile")
     public void downLoadFile(
             HttpServletResponse httpServletResponse,
@@ -99,6 +111,18 @@ public class FileService {
     ){
 
         mediaFileUtil.downLoad(httpServletResponse,filepath);
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/searchMusic/{songName}")
+    public String  searchMusic(
+            HttpServletResponse httpServletResponse,
+            @PathVariable(value = "songName") String songName
+    ){
+
+        return JSON.toJSONString(musicService.searchMusicId(songName));
+
     }
 
 
