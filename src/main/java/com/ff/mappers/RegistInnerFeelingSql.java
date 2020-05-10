@@ -15,7 +15,7 @@ import org.apache.ibatis.jdbc.SQL;
 
 public class RegistInnerFeelingSql {
 
-    public String selectAllByanyParam(RegisterInnerFeelingEntity registerInnerFeelingEntity){
+    public String selectPageByanyParam(int size,int index,RegisterInnerFeelingEntity registerInnerFeelingEntity){
         String sql=new SQL(){{
             
             SELECT("*");
@@ -28,9 +28,11 @@ public class RegistInnerFeelingSql {
                 WHERE("User_Name='"+registerInnerFeelingEntity.getUserName()+"'");
             }
             if (null!=registerInnerFeelingEntity.getCustomized()){
-                WHERE("Customized>"+registerInnerFeelingEntity.getCustomized());
+                WHERE("Customized="+registerInnerFeelingEntity.getCustomized());
             }
 
+            LIMIT(size);
+            OFFSET(index);
 
         }}.toString();
         System.out.println(sql);
