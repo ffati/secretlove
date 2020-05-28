@@ -3,6 +3,8 @@ package com.ff.service.registInnerFeeling;
 import com.ff.entity.RegisterInnerFeelingEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @ClassName RegistInnerFeelingService
  * @Description TODO
@@ -15,8 +17,13 @@ import org.springframework.stereotype.Service;
 @Service
 public interface RegistInnerFeelingService {
 
-    void insertOneRegistFeeling(RegisterInnerFeelingEntity registerInnerFeelingEntity);
+    Boolean insertOneRegistFeeling(RegisterInnerFeelingEntity registerInnerFeelingEntity);
 
-    RegisterInnerFeelingEntity searchRegisterFelling(String param);
+    List<RegisterInnerFeelingEntity> searchRegisterFelling(String param);
 
+    List<RegisterInnerFeelingEntity> findPageByAnyParam(int size,int index,RegisterInnerFeelingEntity registerInnerFeelingEntity);
+
+    String findMaxPageOrder(String id);
+
+    int countNumberByUserId(String id);
 }
