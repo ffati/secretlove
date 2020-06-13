@@ -5,8 +5,10 @@ import com.ff.repository.innerFeeling.VicitorInnerFeelingDao;
 import com.ff.service.vicitorInnerFeeling.VicitorInnerFeelingService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName vicitorServiceImpl
@@ -25,14 +27,26 @@ public class VicitorInnerFeelingServiceImpl implements VicitorInnerFeelingServic
     private VicitorInnerFeelingDao vicitorInnerFeelingDao;
 
     @Override
-    public void insertOneVicitorFeeling(VicitorInnerFeelingEntity vicitorInnerFeelingEntity) {
+    public Boolean insertOneVicitorFeeling(VicitorInnerFeelingEntity vicitorInnerFeelingEntity) {
 
-        vicitorInnerFeelingDao.insertvicitorfeeling(vicitorInnerFeelingEntity);
+
+        Boolean flage=true;
+        try {
+            vicitorInnerFeelingDao.insertvicitorfeeling(vicitorInnerFeelingEntity);
+        }catch (Exception e){
+            flage=false;
+            e.printStackTrace();
+            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+        }finally {
+            return flage;
+        }
+
+
 
     }
 
     @Override
-    public VicitorInnerFeelingEntity searchVicitorFelling(String receiver) {
+    public List<VicitorInnerFeelingEntity> searchVicitorFelling(String receiver) {
 
         return vicitorInnerFeelingDao.searchVicitorFelling(receiver);
 
