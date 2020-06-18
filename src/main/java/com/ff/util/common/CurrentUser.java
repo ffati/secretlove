@@ -34,7 +34,14 @@ public CurrentUserVo currentUser(HttpSession session){
     RegisterUserEntity registerUserEntity=new RegisterUserEntity();
 
     SecurityContextImpl securityContext = (SecurityContextImpl) session.getAttribute("SPRING_SECURITY_CONTEXT");
-    registerUserEntity.setUserName(((UserDetails)securityContext.getAuthentication().getPrincipal()).getUsername());
+
+    if (null!=securityContext){
+
+        registerUserEntity.setUserName(((UserDetails)securityContext.getAuthentication().getPrincipal()).getUsername());
+    }else {
+
+        registerUserEntity.setUserName(SecurityContextHolder.getContext().getAuthentication().getName());
+    }
     registerUserEntity=userService.findByAnyParameter(registerUserEntity);
 
     currentUserVon.setUserid(registerUserEntity.getUserId());
