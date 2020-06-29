@@ -8,6 +8,13 @@ $(function () {
 });
 
 
+var pathName = window.location.pathname.substring(1);
+var webName = pathName == '' ? '' : pathName.substring(0, pathName.indexOf('/'));
+window.baseurl= window.location.protocol + '//' + window.location.host + '/' + webName + '/';
+console.log(pathName);
+console.log(webName);
+console.log(baseurl);
+
 window.tokenparam = $("meta[name='_csrf']").attr("content");
 window.headerparam = $("meta[name='_csrf_header']").attr("content");
 window.screenHeight = $(window).height();
@@ -54,6 +61,7 @@ function chooseMenu() {
 
 /*需要初始化监听的事件*/
 function initializationMonitoringEvents() {
+
 
 
     $(".headimgdiv").mousedown(function () {
@@ -198,7 +206,7 @@ function lodingbackground() {
 
 function randombackground(classstring) {
 
-    var imgurl = 'url("/img/lodingbgpicture/lodingbgpicture';
+    var imgurl = 'url("/fileService/systemImage/randomImage/lodingbgpicture';
     var imgnumber = Math.round(Math.random() * 16 + 1);
     var imgfinalurl = imgurl + imgnumber + '.jpg")';
     console.log(imgfinalurl);
