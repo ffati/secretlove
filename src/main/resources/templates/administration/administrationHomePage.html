@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>后台管理</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+
+</head>
+<body class="scrollingBackgroundimg" style="height: 100%">
+
+<ul class="layui-nav" lay-filter="adminMenu">
+    <li class="layui-nav-item"><a href="javascript:;" >管理中心</a></li>
+    <li class="layui-nav-item layui-this"><a href="javascript:;" custemUrl="/administration/globalParameterManagementPage">系统参数管理</a></li>
+    <li class="layui-nav-item"><a href="javascript:;" custemUrl="/administration/systemPictureManagementPage">系统图片管理</a></li>
+    <li class="layui-nav-item"><a href="javascript:;" custemUrl="/administration/manageConfessionWallPage">热门管理</a></li>
+    <li class="layui-nav-item"><a href="javascript:;" custemUrl="/administration/userManagementPage">用户管理</a></li>
+</ul>
+
+<div style="height: 80%;width: 100%">
+    <iframe class="commonIframe" th:src="@{/administration/globalParameterManagementPage}"></iframe>
+</div>
+
+<script>
+    layui.use(['element','layer'], function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+        layer = layui.layer;
+        //监听导航点击
+        element.on('nav(adminMenu)', function(elem){
+
+            layer.msg(elem.attr("custemUrl"));
+            $(".commonIframe").attr("src",elem.attr("custemUrl"));
+
+        });
+    });
+</script>
+
+</body>
+</html>
