@@ -1,6 +1,6 @@
 
 html:hover {
-    cursor: url("/img/cursor.ico"), auto;
+    cursor: url("/fileService/systemImage/iconImage/cursor.ico"), auto;
 }
 
 
@@ -13,7 +13,7 @@ html {
 
     width: 100%;
     height: auto;
-    background: url(/img/defaultBackgroundImage.jpg) no-repeat center center;
+    background: url(/fileService/systemImage/iconImage/defaultBackgroundImage.jpg) no-repeat center center;
     overflow: hidden;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -27,7 +27,7 @@ html {
 
     width: 100%;
     height: auto;
-    background: url(/img/defaultBackgroundImage.jpg) no-repeat center center;
+    background: url(/fileService/systemImage/iconImage/defaultBackgroundImage.jpg) no-repeat center center;
     color: rgba(255, 255, 255, .95);
     background-attachment: fixed;
     -webkit-background-size: cover;
@@ -42,7 +42,7 @@ html {
 
     width: 100%;
     height: auto;
-    background: url(/img/defaultBackgroundImage.jpg) no-repeat center center;
+    background: url(/fileService/systemImage/iconImage/defaultBackgroundImage.jpg) no-repeat center center;
     color: rgba(255, 255, 255, .95);
     background-attachment: fixed;
     -webkit-background-size: cover;
@@ -123,7 +123,7 @@ span.toolTips::after {
 
     height: auto;
     width: auto;
-    content: url(../img/menuImg/hidemenu.gif);
+    content: url(/fileService/systemImage/menuImage/hidemenu.gif);
     position: fixed;
 
 }
@@ -132,7 +132,7 @@ span.toolTips::after {
 
     height: auto;
     width: auto;
-    content: url(../img/menuImg/showmenu.gif);
+    content: url(/fileService/systemImage/menuImage/showmenu.gif);
     position: fixed;
 }
 
@@ -187,7 +187,7 @@ span.toolTips::after {
 .headimg {
     width: 50px;
     height: 50px;
-    background: url(/img/defaultheadSculpture.jpg) no-repeat center center;
+    background: url(/fileService/systemImage/iconImage/defaultheadSculpture.jpg) no-repeat center center;
     background-size: cover;
     object-fit: cover;
     border-radius: 50%;
@@ -254,7 +254,7 @@ span.toolTips::after {
 
     width: 50px;
     height: 100%;
-    background: url(/img/icon/musicPlay.svg) no-repeat center center;
+    background: url(/fileService/systemImage/iconImage/musicPlay.svg) no-repeat center center;
     background-size: cover;
     object-fit: cover;
 }
@@ -263,8 +263,25 @@ span.toolTips::after {
 
     width: 50px;
     height: 100%;
-    background: url(/img/icon/musicPause.svg) no-repeat center center;
+    background: url(/fileService/systemImage/iconImage/musicPause.svg) no-repeat center center;
     background-size: cover;
     object-fit: cover;
 }
 
+.layui-table{
+
+    background-color: transparent;
+    color: #0f060f;
+}
+
+.commonIframe{
+
+    height:100%;
+    width:100%;
+    frameborder:no;
+    border:0;
+    marginwidth:0;
+    marginheight:0;
+    scrolling:no;
+    allowtransparency:yes;
+}
