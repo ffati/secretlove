@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>全局参数</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+
+</head>
+<body >
+
+
+<div class="maindiv2">
+    <table class="layui-hide" id="globalParameter" lay-filter="globalParameter"></table>
+</div>
+
+<div hidden id="addform" align="center">
+    <form  method="post"  class="upform layui-form" >
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">用处</label>
+            <div class="layui-input-block" style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
+                <input type="text" name="parameterFunction" lay-verify="title" autocomplete="off" placeholder="请输入用处" class="layui-input parameterFunction">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">参数名称</label>
+            <div class="layui-input-block" style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
+                <input type="text" name="parameterName" lay-verify="title" autocomplete="off" placeholder="请输入参数名称" class="layui-input parameterName">
+            </div>
+        </div>
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 100px">参数自定义值</label>
+            <div class="layui-input-block" style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
+                <input type="text" name="parameterValue" lay-verify="title" autocomplete="off" placeholder="请输入参数自定义值" class="layui-input parameterValue">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label"style="width: 100px">默认值</label>
+            <div class="layui-input-block" style="display: inline-block;height: 50px;width: 50%;margin-top: 20px">
+                <input type="text" name="defaultValue" lay-verify="title" autocomplete="off" placeholder="请输入默认值" class="layui-input defaultValue">
+            </div>
+        </div>
+        <input type="hidden" class="hideid" name="id">
+    </form>
+
+    <div align="center">
+        <input type="button" class="submitbutton layui-btn layui-btn-radius layui-btn-primary" value="提交"/>
+    </div>
+
+</div>
+
+
+<script type="text/javascript">
+
+
+    layui.use(['table','layer'], function () {
+        var layer = layui.layer //弹层
+            ,table = layui.table;
+
+
+/*
+        $(".modifydata").click(function () {
+            var userName = $(".userName").text();
+            layer.open({
+                type: 2,
+                title: ['修改个人资料', 'font-size:18px;'],
+                content: '/personal/editPersonaDataPage?userName=' + userName,//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                area: ['50%', '40%'],
+                resize: true,
+                scrollbar: true
+                ,maxmin: true
+                /!*        zIndex: layer.zIndex, //重点1
+                        success: function(layero){
+                            layer.setTop(layero); //重点2
+                        }*!/
+
+                , cancel: function () {
+                    //右上角关闭回调
+                    window.parent.location.reload();
+
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+            });
+        })
+
+*/
+
+
+        table.render({
+            //id:'globalParameterTable'
+            height: 'full-20'
+            ,width: 'full-20'
+            ,elem: '#globalParameter'
+            ,cellMinWidth: 150
+            ,url:'/administration/findGlobalParameterForPage'
+            //,method:POST
+            //,contentType: 'application/json'
+            ,page: true
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'size' //每页数据量的参数名，默认：limit
+            }
+
+            ,response: {
+                statusName: 'code' //数据状态的字段名称，默认：code
+                ,statusCode: 200 //成功的状态码，默认：0
+                ,msgName: 'msg' //状态信息的字段名称，默认：msg
+                ,countName: 'count' //数据总数的字段名称，默认：count
+                ,dataName: 'data' //数据列表的字段名称，默认：data
+            }
+
+
+            , cols: [
+                [
+
+                    {type: 'numbers', title: '序号'}
+                    , {field: 'id',  title: '库id'}
+                    , {field: 'parameterFunction',  title: '用处'}
+                    , {field: 'parameterName', title: '参数名称'}
+                    , {field: 'parameterValue', title: '参数值'}
+                    , {field: 'defaultValue', title: '默认值'}
+                    , {field: 'customOrNot', title: '是否自定义'}
+                    , {field: 'fileName', title: '文件名'}
+                    ,{fixed: 'right', title:'操作', toolbar: '#doSomeThing', width:150}
+                ]
+            ]
+
+        });
+
+        //监听行工具事件
+        table.on('tool(globalParameter)', function(obj){
+            var data = obj.data;
+            console.log(obj);
+            layer.open({
+                title:'更新',
+                type: 1,
+                area: ['800px', '500px'],
+                content: $('#addform')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+
+            });
+
+            $(".defaultValue").val(data.defaultValue);
+            $(".parameterFunction").val(data.parameterFunction);
+            $(".parameterName").val(data.parameterName);
+            $(".parameterValue").val(data.parameterValue);
+            $(".hideid").val(data.id);
+
+
+            $('#addform').show();
+
+            //同步更新缓存对应的值
+/*            obj.update({
+                username: '123'
+                ,title: 'xxx'
+            });*/
+        });
+
+
+
+    });
+
+    $(".submitbutton").on('click',function () {
+
+        ajaxForForm('submitbutton','post','/administration/updateGlobalParameter','upform',true,'a');
+    })
+
+
+</script>
+
+<script type="text/html" id="doSomeThing">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+</script>
+
+
+</body>
+
+
+</html>
