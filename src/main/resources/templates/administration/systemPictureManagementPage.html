@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>系统图片</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+
+</head>
+<body >
+
+
+<div class="maindiv2">
+    <table class="layui-hide" id="systemPictureManagement" lay-filter="systemPictureManagement"></table>
+</div>
+
+
+
+<script type="text/javascript">
+
+
+    layui.use(['table','layer'], function () {
+        var layer = layui.layer //弹层
+            ,table = layui.table;
+
+
+        /*
+                $(".modifydata").click(function () {
+                    var userName = $(".userName").text();
+                    layer.open({
+                        type: 2,
+                        title: ['修改个人资料', 'font-size:18px;'],
+                        content: '/personal/editPersonaDataPage?userName=' + userName,//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                        area: ['50%', '40%'],
+                        resize: true,
+                        scrollbar: true
+                        ,maxmin: true
+                        /!*        zIndex: layer.zIndex, //重点1
+                                success: function(layero){
+                                    layer.setTop(layero); //重点2
+                                }*!/
+
+                        , cancel: function () {
+                            //右上角关闭回调
+                            window.parent.location.reload();
+
+                            //return false 开启该代码可禁止点击该按钮关闭
+                        }
+                    });
+                })
+
+        */
+
+
+        table.render({
+            //id:'globalParameterTable'
+            height: 'full-20'
+            //,width: 'full-20'
+            ,elem: '#systemPictureManagement'
+            ,cellMinWidth: 150
+            ,url:'/administration/findSystemPictureManagementForPage'
+            //,method:POST
+            //,contentType: 'application/json'
+            ,page: true
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'size' //每页数据量的参数名，默认：limit
+            }
+
+            ,response: {
+                statusName: 'code' //数据状态的字段名称，默认：code
+                ,statusCode: 200 //成功的状态码，默认：0
+                ,msgName: 'msg' //状态信息的字段名称，默认：msg
+                ,countName: 'count' //数据总数的字段名称，默认：count
+                ,dataName: 'data' //数据列表的字段名称，默认：data
+            }
+
+
+            , cols: [
+                [
+
+                    {type: 'numbers', title: '序号'}
+                    , {field: 'id',  title: '库id'}
+                    , {field: 'fileName',  title: '文件名'}
+                    , {field: 'filePath', title: '文件路径'}
+                    , {field: 'pictureFunction', title: '文件用处'}
+                    ,{fixed: 'right', title:'操作', toolbar: '#doSomeThing', width:150}
+                ]
+            ]
+
+        });
+
+
+/*        //监听行工具事件
+        table.on('tool(globalParameter)', function(obj){
+            var data = obj.data;
+            console.log(obj);
+            layer.open({
+                title:'更新',
+                type: 1,
+                area: ['800px', '500px'],
+                content: $('#addform')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+
+            });
+
+            $(".defaultValue").val(data.defaultValue);
+            $(".parameterFunction").val(data.parameterFunction);
+            $(".parameterName").val(data.parameterName);
+            $(".parameterValue").val(data.parameterValue);
+            $(".hideid").val(data.id);
+
+
+            $('#addform').show();
+
+
+        });*/
+
+
+
+    });
+
+</script>
+
+<script type="text/html" id="doSomeThing">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
+</script>
+
+
+
+</body>
+</html>
