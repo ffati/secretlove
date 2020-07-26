@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>用户管理</title>
+    <div th:replace="../templates/publicContent/commen :: commenhead"></div>
+
+</head>
+<body >
+
+
+<div class="maindiv2">
+    <table class="layui-hide" id="userManagement" lay-filter="userManagement"></table>
+</div>
+
+
+
+<script type="text/javascript">
+
+
+    layui.use(['table','layer'], function () {
+        var layer = layui.layer //弹层
+            ,table = layui.table;
+
+
+        /*
+                $(".modifydata").click(function () {
+                    var userName = $(".userName").text();
+                    layer.open({
+                        type: 2,
+                        title: ['修改个人资料', 'font-size:18px;'],
+                        content: '/personal/editPersonaDataPage?userName=' + userName,//这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+                        area: ['50%', '40%'],
+                        resize: true,
+                        scrollbar: true
+                        ,maxmin: true
+                        /!*        zIndex: layer.zIndex, //重点1
+                                success: function(layero){
+                                    layer.setTop(layero); //重点2
+                                }*!/
+
+                        , cancel: function () {
+                            //右上角关闭回调
+                            window.parent.location.reload();
+
+                            //return false 开启该代码可禁止点击该按钮关闭
+                        }
+                    });
+                })
+
+        */
+
+
+        table.render({
+            //id:'globalParameterTable'
+            height: 'full-20'
+            //,width: 'full-20'
+            ,elem: '#userManagement'
+            ,cellMinWidth: 150
+            ,url:'/administration/findUserByPage'
+            //,method:POST
+            //,contentType: 'application/json'
+            ,page: true
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'size' //每页数据量的参数名，默认：limit
+            }
+
+            ,response: {
+                statusName: 'code' //数据状态的字段名称，默认：code
+                ,statusCode: 200 //成功的状态码，默认：0
+                ,msgName: 'msg' //状态信息的字段名称，默认：msg
+                ,countName: 'count' //数据总数的字段名称，默认：count
+                ,dataName: 'data' //数据列表的字段名称，默认：data
+            }
+
+
+            , cols: [
+                [
+
+                    {type: 'numbers', title: '序号'}
+                    , {field: 'id',  title: '库id'}
+                    , {field: 'userId',  title: '标识符'}
+                    , {field: 'userName', title: '用户名'}
+                    , {field: 'nickName', title: '昵称'}
+                    , {field: 'phoneNumber',  title: '手机号码'}
+                    , {field: 'userStatus',  title: '用户状态'}
+                    , {field: 'numberOfUse', title: '使用次数'}
+                    , {field: 'numberOfInfraction', title: '违规次数'}
+                    , {field: 'transferAmount',  title: '充值数额'}
+                    , {field: 'balance',  title: '余额'}
+                    , {field: 'customerType', title: '用户类型'}
+                    , {field: 'firstUseTime', title: '首次使用'}
+                    , {field: 'sex',  title: '性别'}
+                    , {field: 'headSculptureAddress',  title: '文件名'}
+                    , {field: 'userCategory', title: '文件路径'}
+                    , {field: 'personalHomepageImage', title: '个人主页背景'}
+                    ,{fixed: 'right', title:'操作', width:150, templet: '#doSomeThing'}
+                ]
+            ]
+
+        });
+
+
+        /*        //监听行工具事件
+                table.on('tool(globalParameter)', function(obj){
+                    var data = obj.data;
+                    console.log(obj);
+                    layer.open({
+                        title:'更新',
+                        type: 1,
+                        area: ['800px', '500px'],
+                        content: $('#addform')//这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+
+                    });
+
+                    $(".defaultValue").val(data.defaultValue);
+                    $(".parameterFunction").val(data.parameterFunction);
+                    $(".parameterName").val(data.parameterName);
+                    $(".parameterValue").val(data.parameterValue);
+                    $(".hideid").val(data.id);
+
+
+                    $('#addform').show();
+
+
+                });*/
+
+    });
+
+    //监听禁用
+    form.on('switch(userStatus)', function(obj){
+        layer.tips(this.value + ' ' + this.name + '：'+ obj.elem.checked, obj.othis);
+    });
+
+
+</script>
+
+<script type="text/html" id="doSomeThing">
+    <!-- 这里的 checked 的状态只是演示 -->
+    <input type="checkbox" name="userStatus" value="{{d.userStatus}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="userStatus" {{ d.userStatus == 1 ? 'checked' : '' }}/>
+</script>
+
+
+</body>
+</html>
