@@ -16,7 +16,7 @@
 
             <div class="" >
                 <div style="display: inline-block;height: 50px;">
-                    <img src="/img/icon/phone.png" title="手机号"/>
+                    <img th:src="@{/img/icon/phone.png}" title="手机号"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
                     <input type="text" name="phoneNumber" style="border-radius: 15px;" lay-vertype="tips" lay-verify="required|phone" placeholder="手机号" autocomplete="off" class="layui-input">
@@ -26,7 +26,7 @@
 
             <div class="" >
                 <div style="display: inline-block;height: 50px">
-                    <img src="/img/icon/user.png" title="昵称"/>
+                    <img th:src="@{/img/icon/user.png}" title="昵称"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
                     <input type="text" name="nickName" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="用户名" autocomplete="off" class="layui-input">
@@ -36,7 +36,7 @@
 
             <div class="" >
                 <div style="display: inline-block;height: 50px;">
-                    <img src="/img/icon/password.png" title="密码"/>
+                    <img th:src="@{/img/icon/password.png}" title="密码"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
                     <input type="password" name="userPassword" style=" border-radius: 15px;" lay-verify="required|inputlimit" lay-vertype="tips" placeholder="密码" autocomplete="off" class="layui-input">
@@ -47,8 +47,8 @@
             <div class="" >
                 <div style="display: inline-block;height: 50px;width: 40%">
                     <input id="hiddensexinput" name="sex" type="hidden" value="1"/>
-                    <img class="boysexradio chooseboy choose" height="40px" width="40px" src="/img/icon/boy.png" title="男" sexvalue="1"/>
-                    <img class="girlsexradio unchoosegirl unchoose" height="40px" width="40px" src="/img/icon/girlbefore.png" title="女" sexvalue="0"/>
+                    <img class="boysexradio chooseboy choose" height="40px" width="40px" th:src="@{/img/icon/boy.png}" title="男" sexvalue="1"/>
+                    <img class="girlsexradio unchoosegirl unchoose" height="40px" width="40px" th:src="@{/img/icon/girlbefore.png}" title="女" sexvalue="0"/>
                 </div>
                 <!--<div style="display: inline-block;height: 50px;width: 40%">
                     <img src="/img/icon/girlbefore.png" title="男"/>
@@ -59,7 +59,7 @@
 
             <div class="" >
                 <div style="display: inline-block;height: 50px;">
-                    <img src="/img/icon/identifyingcode.png" title="验证码"/>
+                    <img th:src="@{/img/icon/identifyingcode.png}" title="验证码"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
                     <input type="text" name="identifyingcode" style=" border-radius: 15px;" lay-verify="required|inputlimit" placeholder="验证码" autocomplete="off" class="layui-input">

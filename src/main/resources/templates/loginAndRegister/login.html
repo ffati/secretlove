@@ -20,7 +20,7 @@
         <form style="margin-top: 10%" class="loginform layui-form" th:action="@{/login/loginPage}" method="post">
         <div class="" >
             <div style="display: inline-block;height: 50px">
-            <img src="/img/icon/user.png" title="用户手机"/>
+            <img th:src="@{/img/icon/user.png}" title="用户手机"/>
             </div>
             <div style="display: inline-block;height: 50px;width: 50%">
                 <input type="text" name="username" style=" border-radius: 15px;"  placeholder="手机号码" autocomplete="off" class="layui-input">
@@ -30,7 +30,7 @@
 
             <div class="" >
                 <div style="display: inline-block;height: 50px;">
-                    <img src="/img/icon/password.png" title="密码"/>
+                    <img th:src="@{/img/icon/password.png}" title="密码"/>
                 </div>
                 <div style="display: inline-block;height: 50px;width: 50%">
                     <input type="password" name="password" style=" border-radius: 15px;" lay-verify="required" lay-vertype="tips" placeholder="密码" autocomplete="off" class="layui-input">

@@ -431,7 +431,7 @@ layui.use(['layer','form','upload'], function() {
 
                     priviewimg.find(".deletebutton").on('click',function () {
                         delete files[index]; //删除对应的文件
-                        priviewimg.remove();
+                        priviewimg.remove();//删除此对象即浏览器节点（我们看到的）
                         uploadreture.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
                     });
 
