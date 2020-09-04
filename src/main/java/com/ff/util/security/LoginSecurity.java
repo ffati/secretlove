@@ -58,7 +58,8 @@ public class LoginSecurity extends WebSecurityConfigurerAdapter {
 
                 .and().headers().frameOptions().disable()//iframe嵌套
                 ;
-        http.csrf().ignoringAntMatchers("/druid/*");
+        //http.csrf().ignoringAntMatchers("/druid/*");
+        http.csrf().disable();
     }
 
 

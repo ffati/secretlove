@@ -2,9 +2,6 @@ package com.ff.util.security;
 
 
 import com.ff.entity.RegisterUserEntity;
-import com.ff.entity.RoleEntity;
-import com.ff.entity.UserEntity;
-import com.ff.service.role.RoleService;
 import com.ff.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
