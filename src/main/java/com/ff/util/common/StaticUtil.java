@@ -10,16 +10,18 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ClassUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.validation.constraints.NotNull;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * @ClassName StaticUtil
@@ -39,6 +41,14 @@ public class StaticUtil {
 
     public static String PATH_REGISTERINNERFELLINGIMAGE;
 
+    public static String PATH_SYSTEMMENUIMAGEPATH;
+
+    public static String PATH_SYSTEICONUIMAGEPATH;
+
+    public static String PATH_SYSTERANDOMUIMAGEPATH;
+
+    public static String  RESOURCELOCATIONS;
+
     public static String  IMG_HEADSCULPTURE;
 
     public static String  IMG_PERSONALHOMEPAGEBACKGROUND;
@@ -51,28 +61,70 @@ public class StaticUtil {
 
     static{
         SensitiveWordDetectionUtil.InitializationWork();
-        String filePath= null;
-        //File filedir=null;
-        File userPicturedir=null;
-        //String headSculpturePath=null;
-        String UserPicturePath=null;
-        try {
-            filePath = new File("").getCanonicalPath();
-            System.out.println(filePath);
-            filePath=filePath.substring(0,filePath.lastIndexOf("\\"));
-            //headSculpturePath=filePath+"\\SecretLoveImg\\UserImage";
-            UserPicturePath=filePath+"/SecretLoveImg/UserImage";
-            //filedir=new File(headSculpturePath);
-            userPicturedir=new File(UserPicturePath);
 
-            /*if (!filedir.exists()){
-                filedir.mkdirs();
-            }*/
-            if (!userPicturedir.exists()){
-                userPicturedir.mkdirs();
+
+        String filePath= null;
+        File userPicturedir=null;
+        String UserPicturePath=null;
+        Properties properties = new Properties();
+        InputStreamReader inputStreamReader=null;
+
+        try {
+
+            inputStreamReader=new InputStreamReader(StaticUtil.class.getResourceAsStream("/application.properties"));
+            properties.load(inputStreamReader);
+
+            RESOURCELOCATIONS=properties.getProperty("resourceLocations");
+            PATH_USERIMAGEFOLDER=properties.getProperty("userImagePath");
+            PATH_VISITORINNERFELLINGIMAGE=properties.getProperty("visitorInnerfellingImagePath");
+            PATH_REGISTERINNERFELLINGIMAGE=properties.getProperty("registerInnerFellingImagePath");
+            PATH_SYSTEMMENUIMAGEPATH=properties.getProperty("systemMenuImagePath");
+            PATH_SYSTEICONUIMAGEPATH=properties.getProperty("systemIconImagePath");
+            PATH_SYSTERANDOMUIMAGEPATH=properties.getProperty("systemRandomImagePath");
+
+            List<String >pathList=new ArrayList<String >();
+            StringBuffer filePathString=new StringBuffer();
+
+            filePath = new File("").getCanonicalPath();
+            System.out.println("static初始化获取"+filePath);
+            filePath=filePath.substring(0,filePath.lastIndexOf("\\"));
+
+            pathList.add(filePathString.append(filePath).append(RESOURCELOCATIONS).append(PATH_REGISTERINNERFELLINGIMAGE).toString());
+            filePathString.setLength(0);
+            pathList.add(filePathString.append(filePath).append(RESOURCELOCATIONS).append(PATH_USERIMAGEFOLDER).toString());
+            filePathString.setLength(0);
+            pathList.add(filePathString.append(filePath).append(RESOURCELOCATIONS).append(PATH_VISITORINNERFELLINGIMAGE).toString());
+            filePathString.setLength(0);
+            pathList.add(filePathString.append(filePath).append(RESOURCELOCATIONS).append(PATH_SYSTEICONUIMAGEPATH).toString());
+            filePathString.setLength(0);
+            pathList.add(filePathString.append(filePath).append(RESOURCELOCATIONS).append(PATH_SYSTEMMENUIMAGEPATH).toString());
+            filePathString.setLength(0);
+            pathList.add(filePathString.append(filePath).append(RESOURCELOCATIONS).append(PATH_SYSTERANDOMUIMAGEPATH).toString());
+            filePathString.setLength(0);
+
+            for (String path:pathList
+                 ) {
+
+                UserPicturePath = path;
+                userPicturedir = new File(UserPicturePath);
+
+                if (!userPicturedir.exists()) {
+                    userPicturedir.mkdirs();
+                }
             }
 
         } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+
+            if (null!=inputStreamReader){
+
+                try {
+                    inputStreamReader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
 
         }
     }
@@ -91,13 +143,27 @@ public class StaticUtil {
 
         try {
             filePath = new File("").getCanonicalPath();
-            System.out.println(filePath);
+            System.out.println("serverPath================="+filePath);
             filePath=filePath.substring(0, filePath.lastIndexOf("\\"));
 
         } catch (IOException e) {
 
         }
         return filePath;
+    }
+
+
+    /*
+     * @author: ff
+     * @date: 2020/4/17 15:34
+     * @param: [sourceName]--static/img
+     * @return: java.lang.String
+     * 获取静态资源路径
+     */
+    public static String staticSourcePath(@NotNull String sourceName){
+
+        return ClassUtils.getDefaultClassLoader().getResource(sourceName).getPath();
+
     }
 
 
@@ -157,6 +223,18 @@ public class StaticUtil {
     }
 
 
+    /*
+     * @author: ff
+     * @date: 2020/4/14 14:29
+     * @param: [jsonObjectString, keyName]
+     * @return: java.lang.String
+     * 根据节点名获取值
+     */
+    public static String getJsonObjectValueByKeyName(String jsonObjectString,String keyName){
+
+        return JSON.parseObject(jsonObjectString).get(keyName).toString();
+
+    }
 
     /*
      * @author: ff
@@ -201,7 +279,14 @@ public class StaticUtil {
     }
 
 
+    public  String getRESOURCELOCATIONS() {
+        return RESOURCELOCATIONS;
+    }
 
+    @Value("${resourceLocations}")
+    public void setRESOURCELOCATIONS(String RESOURCELOCATIONS) {
+        StaticUtil.RESOURCELOCATIONS = RESOURCELOCATIONS;
+    }
 
     public String getPathUserimagefolder() {
         return PATH_USERIMAGEFOLDER;
@@ -229,6 +314,33 @@ public class StaticUtil {
     @Value("${registerInnerFellingImagePath}")
     public void setPathRegisterinnerfellingimage(String pathRegisterinnerfellingimage) {
         PATH_REGISTERINNERFELLINGIMAGE = pathRegisterinnerfellingimage;
+    }
+
+    public String getPathSystemmenuimagepath() {
+        return PATH_SYSTEMMENUIMAGEPATH;
+    }
+
+    @Value("${systemMenuImagePath}")
+    public void setPathSystemmenuimagepath(String pathSystemmenuimagepath) {
+        PATH_SYSTEMMENUIMAGEPATH = pathSystemmenuimagepath;
+    }
+
+    public String getPathSysteiconuimagepath() {
+        return PATH_SYSTEICONUIMAGEPATH;
+    }
+
+    @Value("${systemIconImagePath}")
+    public void setPathSysteiconuimagepath(String pathSysteiconuimagepath) {
+        PATH_SYSTEICONUIMAGEPATH = pathSysteiconuimagepath;
+    }
+
+    public String getPathSysterandomuimagepath() {
+        return PATH_SYSTERANDOMUIMAGEPATH;
+    }
+
+    @Value("${systemRandomImagePath}")
+    public void setPathSysterandomuimagepath(String pathSysterandomuimagepath) {
+        PATH_SYSTERANDOMUIMAGEPATH = pathSysterandomuimagepath;
     }
 
     public String getImgHeadsculpture() {
