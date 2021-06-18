@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /**
  * @ClassName AdministrationController
@@ -30,6 +32,10 @@ import java.util.Map;
 @Controller
 @RequestMapping("/administration")
 public class AdministrationController {
+
+    private volatile static int numberAdd=0;
+
+    private ExecutorService service=Executors.newFixedThreadPool(5);
 
     @Autowired
     private AdministrationService administrationService;
@@ -396,5 +402,25 @@ public class AdministrationController {
         message.setInformation("更新成功！");
         return message;
     }
+
+
+    @ResponseBody
+    @RequestMapping("/testMultithreaded")
+    public void   testMultithreaded() {
+
+
+
+        for (int i=0;i<50;i++){
+            service.execute(()->{
+                numberAdd++;
+                System.out.println("当前线程是"+Thread.currentThread().getName()+"  i="+numberAdd);
+            });
+        }
+        //service.shutdown();
+        System.out.println(numberAdd);
+
+    }
+
+
 
 }

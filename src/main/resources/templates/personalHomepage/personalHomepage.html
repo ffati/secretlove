@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/css/persionHomepage.css}"/>
 
 </head>
-<body th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${currentUserVo.personalHomepageImage})}+')'">
+<body th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${currentUserVo.personalHomepageImage})}+')'" style="overflow: auto">
 
 <div class="maindiv1"></div>
 
@@ -20,9 +20,9 @@
                   th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${currentUserVo.headPictureaddress})}+')'"/>
             <div style="position: relative;height: 100%;width: 100%;">
                 <img th:if="${currentUserVo.sex=='0'}" style="width: 30px;height: 30px;object-fit: contain"
-                     src="/img/icon/girl.png"/>
+                     src="/fileService/systemImage/iconImage/girl.png"/>
                 <img th:if="${currentUserVo.sex=='1'}" style="width: 30px;height: 30px;object-fit: contain"
-                     src="/img/icon/boy.png"/>
+                     src="/fileService/systemImage/iconImage/boy.png"/>
             </div>
         </div>
     </div>
@@ -47,8 +47,7 @@
             <legend>我的页面</legend>
         </fieldset>
     </div>
-
-    <div style="width: 100%" align="center">
+<!--    <div style="width: 100%" align="center">
         <div style="width: 100%" th:each="registerInnerFeeling,registerInnerFeelingStat:${registerInnerFeelingList}">
             <div style="width: 100%">
                 <div style="display: inline-block;width:45% " align="right">
@@ -61,8 +60,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
+    <div align="center" style="width: 100%;height: available">
+        <div class="layui-col-xs12 layui-col-sm12 layui-col-md12">
+            <table class="layui-hide" id="pageBar"></table>
+        </div>
+    </div>
 
 </div>
 
@@ -73,9 +77,11 @@
 
 <script>
 
+    var useridval=$(".useridval").text();
 
-    layui.use(['layer'], function () {
+    layui.use(['table','layer'], function () {
         var layer = layui.layer //弹层
+            ,table = layui.table;
 
 
         $(".modifydata").click(function () {
@@ -101,8 +107,68 @@
                 }
             });
         })
+
+
+
+        table.render({
+            //id:'homePageaTable'
+            height:300
+            //,width:600
+            ,elem: '#pageBar'
+            ,cellMinWidth: 200
+            ,url:'/personal/findByPage'
+            //,method:POST
+            //,contentType: 'application/json'
+            ,page: true
+            ,request: {
+                pageName: 'page' //页码的参数名称，默认：page
+                ,limitName: 'size' //每页数据量的参数名，默认：limit
+            }
+
+            ,response: {
+                statusName: 'code' //数据状态的字段名称，默认：code
+                ,statusCode: 200 //成功的状态码，默认：0
+                ,msgName: 'msg' //状态信息的字段名称，默认：msg
+                ,countName: 'count' //数据总数的字段名称，默认：count
+                ,dataName: 'data' //数据列表的字段名称，默认：data
+            }
+
+            ,where:{
+                userId: useridval
+            }
+/*            ,parseData: function(res){ //res 即为原始返回的数据
+                return {
+                    "code": res.code, //解析接口状态
+                    "msg": res.msg, //解析提示文本
+                    "count": res.count, //解析数据长度
+                    "data": res.data //解析数据列表
+                };
+            }*/
+            , cols: [
+                [
+
+                    {type: 'numbers', title: '序号',style:'background-color:transparent;'}
+                    , {field: 'receiver', title: '接收者',style:'background-color:transparent;'}
+                    , {field: 'do', toolbar: '#doSomeThing', title: '操作',style:'background-color:transparent;'}
+                ]
+            ]
+
+        });
+
     });
 
+
+
+    //监听行工具事件
+/*    table.on('tool(pageBar)', function(obj){
+        var data = obj.data;
+
+    });*/
+
+</script>
+
+<script type="text/html" id="doSomeThing">
+    <a class="layui-btn layui-btn-xs" href="/home/searchConfession?searchParam={{d.receiver}}">查看</a>
 </script>
 
 </body>

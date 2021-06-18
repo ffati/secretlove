@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.ff</groupId>
     <artifactId>secretlove</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <packaging>war</packaging>
     <name>secretlove</name>
     <description>project for Spring Boot</description>
@@ -167,6 +167,7 @@
     </dependencies>
 
     <build>
+        <finalName>secretLove</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

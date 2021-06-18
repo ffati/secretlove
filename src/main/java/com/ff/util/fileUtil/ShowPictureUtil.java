@@ -32,7 +32,7 @@ public class ShowPictureUtil {
     public void pictureStream(HttpServletResponse httpServletResponse,String imgpath){
 
         File file=null;
-        System.out.println(System.getProperty("user.dir"));
+        System.out.println("==================user.dir=================="+System.getProperty("user.dir"));
 
         try {
             if (null==imgpath||imgpath.equals("")||imgpath.length()<12){

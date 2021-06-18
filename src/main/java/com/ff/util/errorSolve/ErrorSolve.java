@@ -4,7 +4,6 @@ import com.ff.util.common.CurrentUser;
 import com.ff.vo.CurrentUserVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,25 +28,25 @@ public class ErrorSolve implements ErrorController {
     private CurrentUser currentUserUtil;
 
 
-    @RequestMapping(value="/error",produces = {MediaType.TEXT_HTML_VALUE})
+    @RequestMapping(value="/error")
     public String handleError(
             HttpServletRequest request,
             Model model
     ){
 
         if (currentUserUtil.currentUserIsAuthenticated()){
-            CurrentUserVo currentUserVo=currentUserUtil.currentUser(request.getSession());
-            model.addAttribute("headSculpture",currentUserVo.getHeadPictureaddress());
-        }
-
-        Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
-        if(statusCode == 404||statusCode==500){
-            model.addAttribute("statusCode",statusCode);
-            return "/error/unexpected";
-        }else{
-            return "/error/error";
-        }
+        CurrentUserVo currentUserVo=currentUserUtil.currentUser(request.getSession());
+        model.addAttribute("headSculpture",currentUserVo.getHeadPictureaddress());
     }
+
+    Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
+        if(statusCode == 404||statusCode==500){
+        model.addAttribute("statusCode",statusCode);
+        return "/error/unexpected";
+    }else{
+        return "/error/error";
+    }
+}
 
 
     @Override
