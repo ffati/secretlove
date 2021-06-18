@@ -11,7 +11,7 @@
         <div class="headimg" id="headimg" th:style="'background-image: url('+@{/fileService/showHeadSculpture(imgpath=${headSculpture})}+')'"></div>
     </div>
     <div sec:authorize="isAuthenticated()" hidden="hidden">
-        <form class="headimgForm" th:action="@{/personal/homePage}"></form>
+        <form class="headimgForm" th:action="@{/personal/homePage}" method="post"></form>
     </div>
     </div>
 </th:block>
